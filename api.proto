@@ -31,6 +31,19 @@ message GetAllSpecsResponse {
     repeated ProtoSpec specs = 1;
 }
 
+message GetAllConceptsRequest {
+}
+
+message GetAllConceptsResponse {
+    repeated ConceptInfo concepts = 1;
+}
+
+message ConceptInfo {
+    required string name = 1;
+    required string filepath = 2;
+    required string lineNumber = 3;
+}
+
 message GetStepValueRequest {
     required string stepText = 1;
     optional bool hasInlineTable = 2;
@@ -64,9 +77,11 @@ message APIMessage {
         GetAllSpecsResponse = 8;
         GetStepValueRequest = 9;
         GetStepValueResponse = 10;
-        GetLanguagePluginLibPathRequest = 11;
-        GetLanguagePluginLibPathResponse = 12;
-        ErrorResponse = 13;
+        GetAllConceptsRequest = 11;
+        GetAllConceptsResponse = 12;
+        GetLanguagePluginLibPathRequest = 13;
+        GetLanguagePluginLibPathResponse = 14;
+        ErrorResponse = 15;
     }
 
     required APIMessageType messageType = 1;
@@ -80,10 +95,12 @@ message APIMessage {
     optional GetAllStepsResponse allStepsResponse = 8;
     optional GetAllSpecsRequest allSpecsRequest = 9;
     optional GetAllSpecsResponse allSpecsResponse = 10;
-    optional GetStepValueRequest stepValueRequest = 11;
-    optional GetStepValueResponse stepValueResponse = 12;
-    optional GetLanguagePluginLibPathRequest libPathRequest = 13;
-    optional GetLanguagePluginLibPathResponse libPathResponse = 14;
-    optional ErrorResponse error = 15;
+    optional GetAllConceptsRequest allConceptsRequest = 11;
+    optional GetAllConceptsResponse allConceptsResponse = 12;
+    optional GetStepValueRequest stepValueRequest = 13;
+    optional GetStepValueResponse stepValueResponse = 14;
+    optional GetLanguagePluginLibPathRequest libPathRequest = 15;
+    optional GetLanguagePluginLibPathResponse libPathResponse = 16;
+    optional ErrorResponse error = 17;
 
 }
