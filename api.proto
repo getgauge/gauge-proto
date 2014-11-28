@@ -41,7 +41,7 @@ message GetAllConceptsResponse {
 message ConceptInfo {
     required string name = 1;
     required string filepath = 2;
-    required string lineNumber = 3;
+    required int32 lineNumber = 3;
 }
 
 message GetStepValueRequest {
