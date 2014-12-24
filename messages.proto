@@ -107,7 +107,28 @@ message SuiteDataStoreInitRequest {
 
 }
 
-// This is the message which gets transferred all the time 
+message ParameterPosition {
+	required int32 oldPosition = 1;
+	required int32 newPosition = 2;
+}
+message RefactorRequest {
+	required ProtoStepValue oldStepValue = 1;
+	required ProtoStepValue newStepValue = 2;
+	repeated ParameterPosition paramPositions = 3;
+}
+message RefactorResponse {
+	required bool success = 1;
+	optional string error = 2;
+}
+
+message GetStepNameRequest {
+	required string stepValue = 1;
+}
+
+message GetStepNameResponse {
+	repeated string stepName = 1;
+}
+// This is the message which gets transferred all the time
 // with proper message type set
 message Message {
 	enum MessageType {
@@ -130,6 +151,10 @@ message Message {
         ScenarioDataStoreInit = 16;
         SpecDataStoreInit = 17;
         SuiteDataStoreInit = 18;
+        StepNameRequest = 19;
+        StepNameResponse = 20;
+        RefactorRequest = 21;
+        RefactorResponse = 22;
 	}
 
   	required MessageType messageType = 1;
@@ -158,5 +183,9 @@ message Message {
     optional ScenarioDataStoreInitRequest scenarioDataStoreInitRequest = 19;
     optional SpecDataStoreInitRequest specDataStoreInitRequest = 20;
     optional SuiteDataStoreInitRequest suiteDataStoreInitRequest = 21;
+    optional GetStepNameRequest stepNameRequest= 22;
+    optional GetStepNameResponse stepNameResponse= 23;
+    optional RefactorRequest refactorRequest = 24;
+    optional RefactorResponse refactorResponse = 25;
 }
 
