@@ -126,7 +126,8 @@ message GetStepNameRequest {
 }
 
 message GetStepNameResponse {
-	repeated string stepName = 1;
+	required bool isStepPresent = 1;
+	optional string stepName = 2;
 }
 // This is the message which gets transferred all the time
 // with proper message type set
