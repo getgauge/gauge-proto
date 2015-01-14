@@ -127,7 +127,8 @@ message GetStepNameRequest {
 
 message GetStepNameResponse {
 	required bool isStepPresent = 1;
-	optional string stepName = 2;
+	repeated string stepName = 2;
+	required bool hasAlias = 3;
 }
 // This is the message which gets transferred all the time
 // with proper message type set
@@ -189,4 +190,3 @@ message Message {
     optional RefactorRequest refactorRequest = 24;
     optional RefactorResponse refactorResponse = 25;
 }
-
