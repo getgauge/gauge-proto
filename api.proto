@@ -1,4 +1,4 @@
-package main;
+package gauge.messages;
 // Defines communication messages for API
 // Every API call will have a Request & Response pair
 import "spec.proto";
@@ -21,14 +21,14 @@ message GetAllStepsRequest {
 }
 
 message GetAllStepsResponse {
-    repeated ProtoStepValue allSteps = 1;
+    repeated gauge.messages.ProtoStepValue allSteps = 1;
 }
 
 message GetAllSpecsRequest {
 }
 
 message GetAllSpecsResponse {
-    repeated ProtoSpec specs = 1;
+    repeated gauge.messages.ProtoSpec specs = 1;
 }
 
 message GetAllConceptsRequest {
@@ -39,7 +39,7 @@ message GetAllConceptsResponse {
 }
 
 message ConceptInfo {
-    required ProtoStepValue stepValue = 1;
+    required gauge.messages.ProtoStepValue stepValue = 1;
     required string filepath = 2;
     required int32 lineNumber = 3;
 }
@@ -50,7 +50,7 @@ message GetStepValueRequest {
 }
 
 message GetStepValueResponse {
-    required ProtoStepValue stepValue = 1;
+    required gauge.messages.ProtoStepValue stepValue = 1;
 }
 
 message GetLanguagePluginLibPathRequest {
@@ -63,6 +63,17 @@ message GetLanguagePluginLibPathResponse {
 
 message ErrorResponse {
     required string error = 1;
+}
+
+message PerformRefactoringRequest {
+    required string oldStep = 1;
+    required string newStep = 2;
+}
+
+message PerformRefactoringResponse {
+    required bool success = 1;
+    repeated string errors = 2;
+    repeated string filesChanged = 3;
 }
 
 message APIMessage {
@@ -82,6 +93,8 @@ message APIMessage {
         ErrorResponse = 13;
         GetAllConceptsRequest = 14;
         GetAllConceptsResponse = 15;
+        PerformRefactoringRequest = 16;
+        PerformRefactoringResponse = 17;
     }
 
     required APIMessageType messageType = 1;
@@ -102,6 +115,8 @@ message APIMessage {
     optional ErrorResponse error = 15;
     optional GetAllConceptsRequest allConceptsRequest = 16;
     optional GetAllConceptsResponse allConceptsResponse = 17;
+    optional PerformRefactoringRequest performRefactoringRequest = 18;
+    optional PerformRefactoringResponse performRefactoringResponse = 19;
 
 
 }

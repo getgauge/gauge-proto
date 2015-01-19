@@ -1,4 +1,4 @@
-package main;
+package gauge.messages;
 
 message ProtoSpec {
     required string specHeading = 1;
