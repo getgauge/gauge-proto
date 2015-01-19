@@ -123,11 +123,11 @@ message RefactorResponse {
 	repeated string filesChanged = 3;
 }
 
-message GetStepNameRequest {
+message StepNameRequest {
 	required string stepValue = 1;
 }
 
-message GetStepNameResponse {
+message StepNameResponse {
 	required bool isStepPresent = 1;
 	repeated string stepName = 2;
 	required bool hasAlias = 3;
@@ -187,8 +187,8 @@ message Message {
     optional ScenarioDataStoreInitRequest scenarioDataStoreInitRequest = 19;
     optional SpecDataStoreInitRequest specDataStoreInitRequest = 20;
     optional SuiteDataStoreInitRequest suiteDataStoreInitRequest = 21;
-    optional GetStepNameRequest stepNameRequest= 22;
-    optional GetStepNameResponse stepNameResponse= 23;
+    optional StepNameRequest stepNameRequest= 22;
+    optional StepNameResponse stepNameResponse= 23;
     optional RefactorRequest refactorRequest = 24;
     optional RefactorResponse refactorResponse = 25;
 }
