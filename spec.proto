@@ -18,6 +18,7 @@ message ProtoItem {
         Scenario = 4;
         TableDrivenScenario = 5;
         Table = 6;
+        Tags = 7;
     }
     required ItemType itemType = 1;
     optional ProtoStep step = 2;
@@ -26,6 +27,7 @@ message ProtoItem {
     optional ProtoTableDrivenScenario tableDrivenScenario = 5;
     optional ProtoComment comment = 6;
     optional ProtoTable table = 7;
+    optional ProtoTags tags = 8;
 }
 
 
