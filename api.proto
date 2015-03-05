@@ -93,6 +93,28 @@ message PerformRefactoringResponse {
     repeated string filesChanged = 3;
 }
 
+message GetExtractConceptInfoRequest {
+    required string text = 1;
+}
+
+message GetExtractConceptInfoResponse {
+    required bool isValid = 1;
+    optional bool hasParam = 2;
+    optional string conceptHeading = 3;
+    optional string steps = 4;
+    optional string conceptText = 5;
+}
+
+message GetFormatConceptHeadingRequest {
+    required string newConceptHeading = 1;
+    required string oldConceptHeading = 2;
+    required string oldConceptText = 3;
+}
+
+message GetFormatConceptHeadingResponse {
+    required string newConceptText = 1;
+}
+
 message APIMessage {
     enum APIMessageType {
         GetProjectRootRequest = 1;
@@ -112,6 +134,10 @@ message APIMessage {
         GetAllConceptsResponse = 15;
         PerformRefactoringRequest = 16;
         PerformRefactoringResponse = 17;
+        GetExtractConceptInfoRequest = 18;
+        GetExtractConceptInfoResponse = 19;
+        GetFormatConceptHeadingRequest = 20;
+        GetFormatConceptHeadingResponse = 21;
     }
 
     required APIMessageType messageType = 1;
@@ -134,6 +160,8 @@ message APIMessage {
     optional GetAllConceptsResponse allConceptsResponse = 17;
     optional PerformRefactoringRequest performRefactoringRequest = 18;
     optional PerformRefactoringResponse performRefactoringResponse = 19;
-
-
+    optional GetExtractConceptInfoRequest extractConceptInfoRequest = 20;
+    optional GetExtractConceptInfoResponse extractConceptInfoResponse = 21;
+    optional GetFormatConceptHeadingRequest formatConceptHeadingRequest = 22;
+    optional GetFormatConceptHeadingResponse formatConceptHeadingResponse = 23;
 }
