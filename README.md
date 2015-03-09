@@ -3,9 +3,9 @@ gauge-proto
 
 All the proto message files for gauge core communication with plugins.
 
-API Documentation
+Documentation
 -----------------
-doc/gauge-proto-doc.md
+Read the API Docs [here](doc/gauge-proto-doc.md)
 
 License
 -------
