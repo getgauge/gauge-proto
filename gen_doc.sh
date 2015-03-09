@@ -1,0 +1,1 @@
+protoc --doc_out=markdown,gauge-proto-doc.md:doc *.proto

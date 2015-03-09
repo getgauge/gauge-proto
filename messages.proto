@@ -15,197 +15,293 @@
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
 
+
+// The comments are exported to Markdown, hence they may contain markdown syntax and cross-refs.
+
 package gauge.messages;
 
 import "spec.proto";
 
+/// Default request. Tells the runner to shutdown.
 message KillProcessRequest {
 }
 
-// Sends to any request which needs a execution status as response
-// usually step execution, hooks etc will return this
+/// Sends to any request which needs a execution status as response
+/// usually step execution, hooks etc will return this
 message ExecutionStatusResponse {
-	required gauge.messages.ProtoExecutionResult executionResult = 1;
+  required gauge.messages.ProtoExecutionResult executionResult = 1;
 }
 
+/// Sent at start of Suite Execution. Tells the runner to execute `before_suite` hook.
 message ExecutionStartingRequest {
     optional ExecutionInfo currentExecutionInfo = 1;
 }
 
-message SpecExecutionStartingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message SpecExecutionEndingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message ScenarioExecutionStartingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message ScenarioExecutionEndingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message StepExecutionStartingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message StepExecutionEndingRequest {
-    optional ExecutionInfo currentExecutionInfo = 1;
-}
-
-message ExecutionInfo {
-    optional SpecInfo currentSpec = 1;
-    optional ScenarioInfo currentScenario = 2;
-    optional StepInfo currentStep = 3;
-    optional string stacktrace = 4;
-}
-
-message SpecInfo {
-    required string name = 1;
-    required string fileName = 2;
-    required bool isFailed = 3;
-    repeated string  tags = 4;
-}
-
-message ScenarioInfo {
-    required string name = 1;
-    required bool isFailed = 2;
-    repeated string  tags = 3;
-}
-
-message StepInfo {
-    required ExecuteStepRequest step = 1;
-    required bool isFailed = 2;
-}
-
-message ExecuteStepRequest {
-	required string actualStepText = 1;
-    required string parsedStepText = 2;
-	optional bool scenarioFailing = 3;
-	repeated gauge.messages.Parameter parameters = 4;
-}
-
-message StepValidateRequest {
-	required string stepText = 1;
-    required int32 numberOfParameters = 2;
-}
-
-message StepValidateResponse {
-	required bool isValid = 1;
-    optional string errorMessage = 2;
-}
-
+/// Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
 message ExecutionEndingRequest {
     optional ExecutionInfo currentExecutionInfo = 1;
 }
 
+/// Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
+message SpecExecutionStartingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
+message SpecExecutionEndingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Sent at start of Scenario Execution. Tells the runner to execute `before_scenario` hook.
+message ScenarioExecutionStartingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` hook.
+message ScenarioExecutionEndingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
+message StepExecutionStartingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
+message StepExecutionEndingRequest {
+    optional ExecutionInfo currentExecutionInfo = 1;
+}
+
+/// Contains details of the execution. 
+/// Depending on the context (Step, Scenario, Spec or Suite), the respective fields are set.
+message ExecutionInfo {
+    /// Holds the information of the current Spec. Valid in context of Spec execution.
+    optional SpecInfo currentSpec = 1;
+    /// Holds the information of the current Scenario. Valid in context of Scenario execution.
+    optional ScenarioInfo currentScenario = 2;
+    /// Holds the information of the current Step. Valid in context of Step execution.
+    optional StepInfo currentStep = 3;
+    /// Stacktrace of the execution. Valid only if there is an error in execution.
+    optional string stacktrace = 4;
+}
+
+/// Contains details of the Spec execution.
+message SpecInfo {
+    /// Name of the current Spec being executed.
+    required string name = 1;
+    /// Full File path containing the current Spec being executed.
+    required string fileName = 2;
+    /// Flag to indicate if the current Spec execution failed.
+    required bool isFailed = 3;
+    /// Tags relevant to the current Spec execution.
+    repeated string  tags = 4;
+}
+
+/// Contains details of the Scenario execution.
+message ScenarioInfo {
+    /// Name of the current Scenario being executed.
+    required string name = 1;
+    /// Flag to indicate if the current Scenario execution failed.
+    required bool isFailed = 2;
+    /// Tags relevant to the current Scenario execution.
+    repeated string  tags = 3;
+}
+
+/// Contains details of the Step execution.
+message StepInfo {
+    /// The current request to execute Step
+    required ExecuteStepRequest step = 1;
+    /// Flag to indicate if the current Step execution failed.
+    required bool isFailed = 2;
+}
+
+/// Request sent ot the runner to Execute a Step
+message ExecuteStepRequest {
+  /// Contains the actual text of the Step being executed. 
+  /// This contains the parameters as defined in the Spec.
+  required string actualStepText = 1;
+  /// Contains the parsed text of the Step being executed. 
+  /// The paramters are replaced with placeholders.
+  required string parsedStepText = 2;
+  /// Flag to indicate if the execution of the Scenario, containing the current Step, failed.
+  optional bool scenarioFailing = 3;
+  /// Collection of parameters applicable to the current Step.
+  repeated gauge.messages.Parameter parameters = 4;
+}
+
+/// Request sent ot the runner to check if given Step is valid. 
+/// The runner should check if there is an implementation defined for the given Step Text.
+message StepValidateRequest {
+  /// The text is used to lookup Step implementation
+  required string stepText = 1;
+  /// The number of paramters in the Step
+  required int32 numberOfParameters = 2;
+}
+
+/// Response of StepValidateRequest.
+/// The runner tells the caller if the Request was valid, 
+/// i.e. an implementation exists for given Step text.
+/// Returns an error message if it is an error response.
+message StepValidateResponse {
+  required bool isValid = 1;
+  optional string errorMessage = 2;
+}
+
+/// Result of the Suite Execution.
 message SuiteExecutionResult {
     required gauge.messages.ProtoSuiteResult suiteResult = 1;
 }
 
+/// Requests Gauge to give all Step Names.
 message StepNamesRequest {
 }
 
+
+/// Response to StepNamesRequest
 message StepNamesResponse {
+    /// Collection of strings corresponding to Step texts.
     repeated string steps = 1;
 }
 
+/// Request runner to initialize Scenario DataStore
+/// Scenario Datastore is reset after every Scenario execution.
 message ScenarioDataStoreInitRequest {
-
 }
 
+/// Request runner to initialize Spec DataStore
+/// Spec Datastore is reset after every Spec execution.
 message SpecDataStoreInitRequest {
-
 }
 
+/// Request runner to initialize Suite DataStore
+/// Suite Datastore is reset after every Suite execution.
 message SuiteDataStoreInitRequest {
-
 }
 
+/// Holds the new and old positions of a parameter.
+/// Used when refactoring a Step.
 message ParameterPosition {
-	required int32 oldPosition = 1;
-	required int32 newPosition = 2;
+  required int32 oldPosition = 1;
+  required int32 newPosition = 2;
 }
+
+/// Tells the runner to refactor the specified Step.
 message RefactorRequest {
-	required gauge.messages.ProtoStepValue oldStepValue = 1;
-	required gauge.messages.ProtoStepValue newStepValue = 2;
-	repeated ParameterPosition paramPositions = 3;
+  /// Old value, used to lookup Step to refactor
+  required gauge.messages.ProtoStepValue oldStepValue = 1;
+  /// New value, the to-be value of Step being refactored.
+  required gauge.messages.ProtoStepValue newStepValue = 2;
+  /// Holds parameter positions of all parameters. Contains old and new parameter positions.
+  repeated ParameterPosition paramPositions = 3;
 }
+
+/// Response of a RefactorRequest
 message RefactorResponse {
-	required bool success = 1;
-	optional string error = 2;
-	repeated string filesChanged = 3;
+  /// Flag indicating the success of Refactor operation.
+  required bool success = 1;
+  /// Error message, valid only if Refactor wasn't successful
+  optional string error = 2;
+  /// List of files that were affected because of the refactoring.
+  repeated string filesChanged = 3;
 }
 
+/// Request for details on a Single Step.
 message StepNameRequest {
-	required string stepValue = 1;
+  /// Step text to lookup the Step. 
+  /// This is the parsed step value, i.e. with placeholders for parameters.
+  required string stepValue = 1;
 }
 
+/// Response to StepNameRequest.
 message StepNameResponse {
-	required bool isStepPresent = 1;
-	repeated string stepName = 2;
-	required bool hasAlias = 3;
+  /// Flag indicating if there is a match for the given Step Text.
+  required bool isStepPresent = 1;
+  /// The Step name of the given step. 
+  repeated string stepName = 2;
+  /// Flag indicating if the given Step is an alias.
+  required bool hasAlias = 3;
 }
-// This is the message which gets transferred all the time
-// with proper message type set
+
+/// This is the message which gets transferred all the time
+/// with proper message type set
+/// One of the Request/Response fields will have value, depending on the MessageType set.
 message Message {
-	enum MessageType {
-	    ExecutionStarting = 0;
-	    SpecExecutionStarting = 1;
-	    SpecExecutionEnding = 2;
-	    ScenarioExecutionStarting = 3;
-	    ScenarioExecutionEnding = 4;
-	    StepExecutionStarting = 5;
-	    StepExecutionEnding = 6;
-	    ExecuteStep = 7;
-	    ExecutionEnding = 8;
-	    StepValidateRequest = 9;
-	    StepValidateResponse = 10;
-	    ExecutionStatusResponse = 11;
-        StepNamesRequest = 12;
-        StepNamesResponse = 13;
-        KillProcessRequest = 14;
-        SuiteExecutionResult = 15;
-        ScenarioDataStoreInit = 16;
-        SpecDataStoreInit = 17;
-        SuiteDataStoreInit = 18;
-        StepNameRequest = 19;
-        StepNameResponse = 20;
-        RefactorRequest = 21;
-        RefactorResponse = 22;
-	}
+  enum MessageType {
+      ExecutionStarting = 0;
+      SpecExecutionStarting = 1;
+      SpecExecutionEnding = 2;
+      ScenarioExecutionStarting = 3;
+      ScenarioExecutionEnding = 4;
+      StepExecutionStarting = 5;
+      StepExecutionEnding = 6;
+      ExecuteStep = 7;
+      ExecutionEnding = 8;
+      StepValidateRequest = 9;
+      StepValidateResponse = 10;
+      ExecutionStatusResponse = 11;
+      StepNamesRequest = 12;
+      StepNamesResponse = 13;
+      KillProcessRequest = 14;
+      SuiteExecutionResult = 15;
+      ScenarioDataStoreInit = 16;
+      SpecDataStoreInit = 17;
+      SuiteDataStoreInit = 18;
+      StepNameRequest = 19;
+      StepNameResponse = 20;
+      RefactorRequest = 21;
+      RefactorResponse = 22;
+  }
 
-  	required MessageType messageType = 1;
+  required MessageType messageType = 1;
 
-	// A unique id to represent this message. A response to the message should copy over this value
-	// this is used to synchronize messages & responses
-  	required int64 messageId = 2;
+  /// A unique id to represent this message. A response to the message should copy over this value.
+  /// This is used to synchronize messages & responses
+  required int64 messageId = 2;
 
-  	// One of the following will have a value
-  	optional ExecutionStartingRequest executionStartingRequest = 3;
-  	optional SpecExecutionStartingRequest specExecutionStartingRequest = 4;
-  	optional SpecExecutionEndingRequest specExecutionEndingRequest = 5;
-  	optional ScenarioExecutionStartingRequest scenarioExecutionStartingRequest = 6;
-  	optional ScenarioExecutionEndingRequest scenarioExecutionEndingRequest = 7;
-  	optional StepExecutionStartingRequest stepExecutionStartingRequest = 8;
-  	optional StepExecutionEndingRequest stepExecutionEndingRequest = 9;
-  	optional ExecuteStepRequest executeStepRequest = 10;
-  	optional ExecutionEndingRequest executionEndingRequest = 11;
-  	optional StepValidateRequest stepValidateRequest = 12;
-  	optional StepValidateResponse stepValidateResponse = 13;
-  	optional ExecutionStatusResponse executionStatusResponse = 14;
-    optional StepNamesRequest stepNamesRequest = 15;
-    optional StepNamesResponse stepNamesResponse = 16;
-  	optional SuiteExecutionResult suiteExecutionResult = 17;
-  	optional KillProcessRequest killProcessRequest = 18;
-    optional ScenarioDataStoreInitRequest scenarioDataStoreInitRequest = 19;
-    optional SpecDataStoreInitRequest specDataStoreInitRequest = 20;
-    optional SuiteDataStoreInitRequest suiteDataStoreInitRequest = 21;
-    optional StepNameRequest stepNameRequest= 22;
-    optional StepNameResponse stepNameResponse= 23;
-    optional RefactorRequest refactorRequest = 24;
-    optional RefactorResponse refactorResponse = 25;
+  /// [ExecutionStartingRequest](#gauge.messages.ExecutionStartingRequest)
+  optional ExecutionStartingRequest executionStartingRequest = 3;
+  /// [SpecExecutionStartingRequest](#gauge.messages.SpecExecutionStartingRequest)
+  optional SpecExecutionStartingRequest specExecutionStartingRequest = 4;
+  /// [SpecExecutionEndingRequest](#gauge.messages.SpecExecutionEndingRequest)
+  optional SpecExecutionEndingRequest specExecutionEndingRequest = 5;
+  /// [ScenarioExecutionStartingRequest](#gauge.messages.ScenarioExecutionStartingRequest)
+  optional ScenarioExecutionStartingRequest scenarioExecutionStartingRequest = 6;
+  /// [ScenarioExecutionEndingRequest](#gauge.messages.ScenarioExecutionEndingRequest)
+  optional ScenarioExecutionEndingRequest scenarioExecutionEndingRequest = 7;
+  /// [StepExecutionStartingRequest](#gauge.messages.StepExecutionStartingRequest)
+  optional StepExecutionStartingRequest stepExecutionStartingRequest = 8;
+  /// [StepExecutionEndingRequest](#gauge.messages.StepExecutionEndingRequest)
+  optional StepExecutionEndingRequest stepExecutionEndingRequest = 9;
+  /// [ExecuteStepRequest](#gauge.messages.ExecuteStepRequest)
+  optional ExecuteStepRequest executeStepRequest = 10;
+  /// [ExecutionEndingRequest](#gauge.messages.ExecutionEndingRequest)
+  optional ExecutionEndingRequest executionEndingRequest = 11;
+  /// [StepValidateRequest](#gauge.messages.StepValidateRequest)
+  optional StepValidateRequest stepValidateRequest = 12;
+  /// [StepValidateResponse](#gauge.messages.StepValidateResponse)
+  optional StepValidateResponse stepValidateResponse = 13;
+  /// [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse)
+  optional ExecutionStatusResponse executionStatusResponse = 14;
+  /// [StepNamesRequest](#gauge.messages.StepNamesRequest)
+  optional StepNamesRequest stepNamesRequest = 15;
+  /// [StepNamesResponse](#gauge.messages.StepNamesResponse)
+  optional StepNamesResponse stepNamesResponse = 16;
+  /// [SuiteExecutionResult ](#gauge.messages.SuiteExecutionResult )
+  optional SuiteExecutionResult suiteExecutionResult = 17;
+  /// [KillProcessRequest](#gauge.messages.KillProcessRequest)
+  optional KillProcessRequest killProcessRequest = 18;
+  /// [ScenarioDataStoreInitRequest](#gauge.messages.ScenarioDataStoreInitRequest)
+  optional ScenarioDataStoreInitRequest scenarioDataStoreInitRequest = 19;
+  /// [SpecDataStoreInitRequest](#gauge.messages.SpecDataStoreInitRequest)
+  optional SpecDataStoreInitRequest specDataStoreInitRequest = 20;
+  /// [SuiteDataStoreInitRequest](#gauge.messages.SuiteDataStoreInitRequest)
+  optional SuiteDataStoreInitRequest suiteDataStoreInitRequest = 21;
+  /// [StepNameRequest](#gauge.messages.StepNameRequest)
+  optional StepNameRequest stepNameRequest= 22;
+  /// [StepNameResponse](#gauge.messages.StepNameResponse)
+  optional StepNameResponse stepNameResponse= 23;
+  /// [RefactorRequest](#gauge.messages.RefactorRequest)
+  optional RefactorRequest refactorRequest = 24;
+  /// [RefactorResponse](#gauge.messages.RefactorResponse)
+  optional RefactorResponse refactorResponse = 25;
 }

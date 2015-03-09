@@ -15,153 +15,241 @@
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
 
+/// Defines communication messages for API
+/// Every API call will have a Request & Response pair
+
+// The comments are exported to Markdown, hence they may contain markdown syntax and cross-refs.
+
+
 package gauge.messages;
-// Defines communication messages for API
-// Every API call will have a Request & Response pair
 import "spec.proto";
 
+/// Request to get the Root Directory of the project
 message GetProjectRootRequest {
 }
 
+/// Response of GetProjectRootRequest.
 message GetProjectRootResponse {
-    required string projectRoot = 1;
+  /// Holds the absolute path of the Project Root directory.
+  required string projectRoot = 1;
 }
 
+/// Request to get the Root Directory of the Gauge installation
 message GetInstallationRootRequest {
 }
 
+/// Response of GetInstallationRootRequest
 message GetInstallationRootResponse {
-    required string installationRoot = 1;
+  /// Holds the absolute path of the Gauge installation directory
+  required string installationRoot = 1;
 }
 
+/// Request to get all Steps in the project
 message GetAllStepsRequest {
 }
 
+/// Response to GetAllStepsRequest
 message GetAllStepsResponse {
-    repeated gauge.messages.ProtoStepValue allSteps = 1;
+  /// Holds a collection of Steps that are defined in the project.
+  repeated gauge.messages.ProtoStepValue allSteps = 1;
 }
 
+/// Request to get all Specs in the project
 message GetAllSpecsRequest {
 }
 
+/// Response to GetAllSpecsRequest
 message GetAllSpecsResponse {
-    repeated gauge.messages.ProtoSpec specs = 1;
+  /// Holds a collection of Specs that are defined in the project.
+  repeated gauge.messages.ProtoSpec specs = 1;
 }
 
+/// Request to get all Concepts in the project
 message GetAllConceptsRequest {
 }
 
+/// Response to GetAllConceptsResponse
 message GetAllConceptsResponse {
-    repeated ConceptInfo concepts = 1;
+  /// Holds a collection of Concepts that are defined in the project.
+  repeated ConceptInfo concepts = 1;
 }
 
+/// Details of a Concept
 message ConceptInfo {
-    required gauge.messages.ProtoStepValue stepValue = 1;
-    required string filepath = 2;
-    required int32 lineNumber = 3;
+  /// The text that defines a concept
+  required gauge.messages.ProtoStepValue stepValue = 1;
+  /// The absolute path to the file that contains the Concept
+  required string filepath = 2;
+  /// The line number in the file where the concept is defined.
+  required int32 lineNumber = 3;
 }
 
+/// Request to get a Step Value.
 message GetStepValueRequest {
-    required string stepText = 1;
-    optional bool hasInlineTable = 2;
+  /// The text of the Step.
+  required string stepText = 1;
+  /// Flag to indicate if the Step has an inline table.
+  optional bool hasInlineTable = 2;
 }
 
+/// Response to GetStepValueRequest
 message GetStepValueResponse {
-    required gauge.messages.ProtoStepValue stepValue = 1;
+  /// The Step corresponding to the request provided.
+  required gauge.messages.ProtoStepValue stepValue = 1;
 }
 
+/// Request to get the location of language plugin's Lib directory
 message GetLanguagePluginLibPathRequest {
-    required string language = 1;
+  /// The language to locate the lib directory for.
+  required string language = 1;
 }
 
+/// Response to GetLanguagePluginLibPathRequest
 message GetLanguagePluginLibPathResponse {
-    required string path = 1;
+  /// Absolute apth to the Lib directory of the language.
+  required string path = 1;
 }
 
+/// A generic failure response
 message ErrorResponse {
-    required string error = 1;
+  /// Actual error message
+  required string error = 1;
 }
 
+/// Request to perform a Refactor
 message PerformRefactoringRequest {
-    required string oldStep = 1;
-    required string newStep = 2;
+  /// Step to refactor
+  required string oldStep = 1;
+  /// Change to be made
+  required string newStep = 2;
 }
 
+/// Response to PerformRefactoringRequest
 message PerformRefactoringResponse {
-    required bool success = 1;
-    repeated string errors = 2;
-    repeated string filesChanged = 3;
+  /// Flag indicating Success
+  required bool success = 1;
+  /// Error message if the refactoring was unsuccessful.
+  repeated string errors = 2;
+  /// Collection of files that were changed as part of the Refactoring.
+  repeated string filesChanged = 3;
 }
 
-message GetExtractConceptInfoRequest {
-    required string text = 1;
+/// Request to perform Extract to Concept refactoring
+/// The runner does not do the refactoring here, instead it provides inputs enabling the IDE to do refactoring
+message ExtractConceptInfoRequest {
+  /// The text blob containing steps that should be refactored to concept.
+  required string text = 1;
 }
 
-message GetExtractConceptInfoResponse {
-    required bool isValid = 1;
-    optional bool hasParam = 2;
-    optional string conceptHeading = 3;
-    optional string steps = 4;
-    optional string conceptText = 5;
+/// Response to ExtractConceptInfoRequest
+message ExtractConceptInfoResponse {
+  /// Flag indicating if the request is valid.
+  required bool isValid = 1;
+  /// Flag indicating the presence of parameters
+  optional bool hasParam = 2;
+  /// The templated concept heading with extracted paramters
+  optional string conceptHeading = 3;
+  /// The list of steps that are part of the extracted concept.
+  optional string steps = 4;
+  /// The text to invoke the concept from the Spec file
+  /// This contains the value of the parameters to be passed at invocation.
+  optional string conceptText = 5;
 }
 
-message GetFormatConceptHeadingRequest {
-    required string newConceptHeading = 1;
-    required string oldConceptHeading = 2;
-    required string oldConceptText = 3;
+/// Request to change the concept heading, while performing Extract to concept refactoring
+/// This is relevant because, the ExtractConceptInfoResponse has a placeholder definition of conceptHeading
+/// The user would then give a meaningful name to the concept, and its parameters
+/// This is deliberately kept separate from RefactorRequest/RefactorResponse, since those change the files physically.
+/// Changing physical files is an expensive affair and requires proper buffer management to support Undo operations.
+message FormatConceptHeadingRequest {
+  /// The new concept heading
+  required string newConceptHeading = 1;
+  /// The current Concept Heading that is to be replaced
+  required string oldConceptHeading = 2;
+  /// The full text of the concept, including the steps
+  required string oldConceptText = 3;
 }
 
-message GetFormatConceptHeadingResponse {
-    required string newConceptText = 1;
+/// Response to FormatConceptHeadingRequest
+message FormatConceptHeadingResponse {
+  /// The new concept text, with revised concept heading.
+  required string newConceptText = 1;
 }
 
+
+/// A generic message composing of all possible operations.
+/// One of the Request/Response fields will have value, depending on the MessageType set.
 message APIMessage {
-    enum APIMessageType {
-        GetProjectRootRequest = 1;
-        GetProjectRootResponse = 2;
-        GetInstallationRootRequest = 3;
-        GetInstallationRootResponse = 4;
-        GetAllStepsRequest = 5;
-        GetAllStepResponse = 6;
-        GetAllSpecsRequest = 7;
-        GetAllSpecsResponse = 8;
-        GetStepValueRequest = 9;
-        GetStepValueResponse = 10;
-        GetLanguagePluginLibPathRequest = 11;
-        GetLanguagePluginLibPathResponse = 12;
-        ErrorResponse = 13;
-        GetAllConceptsRequest = 14;
-        GetAllConceptsResponse = 15;
-        PerformRefactoringRequest = 16;
-        PerformRefactoringResponse = 17;
-        GetExtractConceptInfoRequest = 18;
-        GetExtractConceptInfoResponse = 19;
-        GetFormatConceptHeadingRequest = 20;
-        GetFormatConceptHeadingResponse = 21;
-    }
+  enum APIMessageType {
+    GetProjectRootRequest = 1;
+    GetProjectRootResponse = 2;
+    GetInstallationRootRequest = 3;
+    GetInstallationRootResponse = 4;
+    GetAllStepsRequest = 5;
+    GetAllStepResponse = 6;
+    GetAllSpecsRequest = 7;
+    GetAllSpecsResponse = 8;
+    GetStepValueRequest = 9;
+    GetStepValueResponse = 10;
+    GetLanguagePluginLibPathRequest = 11;
+    GetLanguagePluginLibPathResponse = 12;
+    ErrorResponse = 13;
+    GetAllConceptsRequest = 14;
+    GetAllConceptsResponse = 15;
+    PerformRefactoringRequest = 16;
+    PerformRefactoringResponse = 17;
+    ExtractConceptInfoRequest = 18;
+    ExtractConceptInfoResponse = 19;
+    FormatConceptHeadingRequest = 20;
+    FormatConceptHeadingResponse = 21;
+  }
 
-    required APIMessageType messageType = 1;
-    required int64 messageId = 2;
+  /// Type of API call being made
+  required APIMessageType messageType = 1;
+  /// A unique id to represent this message. A response to the message should copy over this value.
+  /// This is used to synchronize messages & responses
+  required int64 messageId = 2;
 
-    optional GetProjectRootRequest projectRootRequest = 3;
-    optional GetProjectRootResponse projectRootResponse = 4;
-    optional GetInstallationRootRequest installationRootRequest = 5;
-    optional GetInstallationRootResponse installationRootResponse = 6;
-    optional GetAllStepsRequest allStepsRequest = 7;
-    optional GetAllStepsResponse allStepsResponse = 8;
-    optional GetAllSpecsRequest allSpecsRequest = 9;
-    optional GetAllSpecsResponse allSpecsResponse = 10;
-    optional GetStepValueRequest stepValueRequest = 11;
-    optional GetStepValueResponse stepValueResponse = 12;
-    optional GetLanguagePluginLibPathRequest libPathRequest = 13;
-    optional GetLanguagePluginLibPathResponse libPathResponse = 14;
-    optional ErrorResponse error = 15;
-    optional GetAllConceptsRequest allConceptsRequest = 16;
-    optional GetAllConceptsResponse allConceptsResponse = 17;
-    optional PerformRefactoringRequest performRefactoringRequest = 18;
-    optional PerformRefactoringResponse performRefactoringResponse = 19;
-    optional GetExtractConceptInfoRequest extractConceptInfoRequest = 20;
-    optional GetExtractConceptInfoResponse extractConceptInfoResponse = 21;
-    optional GetFormatConceptHeadingRequest formatConceptHeadingRequest = 22;
-    optional GetFormatConceptHeadingResponse formatConceptHeadingResponse = 23;
+  /// [GetProjectRootRequest](#gauge.messages.GetProjectRootRequest)
+  optional GetProjectRootRequest projectRootRequest = 3;
+  /// [GetProjectRootResponse](#gauge.messages.GetProjectRootResponse)
+  optional GetProjectRootResponse projectRootResponse = 4;
+  /// [GetInstallationRootRequest](#gauge.messages.GetInstallationRootRequest)
+  optional GetInstallationRootRequest installationRootRequest = 5;
+  /// [GetInstallationRootResponse](#gauge.messages.GetInstallationRootResponse)
+  optional GetInstallationRootResponse installationRootResponse = 6;
+  /// [GetAllStepsRequest](#gauge.messages.GetAllStepsRequest)
+  optional GetAllStepsRequest allStepsRequest = 7;
+  /// [GetAllStepsResponse](#gauge.messages.GetAllStepsResponse)
+  optional GetAllStepsResponse allStepsResponse = 8;
+  /// [GetAllSpecsRequest](#gauge.messages.GetAllSpecsRequest)
+  optional GetAllSpecsRequest allSpecsRequest = 9;
+  /// [GetAllSpecsResponse](#gauge.messages.GetAllSpecsResponse)
+  optional GetAllSpecsResponse allSpecsResponse = 10;
+  /// [GetStepValueRequest](#gauge.messages.GetStepValueRequest)
+  optional GetStepValueRequest stepValueRequest = 11;
+  /// [GetStepValueResponse](#gauge.messages.GetStepValueResponse)
+  optional GetStepValueResponse stepValueResponse = 12;
+  /// [GetLanguagePluginLibPathRequest](#gauge.messages.GetLanguagePluginLibPathRequest)
+  optional GetLanguagePluginLibPathRequest libPathRequest = 13;
+  /// [GetLanguagePluginLibPathResponse](#gauge.messages.GetLanguagePluginLibPathResponse)
+  optional GetLanguagePluginLibPathResponse libPathResponse = 14;
+  /// [ErrorResponse](#gauge.messages.ErrorResponse)
+  optional ErrorResponse error = 15;
+  /// [GetAllConceptsRequest](#gauge.messages.GetAllConceptsRequest)
+  optional GetAllConceptsRequest allConceptsRequest = 16;
+  /// [GetAllConceptsResponse](#gauge.messages.GetAllConceptsResponse)
+  optional GetAllConceptsResponse allConceptsResponse = 17;
+  /// [PerformRefactoringRequest](#gauge.messages.PerformRefactoringRequest)
+  optional PerformRefactoringRequest performRefactoringRequest = 18;
+  /// [PerformRefactoringResponse](#gauge.messages.PerformRefactoringResponse)
+  optional PerformRefactoringResponse performRefactoringResponse = 19;
+  /// [ExtractConceptInfoRequest](#gauge.messages.ExtractConceptInfoRequest)
+  optional ExtractConceptInfoRequest extractConceptInfoRequest = 20;
+  /// [ExtractConceptInfoResponse](#gauge.messages.ExtractConceptInfoResponse)
+  optional ExtractConceptInfoResponse extractConceptInfoResponse = 21;
+  /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
+  optional FormatConceptHeadingResponse formatConceptHeadingRequest = 22;
+  /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
+  optional FormatConceptHeadingResponse formatConceptHeadingResponse = 23;
 }
