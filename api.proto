@@ -249,7 +249,7 @@ message APIMessage {
   /// [ExtractConceptInfoResponse](#gauge.messages.ExtractConceptInfoResponse)
   optional ExtractConceptInfoResponse extractConceptInfoResponse = 21;
   /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
-  optional FormatConceptHeadingResponse formatConceptHeadingRequest = 22;
+  optional FormatConceptHeadingRequest formatConceptHeadingRequest = 22;
   /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
   optional FormatConceptHeadingResponse formatConceptHeadingResponse = 23;
 }
