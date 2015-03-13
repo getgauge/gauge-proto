@@ -141,41 +141,46 @@ message ExtractConceptInfoRequest {
   required string text = 1;
 }
 
-/// Response to ExtractConceptInfoRequest
-message ExtractConceptInfoResponse {
-  /// Flag indicating if the request is valid.
-  required bool isValid = 1;
-  /// Flag indicating the presence of parameters
-  optional bool hasParam = 2;
-  /// The templated concept heading with extracted paramters
-  optional string conceptHeading = 3;
-  /// The list of steps that are part of the extracted concept.
-  optional string steps = 4;
-  /// The text to invoke the concept from the Spec file
-  /// This contains the value of the parameters to be passed at invocation.
-  optional string conceptText = 5;
+/// Request to perform Extract to Concept refactoring
+message ExtractConceptRequest {
+  /// The Concept name given by the user
+  required step conceptName = 1;
+  /// steps to extract
+  repeated step steps = 2;
+  /// Flag indicating if refactoring should be done across project
+  required bool changeAcrossProject = 3;
+  /// The concept filename in which extracted concept will be added
+  required string conceptFileName = 4;
+  /// Info related to selected text, required only if changeAcrossProject is false
+  optional textInfo selectedTextInfo = 5;
 }
 
-/// Request to change the concept heading, while performing Extract to concept refactoring
-/// This is relevant because, the ExtractConceptInfoResponse has a placeholder definition of conceptHeading
-/// The user would then give a meaningful name to the concept, and its parameters
-/// This is deliberately kept separate from RefactorRequest/RefactorResponse, since those change the files physically.
-/// Changing physical files is an expensive affair and requires proper buffer management to support Undo operations.
-message FormatConceptHeadingRequest {
-  /// The new concept heading
-  required string newConceptHeading = 1;
-  /// The current Concept Heading that is to be replaced
-  required string oldConceptHeading = 2;
-  /// The full text of the concept, including the steps
-  required string oldConceptText = 3;
+message textInfo {
+  /// The filename from where concept is being extracted
+  required string fileName = 1;
+  /// storing the starting and ending line number of selected text
+  required int32 startingLineNo = 2;
+  required int32 endLineNo = 3;
 }
 
-/// Response to FormatConceptHeadingRequest
-message FormatConceptHeadingResponse {
-  /// The new concept text, with revised concept heading.
-  required string newConceptText = 1;
+message step {
+  /// name of the step
+  required string name = 1;
+  ///  table present in step as parameter
+  optional gauge.messages.ProtoTable table = 2;
+  /// name of table in concept heading, if it comes as a param to concept
+  optional string paramTableName = 3;
 }
 
+/// Response to perform Extract to Concept refactoring
+message ExtractConceptResponse {
+  /// Flag indicating Success
+  required bool isSuccess = 1;
+  /// Error message if the refactoring was unsuccessful.
+  optional string error = 2;
+  /// Collection of files that were changed as part of the Refactoring.
+  repeated string filesChanged = 3;
+}
 
 /// A generic message composing of all possible operations.
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -198,10 +203,8 @@ message APIMessage {
     GetAllConceptsResponse = 15;
     PerformRefactoringRequest = 16;
     PerformRefactoringResponse = 17;
-    ExtractConceptInfoRequest = 18;
-    ExtractConceptInfoResponse = 19;
-    FormatConceptHeadingRequest = 20;
-    FormatConceptHeadingResponse = 21;
+    ExtractConceptRequest = 18;
+    ExtractConceptResponse = 19;
   }
 
   /// Type of API call being made
@@ -244,12 +247,8 @@ message APIMessage {
   optional PerformRefactoringRequest performRefactoringRequest = 18;
   /// [PerformRefactoringResponse](#gauge.messages.PerformRefactoringResponse)
   optional PerformRefactoringResponse performRefactoringResponse = 19;
-  /// [ExtractConceptInfoRequest](#gauge.messages.ExtractConceptInfoRequest)
-  optional ExtractConceptInfoRequest extractConceptInfoRequest = 20;
-  /// [ExtractConceptInfoResponse](#gauge.messages.ExtractConceptInfoResponse)
-  optional ExtractConceptInfoResponse extractConceptInfoResponse = 21;
-  /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
-  optional FormatConceptHeadingRequest formatConceptHeadingRequest = 22;
-  /// [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse)
-  optional FormatConceptHeadingResponse formatConceptHeadingResponse = 23;
+  /// [ExtractConceptRequest](#gauge.messages.ExtractConceptRequest)
+  optional ExtractConceptRequest extractConceptRequest = 20;
+  /// [ExtractConceptResponse](#gauge.messages.ExtractConceptResponse)
+  optional ExtractConceptResponse extractConceptResponse = 21;
 }
