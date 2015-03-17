@@ -167,7 +167,7 @@ message step {
   /// name of the step
   required string name = 1;
   ///  table present in step as parameter
-  optional gauge.messages.ProtoTable table = 2;
+  optional string table = 2;
   /// name of table in concept heading, if it comes as a param to concept
   optional string paramTableName = 3;
 }
