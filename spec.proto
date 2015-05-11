@@ -237,6 +237,14 @@ message ProtoSuiteResult {
     optional int64 executionTime = 6;
     /// Holds a metric indicating the success rate of the execution.
     required float successRate = 7;
+    /// The environment against which execution was done
+    optional string environment = 8;
+    /// Tag expression used for filtering specification
+    optional string tags = 9;
+    /// Project name
+    required string projectName = 10;
+    /// Timestamp of when execution started
+    required string timestamp = 11;
 }
 
 /// A proto object representing the result of Spec execution.
