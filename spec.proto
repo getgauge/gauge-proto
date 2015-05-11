@@ -206,6 +206,8 @@ message ProtoExecutionResult {
     optional bytes screenShot = 5;
     /// Holds the time taken for executing this scenario. 
     required int64 executionTime = 6;
+    /// Additional information at exec time to be available on reports
+    repeated string message = 7;
 }
 
 /// A proto object representing a pre-hook failure.
