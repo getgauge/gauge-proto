@@ -106,7 +106,7 @@ message GetLanguagePluginLibPathRequest {
 
 /// Response to GetLanguagePluginLibPathRequest
 message GetLanguagePluginLibPathResponse {
-  /// Absolute apth to the Lib directory of the language.
+  /// Absolute path to the Lib directory of the language.
   required string path = 1;
 }
 
@@ -182,6 +182,20 @@ message ExtractConceptResponse {
   repeated string filesChanged = 3;
 }
 
+/// Request to format spec files
+message FormatSpecsRequest {
+    /// Specs to be formatted
+    repeated string specs = 1;
+}
+
+/// Response on formatting spec files
+message FormatSpecsResponse {
+    /// Errors occurred on formatting
+    repeated string errors = 1;
+    /// Warnings occurred on formatting
+    repeated string warnings = 2;
+}
+
 /// A generic message composing of all possible operations.
 /// One of the Request/Response fields will have value, depending on the MessageType set.
 message APIMessage {
@@ -205,6 +219,8 @@ message APIMessage {
     PerformRefactoringResponse = 17;
     ExtractConceptRequest = 18;
     ExtractConceptResponse = 19;
+    FormatSpecsRequest = 20;
+    FormatSpecsResponse = 21;
   }
 
   /// Type of API call being made
@@ -251,4 +267,8 @@ message APIMessage {
   optional ExtractConceptRequest extractConceptRequest = 20;
   /// [ExtractConceptResponse](#gauge.messages.ExtractConceptResponse)
   optional ExtractConceptResponse extractConceptResponse = 21;
+  /// [FormatSpecsRequest] (#gauge.messages.FormatSpecsRequest)
+  optional FormatSpecsRequest formatSpecsRequest = 22;
+  /// [FormatSpecsResponse] (#gauge.messages.FormatSpecsResponse)
+  optional FormatSpecsResponse formatSpecsResponse = 23;
 }
