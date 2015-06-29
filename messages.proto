@@ -222,6 +222,11 @@ message StepNameResponse {
   required bool hasAlias = 3;
 }
 
+/// Response when a unsupported message request is sent.
+message UnsupportedMessageResponse {
+    optional string message = 1;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -250,6 +255,7 @@ message Message {
       StepNameResponse = 20;
       RefactorRequest = 21;
       RefactorResponse = 22;
+      UnsupportedMessageResponse = 23;
   }
 
   required MessageType messageType = 1;
@@ -304,4 +310,6 @@ message Message {
   optional RefactorRequest refactorRequest = 24;
   /// [RefactorResponse](#gauge.messages.RefactorResponse)
   optional RefactorResponse refactorResponse = 25;
+  /// [UnsupportedMessageResponse](#gauge.messages.UnsupportedMessageResponse)
+  optional UnsupportedMessageResponse unsupportedMessageResponse = 26;
 }

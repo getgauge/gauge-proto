@@ -196,6 +196,10 @@ message FormatSpecsResponse {
     repeated string warnings = 2;
 }
 
+/// Response when a API message request is not supported.
+message UnsupportedApiMessageResponse {
+}
+
 /// A generic message composing of all possible operations.
 /// One of the Request/Response fields will have value, depending on the MessageType set.
 message APIMessage {
@@ -221,6 +225,7 @@ message APIMessage {
     ExtractConceptResponse = 19;
     FormatSpecsRequest = 20;
     FormatSpecsResponse = 21;
+    UnsupportedApiMessageResponse = 22;
   }
 
   /// Type of API call being made
@@ -271,4 +276,6 @@ message APIMessage {
   optional FormatSpecsRequest formatSpecsRequest = 22;
   /// [FormatSpecsResponse] (#gauge.messages.FormatSpecsResponse)
   optional FormatSpecsResponse formatSpecsResponse = 23;
+  /// [UnsupportedApiMessageResponse] (#gauge.messages.UnsupportedApiMessageResponse)
+  optional UnsupportedApiMessageResponse unsupportedApiMessageResponse= 24;
 }
