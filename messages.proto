@@ -143,8 +143,12 @@ message StepValidateRequest {
 /// i.e. an implementation exists for given Step text.
 /// Returns an error message if it is an error response.
 message StepValidateResponse {
-  required bool isValid = 1;
-  optional string errorMessage = 2;
+    enum ErrorType {
+        STEP_IMPLEMENTATION_NOT_FOUND = 0;
+    }
+    required bool isValid = 1;
+    optional string errorMessage = 2;
+    optional ErrorType errorType = 3;
 }
 
 /// Result of the Suite Execution.
