@@ -185,7 +185,7 @@ message ProtoTableRow {
 /// A proto object representing Step Execution result
 message ProtoStepExecutionResult {
     /// The actual result of the execution
-    required ProtoExecutionResult executionResult = 1;
+    optional ProtoExecutionResult executionResult = 1;
     /// Contains a 'before' hook failure message. This happens when the `before_step` hook has an error.
     optional ProtoHookFailure preHookFailure = 2;
     /// Contains a 'after' hook failure message. This happens when the `after_step` hook has an error.
