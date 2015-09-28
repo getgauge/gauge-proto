@@ -88,6 +88,8 @@ message ProtoScenario {
     repeated string tags = 7;
     /// Holds the time taken for executing this scenario.
     optional int64 executionTime = 8;
+    required bool skipped = 9;
+    repeated string skipErrors = 10;
 }
 
 /// A proto object representing a TableDrivenScenario
