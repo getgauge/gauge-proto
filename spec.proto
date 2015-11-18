@@ -213,6 +213,13 @@ message ProtoExecutionResult {
     required int64 executionTime = 6;
     /// Additional information at exec time to be available on reports
     repeated string message = 7;
+
+    enum ErrorType {
+        ASSERTION = 1;
+        VERIFICATION = 2;
+    }
+    /// Type of the Error. Valid values: ASSERTION, VERIFICATION. Default: ASSERTION
+    optional ErrorType errorType = 8 [default = ASSERTION];
 }
 
 /// A proto object representing a pre-hook failure.
