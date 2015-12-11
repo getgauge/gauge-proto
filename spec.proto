@@ -14,7 +14,7 @@
 
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
-
+syntax = "proto2";
 package gauge.messages;
 
 // The comments are exported to Markdown, hence they may contain markdown syntax and cross-refs.
@@ -90,6 +90,8 @@ message ProtoScenario {
     optional int64 executionTime = 8;
     required bool skipped = 9;
     repeated string skipErrors = 10;
+    /// Holds the unique Identifier of a scenario.
+    optional string ID = 11;
 }
 
 /// A proto object representing a TableDrivenScenario
@@ -209,7 +211,7 @@ message ProtoExecutionResult {
     optional string stackTrace = 4;
     /// Byte array containing screenshot taken at the time of failure.
     optional bytes screenShot = 5;
-    /// Holds the time taken for executing this scenario. 
+    /// Holds the time taken for executing this scenario.
     required int64 executionTime = 6;
     /// Additional information at exec time to be available on reports
     repeated string message = 7;
@@ -245,7 +247,7 @@ message ProtoSuiteResult {
     required bool failed = 4;
     /// Holds the count of number of Specifications that failed.
     required int32 specsFailedCount = 5;
-    /// Holds the time taken for executing the whole suite. 
+    /// Holds the time taken for executing the whole suite.
     optional int64 executionTime = 6;
     /// Holds a metric indicating the success rate of the execution.
     required float successRate = 7;

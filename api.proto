@@ -20,7 +20,7 @@
 
 // The comments are exported to Markdown, hence they may contain markdown syntax and cross-refs.
 
-
+syntax = "proto2";
 package gauge.messages;
 import "spec.proto";
 

@@ -1,0 +1,44 @@
+// Copyright 2015 ThoughtWorks, Inc.
+
+// This file is part of gauge-proto.
+
+// gauge-proto is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// gauge-proto is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
+
+syntax = "proto3";
+package gauge.messages;
+
+message ExecutionRequest {
+    repeated string specs = 1;
+    string tagExp = 2;
+    bool inParallel = 3;
+    int64 numberOfStreams = 4;
+    bool sort = 5;
+}
+
+message ScenarioExecutionResult {
+    string ID = 1;
+    enum Status {
+      PASSED = 0;
+      FAILED = 1;
+      SKIPPED = 2;
+    }
+    Status status = 2;
+    int64 executionTime = 3;
+    string message = 4;
+    string stackTrace = 5;
+}
+
+service Execution {
+    rpc execute (ExecutionRequest) returns (stream ScenarioExecutionResult) {}
+}
