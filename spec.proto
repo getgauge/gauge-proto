@@ -92,6 +92,8 @@ message ProtoScenario {
     repeated string skipErrors = 10;
     /// Holds the unique Identifier of a scenario.
     optional string ID = 11;
+    /// Collection of Teardown steps. The Teardown steps are executed after every run.
+    repeated ProtoItem tearDownSteps = 12;
 }
 
 /// A proto object representing a TableDrivenScenario
