@@ -56,10 +56,10 @@ message ExecutionRequest {
     string tableRows = 12;
 }
 
-// ExecutionResult defines the structure of response for ExecutionRequest message
-message ExecutionResult {
+// ExecutionResponse defines the structure of response for ExecutionRequest message
+message ExecutionResponse {
     // Types of Execution result
-    enum ExecutionResultType {
+    enum ExecutionResponseType {
         ScenarioResult = 0;
         BeforeSuiteHookResult = 1;
         AfterSuiteHookResult = 2;
@@ -69,7 +69,7 @@ message ExecutionResult {
         SpecDataStoreInitResult = 6;
         ValidationResult = 7;
     }
-    ExecutionResultType type = 1;
+    ExecutionResponseType type = 1;
     // An identifier for the current execution result
     string ID = 2;
     // Specifies the execution status
@@ -100,5 +100,5 @@ message ExecutionError {
 // Define the gRPC service
 service Execution {
     // Bind RPC method
-    rpc execute (ExecutionRequest) returns (stream ExecutionResult) {}
+    rpc execute (ExecutionRequest) returns (stream ExecutionResponse) {}
 }

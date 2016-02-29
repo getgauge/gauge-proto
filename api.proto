@@ -226,6 +226,8 @@ message APIMessage {
     FormatSpecsRequest = 20;
     FormatSpecsResponse = 21;
     UnsupportedApiMessageResponse = 22;
+    ExecutionRequest = 23;
+    ExecutionResponse = 24;
   }
 
   /// Type of API call being made
