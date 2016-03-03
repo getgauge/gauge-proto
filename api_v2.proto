@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
 
-syntax = "proto3";
+syntax = "proto2";
 package gauge.messages;
 
 // ExecutionRequest defines the structure of requests that the API's consumers can send to request execution of specs/scenarios
@@ -23,11 +23,11 @@ message ExecutionRequest {
     // Each ExecutionRequest can ask to execute multiple spec files or multiple scenarios in a spec or a directory or all
     repeated string specs = 1;
     // Tag expression to filter specs and scenarios during execution. Default: ""
-    string tags = 2;
+    optional string tags = 2;
     // The working directory for gauge.
-    string workingDir = 3;
+    optional string workingDir = 3;
     // Environment to choose for gauge.
-    string environment = 4;
+    optional string environment = 4;
     // Types of log level that gauge supports
     enum LogLevel {
         INFO = 0;
@@ -35,25 +35,25 @@ message ExecutionRequest {
         WARNING = 2;
         ERROR = 3;
     }
-    LogLevel logLevel = 5;
+    optional LogLevel logLevel = 5;
     // Whether to run gauge in parallel mode.
-    bool isParallel = 6;
+    optional bool isParallel = 6;
     // If isParallel is true, this specifies how many parallel streams to run.
-    int32 parallelStreams = 7;
+    optional int32 parallelStreams = 7;
     // Specify which group of specs to execute, based on number of parallel streams. Works only when strategy is EAGER.
-    int32 group = 8;
+    optional int32 group = 8;
     // Toggles simple console reporting
-    bool simpleConsole = 9;
+    optional bool simpleConsole = 9;
     // If true, sorts execution of specifications alphabetically
-    bool sort = 10;
+    optional bool sort = 10;
     // Strategies for parallelization
     enum Strategy {
         LAZY = 0;
         EAGER = 1;
     }
-    Strategy strategy = 11;
+    optional Strategy strategy = 11;
     // Specify against which rows of datatable the scenarios should be executed
-    string tableRows = 12;
+    optional string tableRows = 12;
 }
 
 // ExecutionResponse defines the structure of response for ExecutionRequest message
@@ -69,32 +69,31 @@ message ExecutionResponse {
         SpecDataStoreInitResult = 6;
         ValidationResult = 7;
     }
-    ExecutionResponseType type = 1;
+    required ExecutionResponseType type = 1;
     // An identifier for the current execution result
-    string ID = 2;
+    optional string ID = 2;
     // Specifies the execution status
     enum Status {
       PASSED = 0;
       FAILED = 1;
       SKIPPED = 2;
     }
-    Status status = 3;
+    optional Status status = 3;
     // Contains the Execution error and its details
     repeated ExecutionError error = 4;
     // Specifies the execution time
-    int64 executionTime = 5;
+    // ExecutionError represents the failure during execution along with details of failure
+    message ExecutionError {
+        // Stacktrace from the failure
+        optional string stackTrace = 1;
+        // Error message from the failure
+        optional string errorMessage = 2;
+        // Byte array holding the screenshot taken at the time of failure.
+        optional bytes screenShot = 3;
+    }
+    optional int64 executionTime = 5;
     // Contains the console output messages
-    string stdout = 6;
-}
-
-// ExecutionError represents the failure during execution along with details of failure
-message ExecutionError {
-    /// Stacktrace from the failure
-    string stackTrace = 1;
-    /// Error message from the failure
-    string errorMessage = 2;
-    /// Byte array holding the screenshot taken at the time of failure.
-    bytes screenShot = 3;
+    optional string stdout = 6;
 }
 
 // Define the gRPC service

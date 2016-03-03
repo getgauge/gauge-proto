@@ -23,6 +23,7 @@
 syntax = "proto2";
 package gauge.messages;
 import "spec.proto";
+import "api_v2.proto";
 
 /// Request to get the Root Directory of the project
 message GetProjectRootRequest {
@@ -280,4 +281,8 @@ message APIMessage {
   optional FormatSpecsResponse formatSpecsResponse = 23;
   /// [UnsupportedApiMessageResponse] (#gauge.messages.UnsupportedApiMessageResponse)
   optional UnsupportedApiMessageResponse unsupportedApiMessageResponse= 24;
+  /// [ExecutionRequest] (#gauge.messages.ExecutionRequest)
+  optional ExecutionRequest executionRequest = 25;
+  /// [ExecutionResponse] (#gauge.messages.ExecutionResponse)
+  optional ExecutionResponse executionResponse = 26;
 }
