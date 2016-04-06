@@ -5,7 +5,12 @@ All the proto message files for gauge core communication with plugins.
 
 Documentation
 -----------------
-Read the API Docs [here](doc/gauge-proto-doc.md)
+
+    This is a repository which contains the  [google protobuff](https://github.com/google/protobuf) messages. An IDL that defines contracts between plugins and gauge core.
+
+    Several components uses this repository as a sub module. It takes gauge_proto compiles it into the specific language.
+
+    Read the API Docs [here](doc/gauge-proto-doc.md)
 
 License
 -------
