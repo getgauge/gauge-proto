@@ -94,6 +94,14 @@ message ProtoScenario {
     optional string ID = 11;
     /// Collection of Teardown steps. The Teardown steps are executed after every run.
     repeated ProtoItem tearDownSteps = 12;
+    /// Span(start, end) of scenario
+    optional Span span = 13;
+}
+
+/// A proto object representing a Span of content
+message Span {
+    required int64 start = 1;
+    required int64 end = 2;
 }
 
 /// A proto object representing a TableDrivenScenario
