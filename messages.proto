@@ -145,6 +145,7 @@ message StepValidateRequest {
 message StepValidateResponse {
     enum ErrorType {
         STEP_IMPLEMENTATION_NOT_FOUND = 0;
+        DUPLICATE_STEP_IMPLEMENTATION = 1;
     }
     required bool isValid = 1;
     optional string errorMessage = 2;
