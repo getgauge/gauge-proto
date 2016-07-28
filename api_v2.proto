@@ -22,38 +22,13 @@ package gauge.messages;
 message ExecutionRequest {
     // Each ExecutionRequest can ask to execute multiple spec files or multiple scenarios in a spec or a directory or all
     repeated string specs = 1;
-    // Tag expression to filter specs and scenarios during execution. Default: ""
-    optional string tags = 2;
-    // The working directory for gauge.
-    optional string workingDir = 3;
-    // Environment to choose for gauge.
-    optional string environment = 4;
-    // Types of log level that gauge supports
-    enum LogLevel {
-        INFO = 0;
-        DEBUG = 1;
-        WARNING = 2;
-        ERROR = 3;
+    // Contains all the flags required for execution
+    repeated flag flags = 2;
+    // Store name and value for a specific flag
+    message flag {
+        optional string name = 1;
+        optional string value = 2;
     }
-    optional LogLevel logLevel = 5;
-    // Whether to run gauge in parallel mode.
-    optional bool isParallel = 6;
-    // If isParallel is true, this specifies how many parallel streams to run.
-    optional int32 parallelStreams = 7;
-    // Specify which group of specs to execute, based on number of parallel streams. Works only when strategy is EAGER.
-    optional int32 group = 8;
-    // Toggles simple console reporting
-    optional bool simpleConsole = 9;
-    // If true, sorts execution of specifications alphabetically
-    optional bool sort = 10;
-    // Strategies for parallelization
-    enum Strategy {
-        LAZY = 0;
-        EAGER = 1;
-    }
-    optional Strategy strategy = 11;
-    // Specify against which rows of datatable the scenarios should be executed
-    optional string tableRows = 12;
 }
 
 // ExecutionResponse defines the structure of response for ExecutionRequest message
