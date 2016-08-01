@@ -35,14 +35,16 @@ message ExecutionRequest {
 message ExecutionResponse {
     // Types of Execution result
     enum ExecutionResponseType {
-        ScenarioResult = 0;
-        BeforeSuiteHookResult = 1;
-        AfterSuiteHookResult = 2;
-        BeforeSpecHookResult = 3;
-        AfterSpecHookResult = 4;
-        SuiteDataStoreInitResult = 5;
-        SpecDataStoreInitResult = 6;
-        ValidationResult = 7;
+        BeforeScenarioHookResult = 0;
+        ScenarioResult = 1;
+        AfterScenarioHookResult = 2;
+        BeforeSuiteHookResult = 3;
+        AfterSuiteHookResult = 4;
+        BeforeSpecHookResult = 5;
+        AfterSpecHookResult = 6;
+        SuiteDataStoreInitResult = 7;
+        SpecDataStoreInitResult = 8;
+        ErrorResult = 9;
     }
     required ExecutionResponseType type = 1;
     // An identifier for the current execution result
