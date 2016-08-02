@@ -35,16 +35,15 @@ message ExecutionRequest {
 message ExecutionResponse {
     // Types of Execution result
     enum ExecutionResponseType {
-        BeforeScenarioHookResult = 0;
-        ScenarioResult = 1;
-        AfterScenarioHookResult = 2;
-        BeforeSuiteHookResult = 3;
-        AfterSuiteHookResult = 4;
-        BeforeSpecHookResult = 5;
-        AfterSpecHookResult = 6;
-        SuiteDataStoreInitResult = 7;
-        SpecDataStoreInitResult = 8;
-        ErrorResult = 9;
+        SuiteDataStoreInitResult = 0;
+        SuiteStart = 1;
+        SpecDataStoreInitResult = 2;
+        SpecStart = 3;
+        ScenarioStart = 4;
+        ScenarioEnd = 5;
+        SpecEnd = 6;
+        SuiteEnd = 7;
+        ErrorResult = 8;
     }
     required ExecutionResponseType type = 1;
     // An identifier for the current execution result
@@ -56,9 +55,8 @@ message ExecutionResponse {
       SKIPPED = 2;
     }
     optional Status status = 3;
-    // Contains the Execution error and its details
-    repeated ExecutionError error = 4;
-    // Specifies the execution time
+    // Contains the Execution errors and its details
+    repeated ExecutionError errors = 4;
     // ExecutionError represents the failure during execution along with details of failure
     message ExecutionError {
         // Stacktrace from the failure
@@ -68,9 +66,14 @@ message ExecutionResponse {
         // Byte array holding the screenshot taken at the time of failure.
         optional bytes screenShot = 3;
     }
+    // Specifies the execution time
     optional int64 executionTime = 5;
     // Contains the console output messages
     optional string stdout = 6;
+    // Holds the pre hook failure
+    optional ExecutionError preHookFailure = 7;
+    // Holds the post hook failure
+    optional ExecutionError postHookFailure = 8;
 }
 
 // Define the gRPC service
