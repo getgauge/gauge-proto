@@ -59,21 +59,21 @@ message ExecutionResponse {
     repeated ExecutionError errors = 4;
     // ExecutionError represents the failure during execution along with details of failure
     message ExecutionError {
-        // Stacktrace from the failure
-        optional string stackTrace = 1;
         // Error message from the failure
-        optional string errorMessage = 2;
+        optional string errorMessage = 1;
+        // Stacktrace from the failure
+        optional string stackTrace = 2;
         // Byte array holding the screenshot taken at the time of failure.
-        optional bytes screenShot = 3;
+        optional bytes screenshot = 3;
     }
     // Specifies the execution time
     optional int64 executionTime = 5;
     // Contains the console output messages
     optional string stdout = 6;
-    // Holds the pre hook failure
-    optional ExecutionError preHookFailure = 7;
-    // Holds the post hook failure
-    optional ExecutionError postHookFailure = 8;
+    // Holds the before hook failure
+    optional ExecutionError beforeHookFailure = 7;
+    // Holds the after hook failure
+    optional ExecutionError afterHookFailure = 8;
 }
 
 // Define the gRPC service
