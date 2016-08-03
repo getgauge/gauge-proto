@@ -46,7 +46,9 @@ message ExecutionResponse {
         ErrorResult = 8;
     }
     required ExecutionResponseType type = 1;
-    // An identifier for the current execution result
+    // An identifier for the current execution result. This field is populated only for spec/scenario result.
+    // For spec, the value will be the filename.
+    // For scenario, the value will be filename:scenario_heading_line_num.
     optional string ID = 2;
     // Specifies the execution status
     enum Status {
