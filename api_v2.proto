@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
 
-syntax = "proto2";
+syntax = "proto3";
 package gauge.messages;
 
 // ExecutionRequest defines the structure of requests that the API's consumers can send to request execution of specs/scenarios
@@ -26,8 +26,8 @@ message ExecutionRequest {
     repeated flag flags = 2;
     // Store name and value for a specific flag
     message flag {
-        optional string name = 1;
-        optional string value = 2;
+        string name = 1;
+        string value = 2;
     }
 }
 
@@ -35,36 +35,36 @@ message Result {
     // An identifier for the current execution result. This field is populated only for spec/scenario result.
     // For spec, the value will be the filename.
     // For scenario, the value will be filename:scenario_heading_line_num.
-    optional string ID = 1;
+    string ID = 1;
     // Specifies the execution status
     enum Status {
       PASSED = 0;
       FAILED = 1;
       SKIPPED = 2;
     }
-    optional Status status = 2;
+    Status status = 2;
     // Contains the Execution errors and its details
     repeated ExecutionError errors = 3;
     // ExecutionError represents the failure during execution along with details of failure
     message ExecutionError {
         // Error message from the failure
-        optional string errorMessage = 1;
+        string errorMessage = 1;
         // Stacktrace from the failure
-        optional string stackTrace = 2;
+        string stackTrace = 2;
         // Byte array holding the screenshot taken at the time of failure.
-        optional bytes screenshot = 3;
+        bytes screenshot = 3;
     }
     // Specifies the execution time
-    optional int64 executionTime = 4;
+    int64 executionTime = 4;
     // Contains the console output messages
-    optional string stdout = 5;
+    string stdout = 5;
     // Holds the before hook failure
-    optional ExecutionError beforeHookFailure = 6;
+    ExecutionError beforeHookFailure = 6;
     // Holds the after hook failure
-    optional ExecutionError afterHookFailure = 7;
-    // Holds the table row index against which the scenario was executed.
+    ExecutionError afterHookFailure = 7;
+    // Holds the table row number (starting with 1) against which the scenario was executed.
     // This field is populated only for data table driven scenarios.
-    optional int64 tableRowIndex = 8 [default = -1];
+    int64 tableRowNumber = 8;
 }
 
 // ExecutionResponse defines the structure of response for ExecutionRequest message
@@ -80,9 +80,9 @@ message ExecutionResponse {
         ErrorResult = 6;
     }
     // Response type
-    optional Type type = 1;
+    Type type = 1;
     // Contains all the result details. This field is populated only for ScenaioEnd, SpecEnd, SuiteEnd, ErrorResult
-    optional Result result = 2;
+    Result result = 2;
 }
 
 // Define the gRPC service
