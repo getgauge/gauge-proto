@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
 
-syntax = "proto3";
+syntax = "proto2";
 package gauge.messages;
 
 // ExecutionRequest defines the structure of requests that the API's consumers can send to request execution of specs/scenarios
@@ -26,8 +26,8 @@ message ExecutionRequest {
     repeated flag flags = 2;
     // Store name and value for a specific flag
     message flag {
-        string name = 1;
-        string value = 2;
+        optional string name = 1;
+        optional string value = 2;
     }
 }
 
@@ -38,29 +38,29 @@ message Result {
       FAILED = 1;
       SKIPPED = 2;
     }
-    Status status = 1;
+    optional Status status = 1;
     // Contains the Execution errors and its details
     repeated ExecutionError errors = 2;
     // ExecutionError represents the failure during execution along with details of failure
     message ExecutionError {
         // Error message from the failure
-        string errorMessage = 1;
+        optional string errorMessage = 1;
         // Stacktrace from the failure
-        string stackTrace = 2;
+        optional string stackTrace = 2;
         // Byte array holding the screenshot taken at the time of failure.
-        bytes screenshot = 3;
+        optional bytes screenshot = 3;
     }
     // Specifies the execution time
-    int64 executionTime = 3;
+    optional int64 executionTime = 3;
     // Contains the console output messages
-    string stdout = 4;
+    optional string stdout = 4;
     // Holds the before hook failure
-    ExecutionError beforeHookFailure = 5;
+    optional ExecutionError beforeHookFailure = 5;
     // Holds the after hook failure
-    ExecutionError afterHookFailure = 6;
+    optional ExecutionError afterHookFailure = 6;
     // Holds the table row number (starting with 1) against which the scenario was executed.
     // This field is populated only for data table driven scenarios.
-    int64 tableRowNumber = 7;
+    optional int64 tableRowNumber = 7;
 }
 
 // ExecutionResponse defines the structure of response for ExecutionRequest message
@@ -76,13 +76,13 @@ message ExecutionResponse {
         ErrorResult = 6;
     }
     // Response type
-    Type type = 1;
+    required Type type = 1;
     // An identifier for the current execution result. This field is populated only for spec/scenario result.
     // For spec, the value will be the filename.
     // For scenario, the value will be filename:scenario_heading_line_num.
-    string ID = 2;
-    // Contains all the result details. This field is populated only for ScenaioEnd, SpecEnd, SuiteEnd, ErrorResult
-    Result result = 3;
+    optional string ID = 2;
+    // Contains all the result details. This field is populated only for ScenarioStart, ScenaioEnd, SpecEnd, SuiteEnd, ErrorResult
+    optional Result result = 3;
 }
 
 // Define the gRPC service
