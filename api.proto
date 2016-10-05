@@ -55,13 +55,30 @@ message GetAllStepsResponse {
 }
 
 /// Request to get all Specs in the project
-message GetAllSpecsRequest {
+message SpecsRequest {
+  repeated string specs = 1;
 }
 
 /// Response to GetAllSpecsRequest
-message GetAllSpecsResponse {
-  /// Holds a collection of Specs that are defined in the project.
-  repeated gauge.messages.ProtoSpec specs = 1;
+message SpecsResponse {
+  /// Holds a collection of Spec details.
+  repeated SpecDetail details = 1;
+
+  message SpecDetail {
+    /// Holds a collection of Specs that are defined in the project.
+    optional gauge.messages.ProtoSpec spec = 1;
+    /// Holds a collection of parse errors present in the above spec.
+    repeated Error parseErrors = 2;
+  }
+}
+
+message Error {
+  /// Holds the filename.
+  required string filename = 1;
+  /// Holds the line number of the error in file.
+  required int32 lineNumber = 2;
+  /// Holds the error message.
+  required string message = 3;
 }
 
 /// Request to get all Concepts in the project
@@ -210,8 +227,8 @@ message APIMessage {
     GetInstallationRootResponse = 4;
     GetAllStepsRequest = 5;
     GetAllStepResponse = 6;
-    GetAllSpecsRequest = 7;
-    GetAllSpecsResponse = 8;
+    SpecsRequest = 7;
+    SpecsResponse = 8;
     GetStepValueRequest = 9;
     GetStepValueResponse = 10;
     GetLanguagePluginLibPathRequest = 11;
@@ -247,9 +264,9 @@ message APIMessage {
   /// [GetAllStepsResponse](#gauge.messages.GetAllStepsResponse)
   optional GetAllStepsResponse allStepsResponse = 8;
   /// [GetAllSpecsRequest](#gauge.messages.GetAllSpecsRequest)
-  optional GetAllSpecsRequest allSpecsRequest = 9;
+  optional SpecsRequest specsRequest = 9;
   /// [GetAllSpecsResponse](#gauge.messages.GetAllSpecsResponse)
-  optional GetAllSpecsResponse allSpecsResponse = 10;
+  optional SpecsResponse specsResponse = 10;
   /// [GetStepValueRequest](#gauge.messages.GetStepValueRequest)
   optional GetStepValueRequest stepValueRequest = 11;
   /// [GetStepValueResponse](#gauge.messages.GetStepValueResponse)
