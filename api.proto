@@ -23,6 +23,7 @@
 syntax = "proto2";
 package gauge.messages;
 import "spec.proto";
+option csharp_namespace = "Gauge.Messages";
 
 /// Request to get the Root Directory of the project
 message GetProjectRootRequest {

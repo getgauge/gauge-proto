@@ -17,6 +17,7 @@
 
 syntax = "proto2";
 package gauge.messages;
+option csharp_namespace = "Gauge.Messages";
 
 // ExecutionRequest defines the structure of requests that the API's consumers can send to request execution of specs/scenarios
 message ExecutionRequest {
