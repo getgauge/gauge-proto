@@ -290,6 +290,8 @@ message ProtoSpecResult {
     optional int64 executionTime = 6;
     required bool skipped = 7;
     required int32 scenarioSkippedCount = 9;
+    /// Holds the row numbers, for which the execution skipped.
+    repeated int32 skippedDataTableRows = 10;
 }
 
 /// A proto object representing a Step value.
