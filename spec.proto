@@ -106,7 +106,7 @@ message ProtoScenario {
     /// Span(start, end) of scenario
     optional Span span = 13;
     /// Execution status for the scenario
-    optional ExecutionStatus executationStatus = 14 [default = NOTEXECUTED];
+    optional ExecutionStatus executionStatus = 14 [default = NOTEXECUTED];
 }
 
 /// A proto object representing a Span of content
