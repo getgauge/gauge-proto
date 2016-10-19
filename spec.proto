@@ -84,7 +84,7 @@ message ProtoScenario {
     /// Heading of the given Scenario
     required string scenarioHeading = 1;
     /// Flag to indicate if the Scenario execution failed
-    required bool failed = 2 [deprecated=true];;
+    required bool failed = 2 [deprecated=true];
     /// Collection of Context steps. The Context steps are executed before every run.
     repeated ProtoItem contexts = 3;
     /// Collection of Items under a scenario. These could be Steps, Comments, Tags, TableDrivenScenarios or Tables
@@ -97,7 +97,7 @@ message ProtoScenario {
     repeated string tags = 7;
     /// Holds the time taken for executing this scenario.
     optional int64 executionTime = 8;
-    required bool skipped = 9 [deprecated=true];;
+    required bool skipped = 9 [deprecated=true];
     repeated string skipErrors = 10;
     /// Holds the unique Identifier of a scenario.
     optional string ID = 11;
@@ -106,7 +106,7 @@ message ProtoScenario {
     /// Span(start, end) of scenario
     optional Span span = 13;
     /// Execution status for the scenario
-    required ExecutionStatus executationStatus = 14;
+    optional ExecutionStatus executationStatus = 14 [default = NOTEXECUTED];
 }
 
 /// A proto object representing a Span of content
