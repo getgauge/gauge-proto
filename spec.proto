@@ -97,7 +97,9 @@ message ProtoScenario {
     repeated string tags = 7;
     /// Holds the time taken for executing this scenario.
     optional int64 executionTime = 8;
+    /// Flag to indicate if the Scenario execution is skipped
     required bool skipped = 9 [deprecated=true];
+    /// Holds the error messages for skipping scenario from execution
     repeated string skipErrors = 10;
     /// Holds the unique Identifier of a scenario.
     optional string ID = 11;
