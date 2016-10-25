@@ -119,8 +119,7 @@ message Span {
 
 /// A proto object representing a TableDrivenScenario
 message ProtoTableDrivenScenario {
-    /// Holds the Underlying scenario that is executed for every row in the table.
-    repeated ProtoScenario scenarios = 1;
+    optional ProtoScenario scenario = 1;
 }
 
 /// A proto object representing a Step
