@@ -119,7 +119,10 @@ message Span {
 
 /// A proto object representing a TableDrivenScenario
 message ProtoTableDrivenScenario {
+    /// Scenario under Table driven execution
     optional ProtoScenario scenario = 1;
+    /// Row Index of data table against which the current scenario is executed
+    optional int32 tableRowIndex = 2;
 }
 
 /// A proto object representing a Step
