@@ -51,6 +51,8 @@ message ExecutionRequest {
     optional Strategy strategy = 9;
     // Specify against which rows of datatable the scenarios should be executed
     optional string tableRows = 10;
+    // Signals Gauge that the execution is being debugged, usually via an identifier
+    optional bool debug = 11;
 }
 
 message Result {
