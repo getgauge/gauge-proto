@@ -108,7 +108,7 @@ message ExecutionResponse {
     // Contains all the result details. This field is populated only for ScenarioStart, ScenaioEnd, SpecEnd, SuiteEnd, ErrorResult
     optional Result result = 3;
     // Contains the processId of the language runner used for execution. This field is populated only for SuiteStart
-    optional RunnerProcessId int32;
+    optional int32 RunnerProcessId = 4;
 }
 
 // Define the gRPC service
