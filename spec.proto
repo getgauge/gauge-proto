@@ -14,7 +14,7 @@
 
 // You should have received a copy of the GNU General Public License
 // along with gauge-proto.  If not, see <http://www.gnu.org/licenses/>.
-syntax = "proto2";
+syntax = "proto3";
 package gauge.messages;
 option csharp_namespace = "Gauge.Messages";
 
@@ -25,17 +25,17 @@ option csharp_namespace = "Gauge.Messages";
 /// A specification can contain Scenarios or Steps, besides Comments
 message ProtoSpec {
     /// Heading describing the Specification
-    required string specHeading = 1;
+    string specHeading = 1;
     /// A collection of items that come under this step
     repeated ProtoItem items = 2;
     /// Flag indicating if this is a Table Driven Specification. The table is defined in the context, this is different from using a table parameter.
-    required bool isTableDriven = 3;
+    bool isTableDriven = 3;
     /// Contains a 'before' hook failure message. This happens when the `before_spec` hook has an error.
-    optional ProtoHookFailure preHookFailure = 4;
+    ProtoHookFailure preHookFailure = 4;
     /// Contains a 'before' hook failure message. This happens when the `after_hook` hook has an error.
-    optional ProtoHookFailure postHookFailure = 5;
+    ProtoHookFailure postHookFailure = 5;
     /// Contains the filename for that holds this specification.
-    required string fileName = 6;
+    string fileName = 6;
     /// Contains a list of tags that are defined at the specification level. Scenario tags are not present here.
     repeated string tags = 7;
 }
@@ -45,30 +45,30 @@ message ProtoSpec {
 message ProtoItem {
     /// Enumerates various item types that the proto item can contain. Valid types are: Step, Comment, Concept, Scenario, TableDrivenScenario, Table, Tags
     enum ItemType {
-        Step = 1; // Item is a Step
-        Comment = 2; // Item is a Comment
-        Concept = 3; // Item is a Concept
-        Scenario = 4; // Item is a Scenario
-        TableDrivenScenario = 5; // Item is a TableDrivenScenario, a special case of Scenario, where there is a Context Step defining a table.
-        Table = 6; // Item is a Table
-        Tags = 7; // Item is a Tag
+        Step = 0; // Item is a Step
+        Comment = 1; // Item is a Comment
+        Concept = 2; // Item is a Concept
+        Scenario = 3; // Item is a Scenario
+        TableDrivenScenario = 4; // Item is a TableDrivenScenario, a special case of Scenario, where there is a Context Step defining a table.
+        Table = 5; // Item is a Table
+        Tags = 6; // Item is a Tag
     }
     /// Itemtype of the current ProtoItem
-    required ItemType itemType = 1;
+    ItemType itemType = 1;
     /// Holds the Step definition. Valid only if ItemType = Step
-    optional ProtoStep step = 2;
+    ProtoStep step = 2;
     /// Holds the Concept definition. Valid only if ItemType = Concept
-    optional ProtoConcept concept = 3;
+    ProtoConcept concept = 3;
     /// Holds the Scenario definition. Valid only if ItemType = Scenario
-    optional ProtoScenario scenario = 4;
+    ProtoScenario scenario = 4;
     /// Holds the TableDrivenScenario definition. Valid only if ItemType = TableDrivenScenario
-    optional ProtoTableDrivenScenario tableDrivenScenario = 5;
+    ProtoTableDrivenScenario tableDrivenScenario = 5;
     /// Holds the Comment definition. Valid only if ItemType = Comment
-    optional ProtoComment comment = 6;
+    ProtoComment comment = 6;
     /// Holds the Table definition. Valid only if ItemType = Table
-    optional ProtoTable table = 7;
+    ProtoTable table = 7;
     /// Holds the Tags definition. Valid only if ItemType = Tags
-    optional ProtoTags tags = 8;
+    ProtoTags tags = 8;
 }
 
 /// Execution Status
@@ -82,59 +82,59 @@ enum ExecutionStatus {
 /// A proto object representing a Scenario
 message ProtoScenario {
     /// Heading of the given Scenario
-    required string scenarioHeading = 1;
+    string scenarioHeading = 1;
     /// Flag to indicate if the Scenario execution failed
-    required bool failed = 2 [deprecated=true];
+    bool failed = 2 [deprecated=true];
     /// Collection of Context steps. The Context steps are executed before every run.
     repeated ProtoItem contexts = 3;
     /// Collection of Items under a scenario. These could be Steps, Comments, Tags, TableDrivenScenarios or Tables
     repeated ProtoItem scenarioItems = 4;
     /// Contains a 'before' hook failure message. This happens when the `before_scenario` hook has an error.
-    optional ProtoHookFailure preHookFailure = 5;
+    ProtoHookFailure preHookFailure = 5;
     /// Contains a 'after' hook failure message. This happens when the `after_scenario` hook has an error.
-    optional ProtoHookFailure postHookFailure = 6;
+    ProtoHookFailure postHookFailure = 6;
     /// Contains a list of tags that are defined at the specification level. Scenario tags are not present here.
     repeated string tags = 7;
     /// Holds the time taken for executing this scenario.
-    optional int64 executionTime = 8;
+    int64 executionTime = 8;
     /// Flag to indicate if the Scenario execution is skipped
-    required bool skipped = 9 [deprecated=true];
+    bool skipped = 9 [deprecated=true];
     /// Holds the error messages for skipping scenario from execution
     repeated string skipErrors = 10;
     /// Holds the unique Identifier of a scenario.
-    optional string ID = 11;
+    string ID = 11;
     /// Collection of Teardown steps. The Teardown steps are executed after every run.
     repeated ProtoItem tearDownSteps = 12;
     /// Span(start, end) of scenario
-    optional Span span = 13;
+    Span span = 13;
     /// Execution status for the scenario
-    optional ExecutionStatus executionStatus = 14 [default = NOTEXECUTED];
+    ExecutionStatus executionStatus = 14;
 }
 
 /// A proto object representing a Span of content
 message Span {
-    required int64 start = 1;
-    required int64 end = 2;
+    int64 start = 1;
+    int64 end = 2;
 }
 
 /// A proto object representing a TableDrivenScenario
 message ProtoTableDrivenScenario {
     /// Scenario under Table driven execution
-    optional ProtoScenario scenario = 1;
+    ProtoScenario scenario = 1;
     /// Row Index of data table against which the current scenario is executed
-    optional int32 tableRowIndex = 2;
+    int32 tableRowIndex = 2;
 }
 
 /// A proto object representing a Step
 message ProtoStep {
     /// Holds the raw text of the Step as defined in the spec file. This contains the actual parameter values.
-    required string actualText = 1;
+    string actualText = 1;
     /// Contains the parsed text of the Step. This will have placeholders for the parameters.
-    required string parsedText = 2;
+    string parsedText = 2;
     /// Collection of a list of fragments for a Step. A fragment could be either text or parameter.
     repeated Fragment fragments = 3;
     /// Holds the result from the execution.
-    optional ProtoStepExecutionResult stepExecutionResult = 4;
+    ProtoStepExecutionResult stepExecutionResult = 4;
 }
 
 /// Concept is a type of step, that can have multiple Steps.
@@ -142,11 +142,11 @@ message ProtoStep {
 /// A proto object representing a Concept
 message ProtoConcept {
     /// Represents the Step value of a Concept.
-    required ProtoStep conceptStep = 1;
+    ProtoStep conceptStep = 1;
     /// Collection of Steps in the given concepts.
     repeated ProtoItem steps = 2;
     /// Holds the execution result.
-    optional ProtoStepExecutionResult conceptExecutionResult = 3;
+    ProtoStepExecutionResult conceptExecutionResult = 3;
 }
 
 /// A proto object representing Tags
@@ -160,47 +160,47 @@ message ProtoTags {
 message Fragment {
     /// Enum representing the types of Fragment
     enum FragmentType {
-        Text = 1; /// Fragment is a Text part
-        Parameter = 2; /// Fragment is a Parameter part
+        Text = 0; /// Fragment is a Text part
+        Parameter = 1; /// Fragment is a Parameter part
     }
     /// Type of Fragment, valid values are Text, Parameter
-    required FragmentType fragmentType = 1;
+    FragmentType fragmentType = 1;
     /// Text part of the Fragment, valid only if FragmentType=Text
-    optional string text = 2;
+    string text = 2;
     /// Parameter part of the Fragment, valid only if FragmentType=Parameter
-    optional Parameter parameter = 3;
+    Parameter parameter = 3;
 }
 
 /// A proto object representing Fragment.
 message Parameter {
     /// Enum representing types of Parameter.
     enum ParameterType {
-        Static = 1; // Static parameter. The value of the parameter is defined at the Step.
-        Dynamic = 2; // Dynamic parameter. This is a parameter placeholder, and the actual value is injected at runtime, depending on the context of the call.
-        Special_String = 3; // Special paramter, taking a string value. Special paramters are read from a file.
-        Special_Table = 4; // Special paramter, taking a Table value. This parameter is read from a csv file.
-        Table = 5; // A table parameter, used for data driven execution.
+        Static = 0; // Static parameter. The value of the parameter is defined at the Step.
+        Dynamic = 1; // Dynamic parameter. This is a parameter placeholder, and the actual value is injected at runtime, depending on the context of the call.
+        Special_String = 2; // Special paramter, taking a string value. Special paramters are read from a file.
+        Special_Table = 3; // Special paramter, taking a Table value. This parameter is read from a csv file.
+        Table = 4; // A table parameter, used for data driven execution.
     }
     /// Type of the Parameter. Valid values: Static, Dynamic, Special_String, Special_Table, Table
-    required ParameterType parameterType = 1;
+    ParameterType parameterType = 1;
     /// Holds the value of the parameter
-    optional string value = 2;
+    string value = 2;
     /// Holds the name of the parameter, used as Key to lookup the value.
-    optional string name = 3;
+    string name = 3;
     /// Holds the table value, if parameterType=Table or Special_Table
-    optional ProtoTable table = 4;
+    ProtoTable table = 4;
 }
 
 /// A proto object representing Comment.
 message ProtoComment {
     /// Text representing the Comment.
-    required string text = 1;
+    string text = 1;
 }
 
 /// A proto object representing Table.
 message ProtoTable {
     /// Contains the Headers for the table
-    required ProtoTableRow headers = 1;
+    ProtoTableRow headers = 1;
     /// Contains the Rows for the table
     repeated ProtoTableRow rows = 2;
 }
@@ -214,50 +214,50 @@ message ProtoTableRow {
 /// A proto object representing Step Execution result
 message ProtoStepExecutionResult {
     /// The actual result of the execution
-    optional ProtoExecutionResult executionResult = 1;
+    ProtoExecutionResult executionResult = 1;
     /// Contains a 'before' hook failure message. This happens when the `before_step` hook has an error.
-    optional ProtoHookFailure preHookFailure = 2;
+    ProtoHookFailure preHookFailure = 2;
     /// Contains a 'after' hook failure message. This happens when the `after_step` hook has an error.
-    optional ProtoHookFailure postHookFailure = 3;
+    ProtoHookFailure postHookFailure = 3;
 
-    required bool skipped = 4;
-    optional string skippedReason = 5;
+    bool skipped = 4;
+    string skippedReason = 5;
 }
 
 /// A proto object representing the result of an execution
 message ProtoExecutionResult {
     /// Flag to indicate failure
-    required bool failed = 1;
+    bool failed = 1;
     /// Flag to indicate if the error is recoverable from.
-    optional bool recoverableError = 2;
+    bool recoverableError = 2;
     /// The actual error message.
-    optional string errorMessage = 3;
+    string errorMessage = 3;
     /// Stacktrace of the error
-    optional string stackTrace = 4;
+    string stackTrace = 4;
     /// Byte array containing screenshot taken at the time of failure.
-    optional bytes screenShot = 5;
+    bytes screenShot = 5;
     /// Holds the time taken for executing this scenario.
-    required int64 executionTime = 6;
+    int64 executionTime = 6;
     /// Additional information at exec time to be available on reports
     repeated string message = 7;
 
     enum ErrorType {
-        ASSERTION = 1;
-        VERIFICATION = 2;
+        ASSERTION = 0;
+        VERIFICATION = 1;
     }
     /// Type of the Error. Valid values: ASSERTION, VERIFICATION. Default: ASSERTION
-    optional ErrorType errorType = 8 [default = ASSERTION];
+    ErrorType errorType = 8;
 }
 
 /// A proto object representing a pre-hook failure.
 /// Used to hold failure information for before_suite, before_spec, before_scenario and before_spec hooks.
 message ProtoHookFailure {
     /// Stacktrace from the failure
-    required string stackTrace = 1;
+    string stackTrace = 1;
     /// Error message from the failure
-    required string errorMessage = 2;
+    string errorMessage = 2;
     /// Byte array holding the screenshot taken at the time of failure.
-    optional bytes screenShot = 3;
+    bytes screenShot = 3;
 }
 
 /// A proto object representing the result of entire Suite execution.
@@ -265,45 +265,45 @@ message ProtoSuiteResult {
     /// Contains the result from the execution
     repeated ProtoSpecResult specResults = 1;
     /// Contains a 'before' hook failure message. This happens when the `before_suite` hook has an error
-    optional ProtoHookFailure preHookFailure = 2;
+    ProtoHookFailure preHookFailure = 2;
     /// Contains a 'after' hook failure message. This happens when the `after_suite` hook has an error
-    optional ProtoHookFailure postHookFailure = 3;
+    ProtoHookFailure postHookFailure = 3;
     /// Flag to indicate failure
-    required bool failed = 4;
+    bool failed = 4;
     /// Holds the count of number of Specifications that failed.
-    required int32 specsFailedCount = 5;
+    int32 specsFailedCount = 5;
     /// Holds the time taken for executing the whole suite.
-    optional int64 executionTime = 6;
+    int64 executionTime = 6;
     /// Holds a metric indicating the success rate of the execution.
-    required float successRate = 7;
+    float successRate = 7;
     /// The environment against which execution was done
-    optional string environment = 8;
+    string environment = 8;
     /// Tag expression used for filtering specification
-    optional string tags = 9;
+    string tags = 9;
     /// Project name
-    required string projectName = 10;
+    string projectName = 10;
     /// Timestamp of when execution started
-    required string timestamp = 11;
-    required int32 specsSkippedCount = 12;
+    string timestamp = 11;
+    int32 specsSkippedCount = 12;
 
 }
 
 /// A proto object representing the result of Spec execution.
 message ProtoSpecResult {
     /// Represents the corresponding Specification
-    required ProtoSpec protoSpec = 1;
+    ProtoSpec protoSpec = 1;
     /// Holds the number of Scenarios executed
-    required int32 scenarioCount = 2;
+    int32 scenarioCount = 2;
     /// Holds the number of Scenarios failed
-    required int32 scenarioFailedCount = 3;
+    int32 scenarioFailedCount = 3;
     /// Flag to indicate failure
-    required bool failed = 4;
+    bool failed = 4;
     /// Holds the row numbers, which caused the execution to fail.
     repeated int32 failedDataTableRows = 5;
     /// Holds the time taken for executing the spec.
-    optional int64 executionTime = 6;
-    required bool skipped = 7;
-    required int32 scenarioSkippedCount = 9;
+    int64 executionTime = 6;
+    bool skipped = 7;
+    int32 scenarioSkippedCount = 9;
     /// Holds the row numbers, for which the execution skipped.
     repeated int32 skippedDataTableRows = 10;
 }
@@ -311,9 +311,9 @@ message ProtoSpecResult {
 /// A proto object representing a Step value.
 message ProtoStepValue {
     /// The actual string value describing he Step
-    required string stepValue = 1;
+    string stepValue = 1;
     /// The parameterized string value describing he Step. The parameters are replaced with placeholders.
-    required string parameterizedStepValue = 2;
+    string parameterizedStepValue = 2;
     /// A collection of strings representing the parameters.
     repeated string parameters = 3;
 }

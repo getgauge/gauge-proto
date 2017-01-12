@@ -20,7 +20,7 @@
 
 // The comments are exported to Markdown, hence they may contain markdown syntax and cross-refs.
 
-syntax = "proto2";
+syntax = "proto3";
 package gauge.messages;
 import "spec.proto";
 option csharp_namespace = "Gauge.Messages";
@@ -32,7 +32,7 @@ message GetProjectRootRequest {
 /// Response of GetProjectRootRequest.
 message GetProjectRootResponse {
   /// Holds the absolute path of the Project Root directory.
-  required string projectRoot = 1;
+  string projectRoot = 1;
 }
 
 /// Request to get the Root Directory of the Gauge installation
@@ -42,7 +42,7 @@ message GetInstallationRootRequest {
 /// Response of GetInstallationRootRequest
 message GetInstallationRootResponse {
   /// Holds the absolute path of the Gauge installation directory
-  required string installationRoot = 1;
+  string installationRoot = 1;
 }
 
 /// Request to get all Steps in the project
@@ -67,7 +67,7 @@ message SpecsResponse {
 
   message SpecDetail {
     /// Holds a collection of Specs that are defined in the project.
-    optional gauge.messages.ProtoSpec spec = 1;
+    gauge.messages.ProtoSpec spec = 1;
     /// Holds a collection of parse errors present in the above spec.
     repeated Error parseErrors = 2;
   }
@@ -75,11 +75,11 @@ message SpecsResponse {
 
 message Error {
   /// Holds the filename.
-  required string filename = 1;
+  string filename = 1;
   /// Holds the line number of the error in file.
-  required int32 lineNumber = 2;
+  int32 lineNumber = 2;
   /// Holds the error message.
-  required string message = 3;
+  string message = 3;
 }
 
 /// Request to get all Concepts in the project
@@ -95,57 +95,57 @@ message GetAllConceptsResponse {
 /// Details of a Concept
 message ConceptInfo {
   /// The text that defines a concept
-  required gauge.messages.ProtoStepValue stepValue = 1;
+  gauge.messages.ProtoStepValue stepValue = 1;
   /// The absolute path to the file that contains the Concept
-  required string filepath = 2;
+  string filepath = 2;
   /// The line number in the file where the concept is defined.
-  required int32 lineNumber = 3;
+  int32 lineNumber = 3;
 }
 
 /// Request to get a Step Value.
 message GetStepValueRequest {
   /// The text of the Step.
-  required string stepText = 1;
+  string stepText = 1;
   /// Flag to indicate if the Step has an inline table.
-  optional bool hasInlineTable = 2;
+  bool hasInlineTable = 2;
 }
 
 /// Response to GetStepValueRequest
 message GetStepValueResponse {
   /// The Step corresponding to the request provided.
-  required gauge.messages.ProtoStepValue stepValue = 1;
+  gauge.messages.ProtoStepValue stepValue = 1;
 }
 
 /// Request to get the location of language plugin's Lib directory
 message GetLanguagePluginLibPathRequest {
   /// The language to locate the lib directory for.
-  required string language = 1;
+  string language = 1;
 }
 
 /// Response to GetLanguagePluginLibPathRequest
 message GetLanguagePluginLibPathResponse {
   /// Absolute path to the Lib directory of the language.
-  required string path = 1;
+  string path = 1;
 }
 
 /// A generic failure response
 message ErrorResponse {
   /// Actual error message
-  required string error = 1;
+  string error = 1;
 }
 
 /// Request to perform a Refactor
 message PerformRefactoringRequest {
   /// Step to refactor
-  required string oldStep = 1;
+  string oldStep = 1;
   /// Change to be made
-  required string newStep = 2;
+  string newStep = 2;
 }
 
 /// Response to PerformRefactoringRequest
 message PerformRefactoringResponse {
   /// Flag indicating Success
-  required bool success = 1;
+  bool success = 1;
   /// Error message if the refactoring was unsuccessful.
   repeated string errors = 2;
   /// Collection of files that were changed as part of the Refactoring.
@@ -156,46 +156,46 @@ message PerformRefactoringResponse {
 /// The runner does not do the refactoring here, instead it provides inputs enabling the IDE to do refactoring
 message ExtractConceptInfoRequest {
   /// The text blob containing steps that should be refactored to concept.
-  required string text = 1;
+  string text = 1;
 }
 
 /// Request to perform Extract to Concept refactoring
 message ExtractConceptRequest {
   /// The Concept name given by the user
-  required step conceptName = 1;
+  step conceptName = 1;
   /// steps to extract
   repeated step steps = 2;
   /// Flag indicating if refactoring should be done across project
-  required bool changeAcrossProject = 3;
+  bool changeAcrossProject = 3;
   /// The concept filename in which extracted concept will be added
-  required string conceptFileName = 4;
-  /// Info related to selected text, required only if changeAcrossProject is false
-  optional textInfo selectedTextInfo = 5;
+  string conceptFileName = 4;
+  /// Info related to selected text, only if changeAcrossProject is false
+  textInfo selectedTextInfo = 5;
 }
 
 message textInfo {
   /// The filename from where concept is being extracted
-  required string fileName = 1;
+  string fileName = 1;
   /// storing the starting and ending line number of selected text
-  required int32 startingLineNo = 2;
-  required int32 endLineNo = 3;
+  int32 startingLineNo = 2;
+  int32 endLineNo = 3;
 }
 
 message step {
   /// name of the step
-  required string name = 1;
+  string name = 1;
   ///  table present in step as parameter
-  optional string table = 2;
+  string table = 2;
   /// name of table in concept heading, if it comes as a param to concept
-  optional string paramTableName = 3;
+  string paramTableName = 3;
 }
 
 /// Response to perform Extract to Concept refactoring
 message ExtractConceptResponse {
   /// Flag indicating Success
-  required bool isSuccess = 1;
+  bool isSuccess = 1;
   /// Error message if the refactoring was unsuccessful.
-  optional string error = 2;
+  string error = 2;
   /// Collection of files that were changed as part of the Refactoring.
   repeated string filesChanged = 3;
 }
@@ -222,78 +222,78 @@ message UnsupportedApiMessageResponse {
 /// One of the Request/Response fields will have value, depending on the MessageType set.
 message APIMessage {
   enum APIMessageType {
-    GetProjectRootRequest = 1;
-    GetProjectRootResponse = 2;
-    GetInstallationRootRequest = 3;
-    GetInstallationRootResponse = 4;
-    GetAllStepsRequest = 5;
-    GetAllStepResponse = 6;
-    SpecsRequest = 7;
-    SpecsResponse = 8;
-    GetStepValueRequest = 9;
-    GetStepValueResponse = 10;
-    GetLanguagePluginLibPathRequest = 11;
-    GetLanguagePluginLibPathResponse = 12;
-    ErrorResponse = 13;
-    GetAllConceptsRequest = 14;
-    GetAllConceptsResponse = 15;
-    PerformRefactoringRequest = 16;
-    PerformRefactoringResponse = 17;
-    ExtractConceptRequest = 18;
-    ExtractConceptResponse = 19;
-    FormatSpecsRequest = 20;
-    FormatSpecsResponse = 21;
-    UnsupportedApiMessageResponse = 22;
+    GetProjectRootRequest = 0;
+    GetProjectRootResponse = 1;
+    GetInstallationRootRequest = 2;
+    GetInstallationRootResponse = 3;
+    GetAllStepsRequest = 4;
+    GetAllStepResponse = 5;
+    SpecsRequest = 6;
+    SpecsResponse = 7;
+    GetStepValueRequest = 8;
+    GetStepValueResponse = 9;
+    GetLanguagePluginLibPathRequest = 10;
+    GetLanguagePluginLibPathResponse = 11;
+    ErrorResponse = 12;
+    GetAllConceptsRequest = 13;
+    GetAllConceptsResponse = 14;
+    PerformRefactoringRequest = 15;
+    PerformRefactoringResponse = 16;
+    ExtractConceptRequest = 17;
+    ExtractConceptResponse = 18;
+    FormatSpecsRequest = 19;
+    FormatSpecsResponse = 20;
+    UnsupportedApiMessageResponse = 21;
   }
 
   /// Type of API call being made
-  required APIMessageType messageType = 1;
+  APIMessageType messageType = 1;
   /// A unique id to represent this message. A response to the message should copy over this value.
   /// This is used to synchronize messages & responses
-  required int64 messageId = 2;
+  int64 messageId = 2;
 
   /// [GetProjectRootRequest](#gauge.messages.GetProjectRootRequest)
-  optional GetProjectRootRequest projectRootRequest = 3;
+  GetProjectRootRequest projectRootRequest = 3;
   /// [GetProjectRootResponse](#gauge.messages.GetProjectRootResponse)
-  optional GetProjectRootResponse projectRootResponse = 4;
+  GetProjectRootResponse projectRootResponse = 4;
   /// [GetInstallationRootRequest](#gauge.messages.GetInstallationRootRequest)
-  optional GetInstallationRootRequest installationRootRequest = 5;
+  GetInstallationRootRequest installationRootRequest = 5;
   /// [GetInstallationRootResponse](#gauge.messages.GetInstallationRootResponse)
-  optional GetInstallationRootResponse installationRootResponse = 6;
+  GetInstallationRootResponse installationRootResponse = 6;
   /// [GetAllStepsRequest](#gauge.messages.GetAllStepsRequest)
-  optional GetAllStepsRequest allStepsRequest = 7;
+  GetAllStepsRequest allStepsRequest = 7;
   /// [GetAllStepsResponse](#gauge.messages.GetAllStepsResponse)
-  optional GetAllStepsResponse allStepsResponse = 8;
+  GetAllStepsResponse allStepsResponse = 8;
   /// [GetAllSpecsRequest](#gauge.messages.GetAllSpecsRequest)
-  optional SpecsRequest specsRequest = 9;
+  SpecsRequest specsRequest = 9;
   /// [GetAllSpecsResponse](#gauge.messages.GetAllSpecsResponse)
-  optional SpecsResponse specsResponse = 10;
+  SpecsResponse specsResponse = 10;
   /// [GetStepValueRequest](#gauge.messages.GetStepValueRequest)
-  optional GetStepValueRequest stepValueRequest = 11;
+  GetStepValueRequest stepValueRequest = 11;
   /// [GetStepValueResponse](#gauge.messages.GetStepValueResponse)
-  optional GetStepValueResponse stepValueResponse = 12;
+  GetStepValueResponse stepValueResponse = 12;
   /// [GetLanguagePluginLibPathRequest](#gauge.messages.GetLanguagePluginLibPathRequest)
-  optional GetLanguagePluginLibPathRequest libPathRequest = 13;
+  GetLanguagePluginLibPathRequest libPathRequest = 13;
   /// [GetLanguagePluginLibPathResponse](#gauge.messages.GetLanguagePluginLibPathResponse)
-  optional GetLanguagePluginLibPathResponse libPathResponse = 14;
+  GetLanguagePluginLibPathResponse libPathResponse = 14;
   /// [ErrorResponse](#gauge.messages.ErrorResponse)
-  optional ErrorResponse error = 15;
+  ErrorResponse error = 15;
   /// [GetAllConceptsRequest](#gauge.messages.GetAllConceptsRequest)
-  optional GetAllConceptsRequest allConceptsRequest = 16;
+  GetAllConceptsRequest allConceptsRequest = 16;
   /// [GetAllConceptsResponse](#gauge.messages.GetAllConceptsResponse)
-  optional GetAllConceptsResponse allConceptsResponse = 17;
+  GetAllConceptsResponse allConceptsResponse = 17;
   /// [PerformRefactoringRequest](#gauge.messages.PerformRefactoringRequest)
-  optional PerformRefactoringRequest performRefactoringRequest = 18;
+  PerformRefactoringRequest performRefactoringRequest = 18;
   /// [PerformRefactoringResponse](#gauge.messages.PerformRefactoringResponse)
-  optional PerformRefactoringResponse performRefactoringResponse = 19;
+  PerformRefactoringResponse performRefactoringResponse = 19;
   /// [ExtractConceptRequest](#gauge.messages.ExtractConceptRequest)
-  optional ExtractConceptRequest extractConceptRequest = 20;
+  ExtractConceptRequest extractConceptRequest = 20;
   /// [ExtractConceptResponse](#gauge.messages.ExtractConceptResponse)
-  optional ExtractConceptResponse extractConceptResponse = 21;
+  ExtractConceptResponse extractConceptResponse = 21;
   /// [FormatSpecsRequest] (#gauge.messages.FormatSpecsRequest)
-  optional FormatSpecsRequest formatSpecsRequest = 22;
+  FormatSpecsRequest formatSpecsRequest = 22;
   /// [FormatSpecsResponse] (#gauge.messages.FormatSpecsResponse)
-  optional FormatSpecsResponse formatSpecsResponse = 23;
+  FormatSpecsResponse formatSpecsResponse = 23;
   /// [UnsupportedApiMessageResponse] (#gauge.messages.UnsupportedApiMessageResponse)
-  optional UnsupportedApiMessageResponse unsupportedApiMessageResponse= 24;
+  UnsupportedApiMessageResponse unsupportedApiMessageResponse= 24;
 }
