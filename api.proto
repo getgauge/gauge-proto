@@ -73,15 +73,6 @@ message SpecsResponse {
   }
 }
 
-message Error {
-  /// Holds the filename.
-  string filename = 1;
-  /// Holds the line number of the error in file.
-  int32 lineNumber = 2;
-  /// Holds the error message.
-  string message = 3;
-}
-
 /// Request to get all Concepts in the project
 message GetAllConceptsRequest {
 }

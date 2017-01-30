@@ -302,10 +302,30 @@ message ProtoSpecResult {
     repeated int32 failedDataTableRows = 5;
     /// Holds the time taken for executing the spec.
     int64 executionTime = 6;
+    /// Flag to indicate if spec is skipped
     bool skipped = 7;
+    /// Holds the number of Scenarios skipped
     int32 scenarioSkippedCount = 9;
     /// Holds the row numbers, for which the execution skipped.
     repeated int32 skippedDataTableRows = 10;
+    /// Holds parse, validation and skipped errors.
+    repeated Error errors = 11;
+}
+
+/// A proto object representing an error in spec/Scenario.
+message Error {
+    enum ErrorType {
+        PARSE_ERROR = 0;
+        VALIDATION_ERROR = 1;
+    }
+    /// Holds the type of error
+    ErrorType type = 1;
+    /// Holds the filename.
+    string filename = 2;
+    /// Holds the line number of the error in file.
+    int32 lineNumber = 3;
+    /// Holds the error message.
+    string message = 4;
 }
 
 /// A proto object representing a Step value.
