@@ -31,9 +31,9 @@ message ProtoSpec {
     /// Flag indicating if this is a Table Driven Specification. The table is defined in the context, this is different from using a table parameter.
     bool isTableDriven = 3;
     /// Contains a 'before' hook failure message. This happens when the `before_spec` hook has an error.
-    ProtoHookFailure preHookFailure = 4;
+    repeated ProtoHookFailure preHookFailures = 4;
     /// Contains a 'before' hook failure message. This happens when the `after_hook` hook has an error.
-    ProtoHookFailure postHookFailure = 5;
+    repeated ProtoHookFailure postHookFailures = 5;
     /// Contains the filename for that holds this specification.
     string fileName = 6;
     /// Contains a list of tags that are defined at the specification level. Scenario tags are not present here.
@@ -305,11 +305,11 @@ message ProtoSpecResult {
     /// Flag to indicate if spec is skipped
     bool skipped = 7;
     /// Holds the number of Scenarios skipped
-    int32 scenarioSkippedCount = 9;
+    int32 scenarioSkippedCount = 8;
     /// Holds the row numbers, for which the execution skipped.
-    repeated int32 skippedDataTableRows = 10;
+    repeated int32 skippedDataTableRows = 9;
     /// Holds parse, validation and skipped errors.
-    repeated Error errors = 11;
+    repeated Error errors = 10;
 }
 
 /// A proto object representing an error in spec/Scenario.
