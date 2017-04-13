@@ -258,6 +258,8 @@ message ProtoHookFailure {
     string errorMessage = 2;
     /// Byte array holding the screenshot taken at the time of failure.
     bytes screenShot = 3;
+    // / Contains table row index corresponding to datatable rows
+    int32 tableRowIndex = 4;
 }
 
 /// A proto object representing the result of entire Suite execution.
