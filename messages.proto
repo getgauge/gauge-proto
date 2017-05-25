@@ -114,6 +114,8 @@ message StepInfo {
     ExecuteStepRequest step = 1;
     /// Flag to indicate if the current Step execution failed.
     bool isFailed = 2;
+    /// The current stack trace in case of failure
+    string stackTrace = 3;
 }
 
 /// Request sent ot the runner to Execute a Step
