@@ -144,13 +144,6 @@ message PerformRefactoringResponse {
 }
 
 /// Request to perform Extract to Concept refactoring
-/// The runner does not do the refactoring here, instead it provides inputs enabling the IDE to do refactoring
-message ExtractConceptInfoRequest {
-  /// The text blob containing steps that should be refactored to concept.
-  string text = 1;
-}
-
-/// Request to perform Extract to Concept refactoring
 message ExtractConceptRequest {
   /// The Concept name given by the user
   step conceptName = 1;
