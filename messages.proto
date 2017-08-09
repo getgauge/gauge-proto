@@ -139,6 +139,8 @@ message StepValidateRequest {
   string stepText = 1;
   /// The number of paramters in the Step
   int32 numberOfParameters = 2;
+  ///This is use to generate step implementation template
+  gauge.messages.ProtoStepValue stepValue = 3;
 }
 
 /// Response of StepValidateRequest.
@@ -153,6 +155,7 @@ message StepValidateResponse {
     bool isValid = 1;
     string errorMessage = 2;
     ErrorType errorType = 3;
+    string quickFix = 4;
 }
 
 /// Result of the Suite Execution.
