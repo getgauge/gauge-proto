@@ -155,7 +155,7 @@ message StepValidateResponse {
     bool isValid = 1;
     string errorMessage = 2;
     ErrorType errorType = 3;
-    string quickFix = 4;
+    string suggestion = 4;
 }
 
 /// Result of the Suite Execution.
