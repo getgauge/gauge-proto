@@ -88,6 +88,7 @@
 ## api.proto
 
 <a name="gauge.messages.APIMessage"/>
+
 ### APIMessage
 
 A generic message composing of all possible operations.
@@ -120,6 +121,7 @@ A generic message composing of all possible operations.
 | formatConceptHeadingResponse | FormatConceptHeadingResponse | optional | [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse) |
 
 <a name="gauge.messages.ConceptInfo"/>
+
 ### ConceptInfo
 
 Details of a Concept
