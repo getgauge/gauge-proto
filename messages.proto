@@ -231,6 +231,10 @@ message StepNameResponse {
   repeated string stepName = 2;
   /// Flag indicating if the given Step is an alias.
   bool hasAlias = 3;
+  /// File name in which the step implementation exists
+  string fileName = 4;
+  /// Line number of the step implementation
+  int32 lineNumber = 5;
 }
 
 /// Response when a unsupported message request is sent.
