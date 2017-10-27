@@ -242,6 +242,16 @@ message UnsupportedMessageResponse {
     string message = 1;
 }
 
+/// Request for caching a file
+message CacheFileRequest {
+    /// File content of the file to be cached
+    string content = 1;
+    /// File path of the file to be cached
+    string filePath = 2;
+    /// Specifies if the file is closed
+    bool isClosed = 3;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -271,6 +281,7 @@ message Message {
       RefactorRequest = 21;
       RefactorResponse = 22;
       UnsupportedMessageResponse = 23;
+      CacheFileRequest = 24;
   }
 
   MessageType messageType = 1;
@@ -327,4 +338,6 @@ message Message {
   RefactorResponse refactorResponse = 25;
   /// [UnsupportedMessageResponse](#gauge.messages.UnsupportedMessageResponse)
   UnsupportedMessageResponse unsupportedMessageResponse = 26;
+    /// [CacheFileRequest](#gauge.messages.CacheFileRequest)
+    CacheFileRequest cacheFileRequest = 27;
 }
