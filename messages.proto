@@ -252,6 +252,27 @@ message CacheFileRequest {
     bool isClosed = 3;
 }
 
+/// Request for find step positions
+message StepPositionsRequest {
+    /// Get step positions for file path
+    string filePath = 1;
+}
+
+/// Response for find step positions
+message StepPositionsResponse {
+    /// Step position for each step implementation
+    message StepPosition {
+        /// Step Value
+        string stepValue = 1;
+        /// Line Number of step text
+        int32 lineNumber = 2;
+    }
+    /// Step Position
+    repeated StepPosition stepPositions = 1;
+    /// Error message
+    string error = 2;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -282,6 +303,8 @@ message Message {
       RefactorResponse = 22;
       UnsupportedMessageResponse = 23;
       CacheFileRequest = 24;
+      StepPositionsRequest = 25;
+      StepPositionsResponse = 26;
   }
 
   MessageType messageType = 1;
@@ -338,6 +361,10 @@ message Message {
   RefactorResponse refactorResponse = 25;
   /// [UnsupportedMessageResponse](#gauge.messages.UnsupportedMessageResponse)
   UnsupportedMessageResponse unsupportedMessageResponse = 26;
-    /// [CacheFileRequest](#gauge.messages.CacheFileRequest)
-    CacheFileRequest cacheFileRequest = 27;
+  /// [CacheFileRequest](#gauge.messages.CacheFileRequest)
+  CacheFileRequest cacheFileRequest = 27;
+  /// [StepPositionsRequest](#gauge.messages.StepPositionsRequest)
+  StepPositionsRequest stepPositionsRequest = 28;
+  /// [StepPositionsResponse](#gauge.messages.StepPositionsResponse)
+  StepPositionsResponse stepPositionsResponse = 29;
 }
