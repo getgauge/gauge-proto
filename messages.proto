@@ -264,8 +264,8 @@ message StepPositionsResponse {
     message StepPosition {
         /// Step Value
         string stepValue = 1;
-        /// Line Number of step text
-        int32 lineNumber = 2;
+        /// Range of step
+        gauge.messages.Span span = 2;
     }
     /// Step Position
     repeated StepPosition stepPositions = 1;
