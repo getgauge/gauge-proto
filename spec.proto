@@ -39,9 +39,9 @@ message ProtoSpec {
     /// Contains a list of tags that are defined at the specification level. Scenario tags are not present here.
     repeated string tags = 7;
     /// Additional information at pre hook exec time to be available on reports
-    repeated string preHookMessage = 8;
+    repeated string preHookMessages = 8;
     /// Additional information at post hook exec time to be available on reports
-    repeated string postHookMessage = 9;
+    repeated string postHookMessages = 9;
 }
 
 
@@ -114,9 +114,9 @@ message ProtoScenario {
     /// Execution status for the scenario
     ExecutionStatus executionStatus = 14;
     /// Additional information at pre hook exec time to be available on reports
-    repeated string preHookMessage = 15;
+    repeated string preHookMessages = 15;
     /// Additional information at post hook exec time to be available on reports
-    repeated string postHookMessage = 16;
+    repeated string postHookMessages = 16;
 }
 
 /// A proto object representing a Span of content
@@ -296,9 +296,9 @@ message ProtoSuiteResult {
     string timestamp = 11;
     int32 specsSkippedCount = 12;
     /// Additional information at pre hook exec time to be available on reports
-    repeated string preHookMessage = 13;
+    repeated string preHookMessages = 13;
     /// Additional information at post hook exec time to be available on reports
-    repeated string postHookMessage = 14;
+    repeated string postHookMessages = 14;
 }
 
 /// A proto object representing the result of Spec execution.
