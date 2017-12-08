@@ -143,6 +143,10 @@ message ProtoStep {
     repeated Fragment fragments = 3;
     /// Holds the result from the execution.
     ProtoStepExecutionResult stepExecutionResult = 4;
+    /// Additional information at pre hook exec time to be available on reports
+    repeated string preHookMessages = 5;
+    /// Additional information at post hook exec time to be available on reports
+    repeated string postHookMessages = 6;
 }
 
 /// Concept is a type of step, that can have multiple Steps.
