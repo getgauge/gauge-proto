@@ -233,8 +233,8 @@ message StepNameResponse {
   bool hasAlias = 3;
   /// File name in which the step implementation exists
   string fileName = 4;
-  /// Line number of the step implementation
-  int32 lineNumber = 5;
+  /// Range of step
+  gauge.messages.Span span = 5;
 }
 
 /// Response when a unsupported message request is sent.

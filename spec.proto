@@ -123,6 +123,8 @@ message ProtoScenario {
 message Span {
     int64 start = 1;
     int64 end = 2;
+    int64 startChar = 3;
+    int64 endChar = 4;
 }
 
 /// A proto object representing a TableDrivenScenario
