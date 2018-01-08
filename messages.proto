@@ -204,6 +204,14 @@ message RefactorRequest {
   gauge.messages.ProtoStepValue newStepValue = 2;
   /// Holds parameter positions of all parameters. Contains old and new parameter positions.
   repeated ParameterPosition paramPositions = 3;
+  /// If set to true, the refactored files should be saved to the file system before returning the response.
+  bool saveChanges = 4;
+}
+
+/// Give all file changes to be made to file system
+message FileChanges {
+  string fileName = 1;
+  string fileContent = 2;
 }
 
 /// Response of a RefactorRequest
@@ -214,6 +222,8 @@ message RefactorResponse {
   string error = 2;
   /// List of files that were affected because of the refactoring.
   repeated string filesChanged = 3;
+  /// List of file changes to be made to successfully achieve refactoring.
+  repeated FileChanges fileChanges = 4;
 }
 
 /// Request for details on a Single Step.
