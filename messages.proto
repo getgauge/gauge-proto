@@ -116,6 +116,8 @@ message StepInfo {
     bool isFailed = 2;
     /// The current stack trace in case of failure
     string stackTrace = 3;
+    /// The error message in case of failure
+    string errorMessage = 4;
 }
 
 /// Request sent ot the runner to Execute a Step
