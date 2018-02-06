@@ -285,16 +285,16 @@ message StepPositionsResponse {
     string error = 2;
 }
 
-/// Request for get Implementation directories
-message ImplementationDirectoryRequest {
+/// Request for getting Implementation file list
+message ImplementationFileListRequest {
     /// Get the implementation directory list for folder path
     string folderPath = 1;
 }
 
-/// Response for get Implementation directories
-message ImplementationDirectoryResponse {
+/// Response for getting Implementation file list
+message ImplementationFileListResponse {
     /// Get the implementation directory list for folder path
-    repeated string implPaths = 1;
+    repeated string implementationFilePaths = 1;
 }
 
 /// This is the message which gets transferred all the time
@@ -329,8 +329,8 @@ message Message {
       CacheFileRequest = 24;
       StepPositionsRequest = 25;
       StepPositionsResponse = 26;
-      ImplementationDirectoryRequest = 27;
-      ImplementationDirectoryResponse = 28;
+      ImplementationFileListRequest = 27;
+      ImplementationFileListResponse = 28;
   }
 
   MessageType messageType = 1;
@@ -393,8 +393,8 @@ message Message {
   StepPositionsRequest stepPositionsRequest = 28;
   /// [StepPositionsResponse](#gauge.messages.StepPositionsResponse)
   StepPositionsResponse stepPositionsResponse = 29;
-  /// [ImplementationDirectoryRequest](#gauge.messages.ImplementationDirectoryRequest)
-  ImplementationDirectoryRequest implementationDirectoryRequest = 30;
-  /// [ImplementationDirectoryResponse](#gauge.messages.ImplementationDirectoryResponse)
-  ImplementationDirectoryResponse implementationDirectoryResponse = 31;
+  /// [ImplementationFileListRequest](#gauge.messages.ImplementationFileListRequest)
+  ImplementationFileListRequest implementationFileListRequest = 30;
+  /// [ImplementationFileListResponse](#gauge.messages.ImplementationFileListResponse)
+  ImplementationFileListResponse implementationFileListResponse = 31;
 }
