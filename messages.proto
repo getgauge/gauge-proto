@@ -285,6 +285,18 @@ message StepPositionsResponse {
     string error = 2;
 }
 
+/// Request for get Implementation directories
+message ImplementationDirectoryRequest {
+    /// Get the implementation directory list for folder path
+    string folderPath = 1;
+}
+
+/// Response for get Implementation directories
+message ImplementationDirectoryResponse {
+    /// Get the implementation directory list for folder path
+    repeated string implPaths = 1;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -317,6 +329,8 @@ message Message {
       CacheFileRequest = 24;
       StepPositionsRequest = 25;
       StepPositionsResponse = 26;
+      ImplementationDirectoryRequest = 27;
+      ImplementationDirectoryResponse = 28;
   }
 
   MessageType messageType = 1;
@@ -379,4 +393,8 @@ message Message {
   StepPositionsRequest stepPositionsRequest = 28;
   /// [StepPositionsResponse](#gauge.messages.StepPositionsResponse)
   StepPositionsResponse stepPositionsResponse = 29;
+  /// [ImplementationDirectoryRequest](#gauge.messages.ImplementationDirectoryRequest)
+  ImplementationDirectoryRequest implementationDirectoryRequest = 30;
+  /// [ImplementationDirectoryResponse](#gauge.messages.ImplementationDirectoryResponse)
+  ImplementationDirectoryResponse implementationDirectoryResponse = 31;
 }
