@@ -314,6 +314,9 @@ message StubImplementationCodeResponse {
 
     /// Content which needs to be replaced in the file
     string content = 2;
+
+    /// Error message
+    string error = 3;
 }
 
 /// This is the message which gets transferred all the time
