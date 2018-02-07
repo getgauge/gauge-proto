@@ -297,6 +297,25 @@ message ImplementationFileListResponse {
     repeated string implementationFilePaths = 1;
 }
 
+/// Request for injecting code snippet into implementation file
+message StubImplementationCodeRequest {
+    /// File Path where code needs to be placed
+    string filePath = 1;
+
+    /// Code which needs to be placed in the file
+    string code = 2;
+}
+
+
+/// Response for injecting code snippet into implementation file
+message StubImplementationCodeResponse {
+    /// File Path where code needs to be placed
+    string filePath = 1;
+
+    /// Content which needs to be replaced in the file
+    string content = 2;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -331,6 +350,8 @@ message Message {
       StepPositionsResponse = 26;
       ImplementationFileListRequest = 27;
       ImplementationFileListResponse = 28;
+      StubImplementationCodeRequest = 29;
+      StubImplementationCodeResponse = 30;
   }
 
   MessageType messageType = 1;
@@ -397,4 +418,8 @@ message Message {
   ImplementationFileListRequest implementationFileListRequest = 30;
   /// [ImplementationFileListResponse](#gauge.messages.ImplementationFileListResponse)
   ImplementationFileListResponse implementationFileListResponse = 31;
+  /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
+  StubImplementationCodeRequest stubImplementationCodeRequest = 32;
+  /// [StubImplementationCodeResponse](#gauge.messages.StubImplementationCodeResponse)
+  StubImplementationCodeResponse stubImplementationCodeResponse = 33;
 }
