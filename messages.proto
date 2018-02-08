@@ -301,7 +301,7 @@ message StubImplementationCodeRequest {
     string implementationFilePath = 1;
 
     /// List of step texts for which we want to generate stub implementation
-    repeated string stepText = 2;
+    repeated string stepTexts = 2;
 }
 
 /// This is the message which gets transferred all the time
@@ -339,6 +339,7 @@ message Message {
       ImplementationFileListRequest = 27;
       ImplementationFileListResponse = 28;
       StubImplementationCodeRequest = 29;
+      FileChanges = 30;
   }
 
   MessageType messageType = 1;
@@ -407,4 +408,6 @@ message Message {
   ImplementationFileListResponse implementationFileListResponse = 31;
   /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
   StubImplementationCodeRequest stubImplementationCodeRequest = 32;
+  /// [FileChanges](#gauge.messages.FileChanges)
+  FileChanges fileChanges = 33;
 }
