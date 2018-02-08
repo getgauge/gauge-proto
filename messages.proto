@@ -287,8 +287,6 @@ message StepPositionsResponse {
 
 /// Request for getting Implementation file list
 message ImplementationFileListRequest {
-    /// Get the implementation directory list for folder path
-    string folderPath = 1;
 }
 
 /// Response for getting Implementation file list
@@ -299,24 +297,11 @@ message ImplementationFileListResponse {
 
 /// Request for injecting code snippet into implementation file
 message StubImplementationCodeRequest {
-    /// File Path where code needs to be placed
-    string filePath = 1;
+    /// Path of the file where the new stub implementation will be added
+    string implementationFilePath = 1;
 
-    /// Code which needs to be placed in the file
-    string code = 2;
-}
-
-
-/// Response for injecting code snippet into implementation file
-message StubImplementationCodeResponse {
-    /// File Path where code needs to be placed
-    string filePath = 1;
-
-    /// Content which needs to be replaced in the file
-    string content = 2;
-
-    /// Error message
-    string error = 3;
+    /// List of step texts for which we want to generate stub implementation
+    repeated string stepText = 2;
 }
 
 /// This is the message which gets transferred all the time
@@ -354,7 +339,6 @@ message Message {
       ImplementationFileListRequest = 27;
       ImplementationFileListResponse = 28;
       StubImplementationCodeRequest = 29;
-      StubImplementationCodeResponse = 30;
   }
 
   MessageType messageType = 1;
@@ -423,6 +407,4 @@ message Message {
   ImplementationFileListResponse implementationFileListResponse = 31;
   /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
   StubImplementationCodeRequest stubImplementationCodeRequest = 32;
-  /// [StubImplementationCodeResponse](#gauge.messages.StubImplementationCodeResponse)
-  StubImplementationCodeResponse stubImplementationCodeResponse = 33;
 }
