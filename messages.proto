@@ -304,6 +304,25 @@ message StubImplementationCodeRequest {
     repeated gauge.messages.ProtoStepValue steps = 2;
 }
 
+/// File Edit parameters
+message FileEditParam {
+
+    /// Line number where the change needs to be made
+    int32 lineNumber = 1;
+
+    /// Content which will be added
+    string content = 2;
+}
+
+/// Response having a list of file edits along with the filePath
+message FileEditResponse {
+    /// File Path of the file to be edited
+    string filePath = 1;
+
+    /// list of edits to the file
+    repeated FileEditParam fileEdits = 2;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -339,7 +358,7 @@ message Message {
       ImplementationFileListRequest = 27;
       ImplementationFileListResponse = 28;
       StubImplementationCodeRequest = 29;
-      FileChanges = 30;
+      FileEditResponse = 30;
   }
 
   MessageType messageType = 1;
@@ -408,6 +427,6 @@ message Message {
   ImplementationFileListResponse implementationFileListResponse = 31;
   /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
   StubImplementationCodeRequest stubImplementationCodeRequest = 32;
-  /// [FileChanges](#gauge.messages.FileChanges)
-  FileChanges fileChanges = 33;
+  /// [FileEditResponse](#gauge.messages.FileEditResponse)
+  FileEditResponse fileEditResponse = 33;
 }
