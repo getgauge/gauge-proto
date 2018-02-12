@@ -291,7 +291,7 @@ message ImplementationFileListRequest {
 
 /// Response for getting Implementation file list
 message ImplementationFileListResponse {
-    /// Get the implementation directory list for folder path
+    /// List of implementation files
     repeated string implementationFilePaths = 1;
 }
 
