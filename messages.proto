@@ -285,6 +285,25 @@ message StepPositionsResponse {
     string error = 2;
 }
 
+/// Request for getting Implementation file list
+message ImplementationFileListRequest {
+}
+
+/// Response for getting Implementation file list
+message ImplementationFileListResponse {
+    /// List of implementation files
+    repeated string implementationFilePaths = 1;
+}
+
+/// Request for injecting code snippet into implementation file
+message StubImplementationCodeRequest {
+    /// Path of the file where the new stub implementation will be added
+    string implementationFilePath = 1;
+
+    /// List of step texts for which we want to generate stub implementation
+    repeated gauge.messages.ProtoStepValue steps = 2;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -317,6 +336,10 @@ message Message {
       CacheFileRequest = 24;
       StepPositionsRequest = 25;
       StepPositionsResponse = 26;
+      ImplementationFileListRequest = 27;
+      ImplementationFileListResponse = 28;
+      StubImplementationCodeRequest = 29;
+      FileChanges = 30;
   }
 
   MessageType messageType = 1;
@@ -379,4 +402,12 @@ message Message {
   StepPositionsRequest stepPositionsRequest = 28;
   /// [StepPositionsResponse](#gauge.messages.StepPositionsResponse)
   StepPositionsResponse stepPositionsResponse = 29;
+  /// [ImplementationFileListRequest](#gauge.messages.ImplementationFileListRequest)
+  ImplementationFileListRequest implementationFileListRequest = 30;
+  /// [ImplementationFileListResponse](#gauge.messages.ImplementationFileListResponse)
+  ImplementationFileListResponse implementationFileListResponse = 31;
+  /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
+  StubImplementationCodeRequest stubImplementationCodeRequest = 32;
+  /// [FileChanges](#gauge.messages.FileChanges)
+  FileChanges fileChanges = 33;
 }
