@@ -300,7 +300,7 @@ message StubImplementationCodeRequest {
     /// Path of the file where the new stub implementation will be added
     string implementationFilePath = 1;
 
-    /// List of step texts for which we want to generate stub implementation
+    /// List of implementation codes to be appended to implementation file.
     repeated string codes = 2;
 }
 
