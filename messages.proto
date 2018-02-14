@@ -301,7 +301,7 @@ message StubImplementationCodeRequest {
     string implementationFilePath = 1;
 
     /// List of step texts for which we want to generate stub implementation
-    repeated gauge.messages.ProtoStepValue steps = 2;
+    repeated string codes = 2;
 }
 
 /// This is the message which gets transferred all the time
