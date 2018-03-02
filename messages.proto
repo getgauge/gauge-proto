@@ -304,6 +304,24 @@ message StubImplementationCodeRequest {
     repeated string codes = 2;
 }
 
+/// A Single Replace Diff Element to be applied
+message TextDiff {
+    /// Range of file to be replaced
+    gauge.messages.Span span = 1;
+
+    /// New content to replace the content in the span
+    string content = 2;
+}
+
+/// Diffs to be applied to a file
+message FileDiff {
+    /// File Path where the new content needs to be put in
+    string filePath = 1;
+
+    /// The diffs which need to be applied to this file
+    repeated TextDiff textDiffs = 2;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -339,7 +357,7 @@ message Message {
       ImplementationFileListRequest = 27;
       ImplementationFileListResponse = 28;
       StubImplementationCodeRequest = 29;
-      FileChanges = 30;
+      FileDiff = 30;
   }
 
   MessageType messageType = 1;
@@ -408,6 +426,6 @@ message Message {
   ImplementationFileListResponse implementationFileListResponse = 31;
   /// [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest)
   StubImplementationCodeRequest stubImplementationCodeRequest = 32;
-  /// [FileChanges](#gauge.messages.FileChanges)
-  FileChanges fileChanges = 33;
+  /// [FileDiff](#gauge.messages.FileDiff)
+  FileDiff fileDiff = 33;
 }
