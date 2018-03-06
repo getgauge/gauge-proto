@@ -88,7 +88,9 @@
 ## api.proto
 
 <a name="gauge.messages.APIMessage"/>
+
 ### APIMessage
+
 A generic message composing of all possible operations.
 / One of the Request/Response fields will have value, depending on the MessageType set.
 
@@ -119,7 +121,9 @@ A generic message composing of all possible operations.
 | formatConceptHeadingResponse | FormatConceptHeadingResponse | optional | [FormatConceptHeadingResponse](#gauge.messages.FormatConceptHeadingResponse) |
 
 <a name="gauge.messages.ConceptInfo"/>
+
 ### ConceptInfo
+
 Details of a Concept
 
 | Field | Type | Label | Description |
@@ -129,7 +133,9 @@ Details of a Concept
 | lineNumber | int32 | required | The line number in the file where the concept is defined. |
 
 <a name="gauge.messages.ErrorResponse"/>
+
 ### ErrorResponse
+
 A generic failure response
 
 | Field | Type | Label | Description |
@@ -137,7 +143,9 @@ A generic failure response
 | error | string | required | Actual error message |
 
 <a name="gauge.messages.ExtractConceptInfoRequest"/>
+
 ### ExtractConceptInfoRequest
+
 Request to perform Extract to Concept refactoring
 / The runner does not do the refactoring here, instead it provides inputs enabling the IDE to do refactoring
 
@@ -146,7 +154,9 @@ Request to perform Extract to Concept refactoring
 | text | string | required | The text blob containing steps that should be refactored to concept. |
 
 <a name="gauge.messages.ExtractConceptInfoResponse"/>
+
 ### ExtractConceptInfoResponse
+
 Response to ExtractConceptInfoRequest
 
 | Field | Type | Label | Description |
@@ -158,7 +168,9 @@ Response to ExtractConceptInfoRequest
 | conceptText | string | optional | The text to invoke the concept from the Spec file/ This contains the value of the parameters to be passed at invocation. |
 
 <a name="gauge.messages.FormatConceptHeadingRequest"/>
+
 ### FormatConceptHeadingRequest
+
 Request to change the concept heading, while performing Extract to concept refactoring
 / This is relevant because, the ExtractConceptInfoResponse has a placeholder definition of conceptHeading
 / The user would then give a meaningful name to the concept, and its parameters
@@ -172,7 +184,9 @@ Request to change the concept heading, while performing Extract to concept refac
 | oldConceptText | string | required | The full text of the concept, including the steps |
 
 <a name="gauge.messages.FormatConceptHeadingResponse"/>
+
 ### FormatConceptHeadingResponse
+
 Response to FormatConceptHeadingRequest
 
 | Field | Type | Label | Description |
@@ -180,14 +194,18 @@ Response to FormatConceptHeadingRequest
 | newConceptText | string | required | The new concept text, with revised concept heading. |
 
 <a name="gauge.messages.GetAllConceptsRequest"/>
+
 ### GetAllConceptsRequest
+
 Request to get all Concepts in the project
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.GetAllConceptsResponse"/>
+
 ### GetAllConceptsResponse
+
 Response to GetAllConceptsResponse
 
 | Field | Type | Label | Description |
@@ -195,14 +213,18 @@ Response to GetAllConceptsResponse
 | concepts | ConceptInfo | repeated | Holds a collection of Concepts that are defined in the project. |
 
 <a name="gauge.messages.GetAllSpecsRequest"/>
+
 ### GetAllSpecsRequest
+
 Request to get all Specs in the project
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.GetAllSpecsResponse"/>
+
 ### GetAllSpecsResponse
+
 Response to GetAllSpecsRequest
 
 | Field | Type | Label | Description |
@@ -210,14 +232,18 @@ Response to GetAllSpecsRequest
 | specs | ProtoSpec | repeated | Holds a collection of Specs that are defined in the project. |
 
 <a name="gauge.messages.GetAllStepsRequest"/>
+
 ### GetAllStepsRequest
+
 Request to get all Steps in the project
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.GetAllStepsResponse"/>
+
 ### GetAllStepsResponse
+
 Response to GetAllStepsRequest
 
 | Field | Type | Label | Description |
@@ -225,14 +251,18 @@ Response to GetAllStepsRequest
 | allSteps | ProtoStepValue | repeated | Holds a collection of Steps that are defined in the project. |
 
 <a name="gauge.messages.GetInstallationRootRequest"/>
+
 ### GetInstallationRootRequest
+
 Request to get the Root Directory of the Gauge installation
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.GetInstallationRootResponse"/>
+
 ### GetInstallationRootResponse
+
 Response of GetInstallationRootRequest
 
 | Field | Type | Label | Description |
@@ -240,7 +270,9 @@ Response of GetInstallationRootRequest
 | installationRoot | string | required | Holds the absolute path of the Gauge installation directory |
 
 <a name="gauge.messages.GetLanguagePluginLibPathRequest"/>
+
 ### GetLanguagePluginLibPathRequest
+
 Request to get the location of language plugin's Lib directory
 
 | Field | Type | Label | Description |
@@ -248,7 +280,9 @@ Request to get the location of language plugin's Lib directory
 | language | string | required | The language to locate the lib directory for. |
 
 <a name="gauge.messages.GetLanguagePluginLibPathResponse"/>
+
 ### GetLanguagePluginLibPathResponse
+
 Response to GetLanguagePluginLibPathRequest
 
 | Field | Type | Label | Description |
@@ -256,14 +290,18 @@ Response to GetLanguagePluginLibPathRequest
 | path | string | required | Absolute apth to the Lib directory of the language. |
 
 <a name="gauge.messages.GetProjectRootRequest"/>
+
 ### GetProjectRootRequest
+
 Request to get the Root Directory of the project
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.GetProjectRootResponse"/>
+
 ### GetProjectRootResponse
+
 Response of GetProjectRootRequest.
 
 | Field | Type | Label | Description |
@@ -271,7 +309,9 @@ Response of GetProjectRootRequest.
 | projectRoot | string | required | Holds the absolute path of the Project Root directory. |
 
 <a name="gauge.messages.GetStepValueRequest"/>
+
 ### GetStepValueRequest
+
 Request to get a Step Value.
 
 | Field | Type | Label | Description |
@@ -280,7 +320,9 @@ Request to get a Step Value.
 | hasInlineTable | bool | optional | Flag to indicate if the Step has an inline table. |
 
 <a name="gauge.messages.GetStepValueResponse"/>
+
 ### GetStepValueResponse
+
 Response to GetStepValueRequest
 
 | Field | Type | Label | Description |
@@ -288,7 +330,9 @@ Response to GetStepValueRequest
 | stepValue | ProtoStepValue | required | The Step corresponding to the request provided. |
 
 <a name="gauge.messages.PerformRefactoringRequest"/>
+
 ### PerformRefactoringRequest
+
 Request to perform a Refactor
 
 | Field | Type | Label | Description |
@@ -297,7 +341,9 @@ Request to perform a Refactor
 | newStep | string | required | Change to be made |
 
 <a name="gauge.messages.PerformRefactoringResponse"/>
+
 ### PerformRefactoringResponse
+
 Response to PerformRefactoringRequest
 
 | Field | Type | Label | Description |
@@ -308,8 +354,8 @@ Response to PerformRefactoringRequest
 
 
 <a name="gauge.messages.APIMessage.APIMessageType"/>
-### APIMessage.APIMessageType
 
+### APIMessage.APIMessageType
 
 | Name | Number | Description |
 |:----:|:------:|:------------------------------------------------------:|
@@ -341,7 +387,9 @@ Response to PerformRefactoringRequest
 ## messages.proto
 
 <a name="gauge.messages.ExecuteStepRequest"/>
+
 ### ExecuteStepRequest
+
 Request sent ot the runner to Execute a Step
 
 | Field | Type | Label | Description |
@@ -352,7 +400,9 @@ Request sent ot the runner to Execute a Step
 | parameters | Parameter | repeated | Collection of parameters applicable to the current Step. |
 
 <a name="gauge.messages.ExecutionEndingRequest"/>
+
 ### ExecutionEndingRequest
+
 Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
 
 | Field | Type | Label | Description |
@@ -360,8 +410,10 @@ Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.ExecutionInfo"/>
+
 ### ExecutionInfo
-Contains details of the execution. 
+
+Contains details of the execution.
 / Depending on the context (Step, Scenario, Spec or Suite), the respective fields are set.
 
 | Field | Type | Label | Description |
@@ -372,7 +424,9 @@ Contains details of the execution.
 | stacktrace | string | optional | Stacktrace of the execution. Valid only if there is an error in execution. |
 
 <a name="gauge.messages.ExecutionStartingRequest"/>
+
 ### ExecutionStartingRequest
+
 Sent at start of Suite Execution. Tells the runner to execute `before_suite` hook.
 
 | Field | Type | Label | Description |
@@ -380,7 +434,9 @@ Sent at start of Suite Execution. Tells the runner to execute `before_suite` hoo
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.ExecutionStatusResponse"/>
+
 ### ExecutionStatusResponse
+
 Sends to any request which needs a execution status as response
 / usually step execution, hooks etc will return this
 
@@ -389,14 +445,18 @@ Sends to any request which needs a execution status as response
 | executionResult | ProtoExecutionResult | required |  |
 
 <a name="gauge.messages.KillProcessRequest"/>
+
 ### KillProcessRequest
+
 Default request. Tells the runner to shutdown.
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.Message"/>
+
 ### Message
+
 This is the message which gets transferred all the time
 / with proper message type set
 / One of the Request/Response fields will have value, depending on the MessageType set.
@@ -430,7 +490,9 @@ This is the message which gets transferred all the time
 | refactorResponse | RefactorResponse | optional | [RefactorResponse](#gauge.messages.RefactorResponse) |
 
 <a name="gauge.messages.ParameterPosition"/>
+
 ### ParameterPosition
+
 Holds the new and old positions of a parameter.
 / Used when refactoring a Step.
 
@@ -440,7 +502,9 @@ Holds the new and old positions of a parameter.
 | newPosition | int32 | required |  |
 
 <a name="gauge.messages.RefactorRequest"/>
+
 ### RefactorRequest
+
 Tells the runner to refactor the specified Step.
 
 | Field | Type | Label | Description |
@@ -450,7 +514,9 @@ Tells the runner to refactor the specified Step.
 | paramPositions | ParameterPosition | repeated | Holds parameter positions of all parameters. Contains old and new parameter positions. |
 
 <a name="gauge.messages.RefactorResponse"/>
+
 ### RefactorResponse
+
 Response of a RefactorRequest
 
 | Field | Type | Label | Description |
@@ -460,7 +526,9 @@ Response of a RefactorRequest
 | filesChanged | string | repeated | List of files that were affected because of the refactoring. |
 
 <a name="gauge.messages.ScenarioDataStoreInitRequest"/>
+
 ### ScenarioDataStoreInitRequest
+
 Request runner to initialize Scenario DataStore
 / Scenario Datastore is reset after every Scenario execution.
 
@@ -468,7 +536,9 @@ Request runner to initialize Scenario DataStore
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.ScenarioExecutionEndingRequest"/>
+
 ### ScenarioExecutionEndingRequest
+
 Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` hook.
 
 | Field | Type | Label | Description |
@@ -476,7 +546,9 @@ Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` 
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.ScenarioExecutionStartingRequest"/>
+
 ### ScenarioExecutionStartingRequest
+
 Sent at start of Scenario Execution. Tells the runner to execute `before_scenario` hook.
 
 | Field | Type | Label | Description |
@@ -484,7 +556,9 @@ Sent at start of Scenario Execution. Tells the runner to execute `before_scenari
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.ScenarioInfo"/>
+
 ### ScenarioInfo
+
 Contains details of the Scenario execution.
 
 | Field | Type | Label | Description |
@@ -494,7 +568,9 @@ Contains details of the Scenario execution.
 | tags | string | repeated | Tags relevant to the current Scenario execution. |
 
 <a name="gauge.messages.SpecDataStoreInitRequest"/>
+
 ### SpecDataStoreInitRequest
+
 Request runner to initialize Spec DataStore
 / Spec Datastore is reset after every Spec execution.
 
@@ -502,7 +578,9 @@ Request runner to initialize Spec DataStore
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.SpecExecutionEndingRequest"/>
+
 ### SpecExecutionEndingRequest
+
 Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
 
 | Field | Type | Label | Description |
@@ -510,7 +588,9 @@ Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.SpecExecutionStartingRequest"/>
+
 ### SpecExecutionStartingRequest
+
 Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
 
 | Field | Type | Label | Description |
@@ -518,7 +598,9 @@ Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.SpecInfo"/>
+
 ### SpecInfo
+
 Contains details of the Spec execution.
 
 | Field | Type | Label | Description |
@@ -529,7 +611,9 @@ Contains details of the Spec execution.
 | tags | string | repeated | Tags relevant to the current Spec execution. |
 
 <a name="gauge.messages.StepExecutionEndingRequest"/>
+
 ### StepExecutionEndingRequest
+
 Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
 
 | Field | Type | Label | Description |
@@ -537,7 +621,9 @@ Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.StepExecutionStartingRequest"/>
+
 ### StepExecutionStartingRequest
+
 Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
 
 | Field | Type | Label | Description |
@@ -545,7 +631,9 @@ Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
 | currentExecutionInfo | ExecutionInfo | optional |  |
 
 <a name="gauge.messages.StepInfo"/>
+
 ### StepInfo
+
 Contains details of the Step execution.
 
 | Field | Type | Label | Description |
@@ -554,7 +642,9 @@ Contains details of the Step execution.
 | isFailed | bool | required | Flag to indicate if the current Step execution failed. |
 
 <a name="gauge.messages.StepNameRequest"/>
+
 ### StepNameRequest
+
 Request for details on a Single Step.
 
 | Field | Type | Label | Description |
@@ -562,7 +652,9 @@ Request for details on a Single Step.
 | stepValue | string | required | Step text to lookup the Step. / This is the parsed step value, i.e. with placeholders for parameters. |
 
 <a name="gauge.messages.StepNameResponse"/>
+
 ### StepNameResponse
+
 Response to StepNameRequest.
 
 | Field | Type | Label | Description |
@@ -572,14 +664,18 @@ Response to StepNameRequest.
 | hasAlias | bool | required | Flag indicating if the given Step is an alias. |
 
 <a name="gauge.messages.StepNamesRequest"/>
+
 ### StepNamesRequest
+
 Requests Gauge to give all Step Names.
 
 | Field | Type | Label | Description |
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.StepNamesResponse"/>
+
 ### StepNamesResponse
+
 Response to StepNamesRequest
 
 | Field | Type | Label | Description |
@@ -587,8 +683,10 @@ Response to StepNamesRequest
 | steps | string | repeated | Collection of strings corresponding to Step texts. |
 
 <a name="gauge.messages.StepValidateRequest"/>
+
 ### StepValidateRequest
-Request sent ot the runner to check if given Step is valid. 
+
+Request sent ot the runner to check if given Step is valid.
 / The runner should check if there is an implementation defined for the given Step Text.
 
 | Field | Type | Label | Description |
@@ -597,9 +695,11 @@ Request sent ot the runner to check if given Step is valid.
 | numberOfParameters | int32 | required | The number of paramters in the Step |
 
 <a name="gauge.messages.StepValidateResponse"/>
+
 ### StepValidateResponse
+
 Response of StepValidateRequest.
-/ The runner tells the caller if the Request was valid, 
+/ The runner tells the caller if the Request was valid,
 / i.e. an implementation exists for given Step text.
 / Returns an error message if it is an error response.
 
@@ -609,7 +709,9 @@ Response of StepValidateRequest.
 | errorMessage | string | optional |  |
 
 <a name="gauge.messages.SuiteDataStoreInitRequest"/>
+
 ### SuiteDataStoreInitRequest
+
 Request runner to initialize Suite DataStore
 / Suite Datastore is reset after every Suite execution.
 
@@ -617,7 +719,9 @@ Request runner to initialize Suite DataStore
 |:-----:|:----:|:-----:|:------------------------------------------------------:|
 
 <a name="gauge.messages.SuiteExecutionResult"/>
+
 ### SuiteExecutionResult
+
 Result of the Suite Execution.
 
 | Field | Type | Label | Description |
@@ -626,8 +730,8 @@ Result of the Suite Execution.
 
 
 <a name="gauge.messages.Message.MessageType"/>
-### Message.MessageType
 
+### Message.MessageType
 
 | Name | Number | Description |
 |:----:|:------:|:------------------------------------------------------:|
@@ -661,7 +765,9 @@ Result of the Suite Execution.
 ## spec.proto
 
 <a name="gauge.messages.Fragment"/>
+
 ### Fragment
+
 A proto object representing Fragment.
 / Fragments, put together make up A Step
 
@@ -672,7 +778,9 @@ A proto object representing Fragment.
 | parameter | Parameter | optional | Parameter part of the Fragment, valid only if FragmentType=Parameter |
 
 <a name="gauge.messages.Parameter"/>
+
 ### Parameter
+
 A proto object representing Fragment.
 
 | Field | Type | Label | Description |
@@ -683,7 +791,9 @@ A proto object representing Fragment.
 | table | ProtoTable | optional | Holds the table value, if parameterType=Table or Special_Table |
 
 <a name="gauge.messages.ProtoComment"/>
+
 ### ProtoComment
+
 A proto object representing Comment.
 
 | Field | Type | Label | Description |
@@ -691,7 +801,9 @@ A proto object representing Comment.
 | text | string | required | Text representing the Comment. |
 
 <a name="gauge.messages.ProtoConcept"/>
+
 ### ProtoConcept
+
 Concept is a type of step, that can have multiple Steps.
 / But from a caller's perspective, it is still used as any other Step
 / A proto object representing a Concept
@@ -703,7 +815,9 @@ Concept is a type of step, that can have multiple Steps.
 | conceptExecutionResult | ProtoStepExecutionResult | optional | Holds the execution result. |
 
 <a name="gauge.messages.ProtoExecutionResult"/>
+
 ### ProtoExecutionResult
+
 A proto object representing the result of an execution
 
 | Field | Type | Label | Description |
@@ -716,7 +830,9 @@ A proto object representing the result of an execution
 | executionTime | int64 | required | Holds the time taken for executing this scenario. |
 
 <a name="gauge.messages.ProtoHookFailure"/>
+
 ### ProtoHookFailure
+
 A proto object representing a pre-hook failure.
 / Used to hold failure information for before_suite, before_spec, before_scenario and before_spec hooks.
 
@@ -727,7 +843,9 @@ A proto object representing a pre-hook failure.
 | screenShot | bytes | optional | Byte array holding the screenshot taken at the time of failure. |
 
 <a name="gauge.messages.ProtoItem"/>
+
 ### ProtoItem
+
 Container for all valid Items under a Specification.
 
 | Field | Type | Label | Description |
@@ -742,7 +860,9 @@ Container for all valid Items under a Specification.
 | tags | ProtoTags | optional | Holds the Tags definition. Valid only if ItemType = Tags |
 
 <a name="gauge.messages.ProtoScenario"/>
+
 ### ProtoScenario
+
 A proto object representing a Scenario
 
 | Field | Type | Label | Description |
@@ -757,7 +877,9 @@ A proto object representing a Scenario
 | executionTime | int64 | optional | Holds the time taken for executing this scenario. |
 
 <a name="gauge.messages.ProtoSpec"/>
+
 ### ProtoSpec
+
 A proto object representing a Specification
 / A specification can contain Scenarios or Steps, besides Comments
 
@@ -772,7 +894,9 @@ A proto object representing a Specification
 | tags | string | repeated | Contains a list of tags that are defined at the specification level. Scenario tags are not present here. |
 
 <a name="gauge.messages.ProtoSpecResult"/>
+
 ### ProtoSpecResult
+
 A proto object representing the result of Spec execution.
 
 | Field | Type | Label | Description |
@@ -785,7 +909,9 @@ A proto object representing the result of Spec execution.
 | executionTime | int64 | optional | Holds the time taken for executing the spec. |
 
 <a name="gauge.messages.ProtoStep"/>
+
 ### ProtoStep
+
 A proto object representing a Step
 
 | Field | Type | Label | Description |
@@ -796,7 +922,9 @@ A proto object representing a Step
 | stepExecutionResult | ProtoStepExecutionResult | optional | Holds the result from the execution. |
 
 <a name="gauge.messages.ProtoStepExecutionResult"/>
+
 ### ProtoStepExecutionResult
+
 A proto object representing Step Execution result
 
 | Field | Type | Label | Description |
@@ -806,7 +934,9 @@ A proto object representing Step Execution result
 | postHookFailure | ProtoHookFailure | optional | Contains a 'after' hook failure message. This happens when the `after_step` hook has an error. |
 
 <a name="gauge.messages.ProtoStepValue"/>
+
 ### ProtoStepValue
+
 A proto object representing a Step value.
 
 | Field | Type | Label | Description |
@@ -816,7 +946,9 @@ A proto object representing a Step value.
 | parameters | string | repeated | A collection of strings representing the parameters. |
 
 <a name="gauge.messages.ProtoSuiteResult"/>
+
 ### ProtoSuiteResult
+
 A proto object representing the result of entire Suite execution.
 
 | Field | Type | Label | Description |
@@ -830,7 +962,9 @@ A proto object representing the result of entire Suite execution.
 | successRate | float | required | Holds a metric indicating the success rate of the execution. |
 
 <a name="gauge.messages.ProtoTable"/>
+
 ### ProtoTable
+
 A proto object representing Table.
 
 | Field | Type | Label | Description |
@@ -839,7 +973,9 @@ A proto object representing Table.
 | rows | ProtoTableRow | repeated | Contains the Rows for the table |
 
 <a name="gauge.messages.ProtoTableDrivenScenario"/>
+
 ### ProtoTableDrivenScenario
+
 A proto object representing a TableDrivenScenario
 
 | Field | Type | Label | Description |
@@ -847,7 +983,9 @@ A proto object representing a TableDrivenScenario
 | scenarios | ProtoScenario | repeated | Holds the Underlying scenario that is executed for every row in the table. |
 
 <a name="gauge.messages.ProtoTableRow"/>
+
 ### ProtoTableRow
+
 A proto object representing Table.
 
 | Field | Type | Label | Description |
@@ -855,7 +993,9 @@ A proto object representing Table.
 | cells | string | repeated | Represents the cells of a given table |
 
 <a name="gauge.messages.ProtoTags"/>
+
 ### ProtoTags
+
 A proto object representing Tags
 
 | Field | Type | Label | Description |
@@ -864,7 +1004,9 @@ A proto object representing Tags
 
 
 <a name="gauge.messages.Fragment.FragmentType"/>
+
 ### Fragment.FragmentType
+
 Enum representing the types of Fragment
 
 | Name | Number | Description |
@@ -873,7 +1015,9 @@ Enum representing the types of Fragment
 | Parameter | 2 | Fragment is a Parameter part |
 
 <a name="gauge.messages.Parameter.ParameterType"/>
+
 ### Parameter.ParameterType
+
 Enum representing types of Parameter.
 
 | Name | Number | Description |
@@ -885,7 +1029,9 @@ Enum representing types of Parameter.
 | Table | 5 |  |
 
 <a name="gauge.messages.ProtoItem.ItemType"/>
+
 ### ProtoItem.ItemType
+
 Enumerates various item types that the proto item can contain. Valid types are: Step, Comment, Concept, Scenario, TableDrivenScenario, Table, Tags
 
 | Name | Number | Description |
@@ -900,6 +1046,7 @@ Enumerates various item types that the proto item can contain. Valid types are: 
 
 
 <a name="scalar-value-types"/>
+
 ## Scalar Value Types
 
 | .proto Type | Notes | C++ Type | Java Type | Python Type |
