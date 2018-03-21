@@ -42,6 +42,10 @@ message ProtoSpec {
     repeated string preHookMessages = 8;
     /// Additional information at post hook exec time to be available on reports
     repeated string postHookMessages = 9;
+    /// [DEPRECATED, use preHookMessages] Additional information at pre hook exec time to be available on reports
+    repeated string preHookMessage = 10 [deprecated=true];
+    /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
+    repeated string postHookMessage = 11 [deprecated=true];
 }
 
 
@@ -117,6 +121,10 @@ message ProtoScenario {
     repeated string preHookMessages = 15;
     /// Additional information at post hook exec time to be available on reports
     repeated string postHookMessages = 16;
+    /// [DEPRECATED, use preHookMessages] Additional information at pre hook exec time to be available on reports
+    repeated string preHookMessage = 17 [deprecated=true];
+    /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
+    repeated string postHookMessage = 18 [deprecated=true];
 }
 
 /// A proto object representing a Span of content
@@ -305,6 +313,10 @@ message ProtoSuiteResult {
     repeated string preHookMessages = 13;
     /// Additional information at post hook exec time to be available on reports
     repeated string postHookMessages = 14;
+    /// [DEPRECATED, use preHookMessages] Additional information at pre hook exec time to be available on reports
+    repeated string preHookMessage = 15 [deprecated=true];
+    /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
+    repeated string postHookMessage = 16 [deprecated=true];
 }
 
 /// A proto object representing the result of Spec execution.
