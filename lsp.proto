@@ -25,7 +25,7 @@ import "messages.proto";
 message Empty {}
 
 service lspService {
-    rpc GetStepNames (StepNameRequest) returns (StepNameResponse);
+    rpc GetStepNames (StepNamesRequest) returns (StepNamesResponse);
     rpc CacheFile (CacheFileRequest) returns (Empty);
     rpc GetStepPositions (StepPositionsRequest) returns (StepPositionsResponse);
     rpc GetImplementationFiles (Empty) returns (ImplementationFileListResponse);
