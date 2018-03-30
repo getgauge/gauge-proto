@@ -301,6 +301,16 @@ message StepPositionsResponse {
     string error = 2;
 }
 
+/// Request for getting Implementation file glob pattern
+message ImplementationFileGlobPatternRequest {
+}
+
+/// Response for getting Implementation file glob pattern
+message ImplementationFileGlobPatternResponse {
+    /// List of implementation file glob patterns
+    repeated string globPatterns = 1;
+}
+
 /// Request for getting Implementation file list
 message ImplementationFileListRequest {
 }
