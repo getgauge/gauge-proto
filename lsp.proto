@@ -28,6 +28,6 @@ service lspService {
     rpc GetStepNames (StepNameRequest) returns (StepNameResponse);
     rpc CacheFile (CacheFileRequest) returns (Empty);
     rpc GetStepPositions (StepPositionsRequest) returns (StepPositionsResponse);
-    rpc GetImplementationFiles (ImplementationFileListRequest) returns (ImplementationFileListResponse);
+    rpc GetImplementationFiles (Empty) returns (ImplementationFileListResponse);
     rpc ImplementStub (StubImplementationCodeRequest) returns (FileDiff);
 }
