@@ -301,6 +301,16 @@ message StepPositionsResponse {
     string error = 2;
 }
 
+/// Request for getting Implementation file glob pattern
+message ImplementationFileGlobPatternRequest {
+}
+
+/// Response for getting Implementation file glob pattern
+message ImplementationFileGlobPatternResponse {
+    /// List of implementation file glob patterns
+    repeated string globPatterns = 1;
+}
+
 /// Request for getting Implementation file list
 message ImplementationFileListRequest {
 }
@@ -374,6 +384,8 @@ message Message {
       ImplementationFileListResponse = 28;
       StubImplementationCodeRequest = 29;
       FileDiff = 30;
+      ImplementationFileGlobPatternRequest = 31;
+      ImplementationFileGlobPatternResponse = 32;
   }
 
   MessageType messageType = 1;
@@ -444,4 +456,8 @@ message Message {
   StubImplementationCodeRequest stubImplementationCodeRequest = 32;
   /// [FileDiff](#gauge.messages.FileDiff)
   FileDiff fileDiff = 33;
+  /// [ImplementationFileGlobPatternRequest](#gauge.messages.ImplementationFileGlobPatternRequest)
+  ImplementationFileGlobPatternRequest implementationFileGlobPatternRequest = 34;
+  /// [ImplementationFileGlobPatternResponse](#gauge.messages.ImplementationFileGlobPatternResponse)
+  ImplementationFileGlobPatternResponse implementationFileGlobPatternResponse = 35;
 }
