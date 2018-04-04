@@ -30,4 +30,7 @@ service lspService {
     rpc GetStepPositions (StepPositionsRequest) returns (StepPositionsResponse);
     rpc GetImplementationFiles (Empty) returns (ImplementationFileListResponse);
     rpc ImplementStub (StubImplementationCodeRequest) returns (FileDiff);
+    rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
+    rpc Refactor (RefactorRequest) returns (RefactorResponse);
+    rpc GetStepName (StepNameRequest) returns (StepNameResponse);
 }
