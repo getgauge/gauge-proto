@@ -33,5 +33,6 @@ service lspService {
     rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
     rpc Refactor (RefactorRequest) returns (RefactorResponse);
     rpc GetStepName (StepNameRequest) returns (StepNameResponse);
+    rpc GetGlobPatterns (Empty) returns (ImplementationFileGlobPatternResponse);
     rpc KillProcess (KillProcessRequest) returns (Empty);
 }
