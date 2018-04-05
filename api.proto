@@ -24,6 +24,7 @@ syntax = "proto3";
 package gauge.messages;
 import "spec.proto";
 option csharp_namespace = "Gauge.Messages";
+option java_package = "com.thoughtworks.gauge";
 
 /// Request to get the Root Directory of the project
 message GetProjectRootRequest {
