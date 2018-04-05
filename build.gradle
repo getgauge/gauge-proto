@@ -46,7 +46,7 @@ extraArchive {
 }
 
 nexus {
-    sign = true
+    sign = false
     repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
     snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
 }
