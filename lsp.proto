@@ -33,4 +33,5 @@ service lspService {
     rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
     rpc Refactor (RefactorRequest) returns (RefactorResponse);
     rpc GetStepName (StepNameRequest) returns (StepNameResponse);
+    rpc KillProcess (KillProcessRequest) returns (Empty);
 }
