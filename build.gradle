@@ -4,7 +4,7 @@ apply plugin: 'idea'
 apply plugin: 'com.bmuschko.nexus'
 apply plugin: 'io.codearte.nexus-staging'
 
-version = "1.0.$System.env.GO_PIPELINE_COUNTER}"
+version = "1.0.$System.env.GO_PIPELINE_COUNTER"
 
 modifyPom {
     project {
