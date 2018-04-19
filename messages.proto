@@ -214,7 +214,8 @@ message RefactorRequest {
 /// Give all file changes to be made to file system
 message FileChanges {
   string fileName = 1;
-  string fileContent = 2;
+  string fileContent = 2 [deprecated=true];
+  repeated TextDiff diffs = 3;
 }
 
 /// Response of a RefactorRequest
