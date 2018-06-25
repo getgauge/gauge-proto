@@ -258,7 +258,7 @@ message ProtoExecutionResult {
     /// Stacktrace of the error
     string stackTrace = 4;
     /// Byte array containing screenshot taken at the time of failure.
-    bytes screenShot = 5;
+    repeated bytes screenShot = 5;
     /// Holds the time taken for executing this scenario.
     int64 executionTime = 6;
     /// Additional information at exec time to be available on reports
