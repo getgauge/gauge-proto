@@ -47,6 +47,10 @@ message ProtoSpec {
     repeated string preHookMessage = 10 [deprecated=true];
     /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
     repeated string postHookMessage = 11 [deprecated=true];
+    /// Capture Screenshot at pre hook exec time to be available on reports
+    repeated bytes preHookScreenshots = 12;
+    /// Capture Screenshot at post hook exec time to be available on reports
+    repeated bytes postHookScreenshots = 13;
 }
 
 
@@ -126,6 +130,10 @@ message ProtoScenario {
     repeated string preHookMessage = 17 [deprecated=true];
     /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
     repeated string postHookMessage = 18 [deprecated=true];
+    /// Capture Screenshot at pre hook exec time to be available on reports
+    repeated bytes preHookScreenshots = 19;
+    /// Capture Screenshot at post hook exec time to be available on reports
+    repeated bytes postHookScreenshots = 20;
 }
 
 /// A proto object representing a Span of content
@@ -158,6 +166,10 @@ message ProtoStep {
     repeated string preHookMessages = 5;
     /// Additional information at post hook exec time to be available on reports
     repeated string postHookMessages = 6;
+    /// Capture Screenshot at pre hook exec time to be available on reports
+    repeated bytes preHookScreenshots = 7;
+    /// Capture Screenshot at post hook exec time to be available on reports
+    repeated bytes postHookScreenshots = 8;
 }
 
 /// Concept is a type of step, that can have multiple Steps.
@@ -280,7 +292,7 @@ message ProtoHookFailure {
     /// Error message from the failure
     string errorMessage = 2;
     /// Byte array holding the screenshot taken at the time of failure.
-    bytes screenShot = 3;
+    repeated  bytes screenShot = 3;
     // / Contains table row index corresponding to datatable rows
     int32 tableRowIndex = 4;
 }
