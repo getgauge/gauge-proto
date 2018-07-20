@@ -330,6 +330,10 @@ message ProtoSuiteResult {
     repeated string preHookMessage = 15 [deprecated=true];
     /// [DEPRECATED, use postHookMessages] Additional information at post hook exec time to be available on reports
     repeated string postHookMessage = 16 [deprecated=true];
+    /// Capture Screenshot at pre hook exec time to be available on reports
+    repeated bytes preHookScreenshots = 17;
+    /// Capture Screenshot at post hook exec time to be available on reports
+    repeated bytes postHookScreenshots = 18;
 }
 
 /// A proto object representing the result of Spec execution.
