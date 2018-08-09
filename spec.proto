@@ -269,19 +269,21 @@ message ProtoExecutionResult {
     string errorMessage = 3;
     /// Stacktrace of the error
     string stackTrace = 4;
-    /// Byte array containing screenshot taken at the time of failure.
+    /// Byte array containing screenshot taken at the time of it invoked.
     repeated bytes screenShot = 5;
     /// Holds the time taken for executing this scenario.
     int64 executionTime = 6;
     /// Additional information at exec time to be available on reports
     repeated string message = 7;
+    /// Byte array containing screenshot taken at the time of failure.
+    bytes failedScreenshot = 8;
 
     enum ErrorType {
         ASSERTION = 0;
         VERIFICATION = 1;
     }
     /// Type of the Error. Valid values: ASSERTION, VERIFICATION. Default: ASSERTION
-    ErrorType errorType = 8;
+    ErrorType errorType = 9;
 }
 
 /// A proto object representing a pre-hook failure.
@@ -291,10 +293,12 @@ message ProtoHookFailure {
     string stackTrace = 1;
     /// Error message from the failure
     string errorMessage = 2;
-    /// Byte array holding the screenshot taken at the time of failure.
+    /// Byte array holding the screenshot taken at the time of it invoked.
     repeated  bytes screenShot = 3;
     // / Contains table row index corresponding to datatable rows
     int32 tableRowIndex = 4;
+    /// Byte array holding the screenshot taken at the time of failure.
+    bytes failedScreenshot = 5;
 }
 
 /// A proto object representing the result of entire Suite execution.
