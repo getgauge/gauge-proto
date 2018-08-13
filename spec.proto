@@ -284,7 +284,7 @@ message ProtoExecutionResult {
     /// Type of the Error. Valid values: ASSERTION, VERIFICATION. Default: ASSERTION
     ErrorType errorType = 8;
     /// Bytes containing screenshot taken at the time of failure.
-    bytes failedScreenshot = 9;
+    bytes failureScreenshot = 9;
     /// Bytes array containing screenshots at the time of it invoked
     repeated bytes screenshots = 10;
 }
@@ -301,7 +301,7 @@ message ProtoHookFailure {
     // / Contains table row index corresponding to datatable rows
     int32 tableRowIndex = 4;
     ///Bytes holding the screenshot taken at the time of failure.
-    bytes failedScreenshot = 5;
+    bytes failureScreenshot = 5;
 }
 
 /// A proto object representing the result of entire Suite execution.
