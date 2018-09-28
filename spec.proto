@@ -150,6 +150,14 @@ message ProtoTableDrivenScenario {
     ProtoScenario scenario = 1;
     /// Row Index of data table against which the current scenario is executed
     int32 tableRowIndex = 2;
+    /// Row Index of scenario data table against which the current scenario is executed
+    int32 scenarioTableRowIndex = 3;
+    /// Executed against a spec data table
+    bool isSpecTableDriven = 4;
+    /// Executed against a scenario data table
+    bool isScenarioTableDriven = 5;
+    /// Holds the scenario data table
+    ProtoTable scenarioDataTable = 6;
 }
 
 /// A proto object representing a Step
