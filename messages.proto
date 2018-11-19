@@ -166,6 +166,10 @@ message SuiteExecutionResult {
     gauge.messages.ProtoSuiteResult suiteResult = 1;
 }
 
+message SuiteExecutionResultItem {
+    gauge.messages.ProtoItem resultItem = 1;
+}
+
 /// Requests Gauge to give all Step Names.
 message StepNamesRequest {
 }
@@ -388,6 +392,7 @@ message Message {
       FileDiff = 30;
       ImplementationFileGlobPatternRequest = 31;
       ImplementationFileGlobPatternResponse = 32;
+      SuiteExecutionResultItem = 33;
   }
 
   MessageType messageType = 1;
@@ -462,4 +467,6 @@ message Message {
   ImplementationFileGlobPatternRequest implementationFileGlobPatternRequest = 34;
   /// [ImplementationFileGlobPatternResponse](#gauge.messages.ImplementationFileGlobPatternResponse)
   ImplementationFileGlobPatternResponse implementationFileGlobPatternResponse = 35;
+  /// [SuiteExecutionResult ](#gauge.messages.SuiteExecutionResult )
+  SuiteExecutionResultItem suiteExecutionResultItem = 36;
 }

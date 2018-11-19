@@ -51,6 +51,9 @@ message ProtoSpec {
     repeated bytes preHookScreenshots = 12;
     /// Capture Screenshot at post hook exec time to be available on reports
     repeated bytes postHookScreenshots = 13;
+    /// meta field to indicate the number of items in the list
+    /// used when items are sent as individual chunk
+    repeated int64 itemCount = 14;
 }
 
 
@@ -82,6 +85,8 @@ message ProtoItem {
     ProtoTable table = 7;
     /// Holds the Tags definition. Valid only if ItemType = Tags
     ProtoTags tags = 8;
+    /// Holds the Filename that the item belongs to
+    string fileName = 9;
 }
 
 /// Execution Status
@@ -349,6 +354,10 @@ message ProtoSuiteResult {
     repeated bytes preHookScreenshots = 17;
     /// Capture Screenshot at post hook exec time to be available on reports
     repeated bytes postHookScreenshots = 18;
+    // Indicates if the result is sent in chunks
+    bool chunked = 19;
+    // Indicates the number of chunks to expect after this
+    int64 chunkSize = 20;
 }
 
 /// A proto object representing the result of Spec execution.
