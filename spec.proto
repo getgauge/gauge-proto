@@ -53,7 +53,7 @@ message ProtoSpec {
     repeated bytes postHookScreenshots = 13;
     /// meta field to indicate the number of items in the list
     /// used when items are sent as individual chunk
-    repeated int64 itemCount = 14;
+    int64 itemCount = 14;
 }
 
 
