@@ -354,6 +354,13 @@ message FileDiff {
     repeated TextDiff textDiffs = 2;
 }
 
+
+/// Tell gauge to reset the kill timer, thus extending the life
+message KeepAlive {
+    /// ID of the plugin initiating this request
+    string pluginId = 1;
+}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
@@ -393,6 +400,7 @@ message Message {
       ImplementationFileGlobPatternRequest = 31;
       ImplementationFileGlobPatternResponse = 32;
       SuiteExecutionResultItem = 33;
+      KeepAlive = 34;
   }
 
   MessageType messageType = 1;
@@ -469,4 +477,6 @@ message Message {
   ImplementationFileGlobPatternResponse implementationFileGlobPatternResponse = 35;
   /// [SuiteExecutionResult ](#gauge.messages.SuiteExecutionResult )
   SuiteExecutionResultItem suiteExecutionResultItem = 36;
+  /// [KeepAlive ](#gauge.messages.KeepAlive )
+  KeepAlive keepAlive = 37;
 }
