@@ -37,16 +37,19 @@ message ExecutionStatusResponse {
 /// Sent at start of Suite Execution. Tells the runner to execute `before_suite` hook.
 message ExecutionStartingRequest {
     ExecutionInfo currentExecutionInfo = 1;
+    gauge.messages.ProtoSuiteResult suiteResult = 2;
 }
 
 /// Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
 message ExecutionEndingRequest {
     ExecutionInfo currentExecutionInfo = 1;
+    gauge.messages.ProtoSuiteResult suiteResult = 2;
 }
 
 /// Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
 message SpecExecutionStartingRequest {
     ExecutionInfo currentExecutionInfo = 1;
+    gauge.messages.ProtoSpecResult specResult = 2;
 }
 
 /// Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
@@ -58,6 +61,7 @@ message SpecExecutionEndingRequest {
 /// Sent at start of Scenario Execution. Tells the runner to execute `before_scenario` hook.
 message ScenarioExecutionStartingRequest {
     ExecutionInfo currentExecutionInfo = 1;
+    gauge.messages.ProtoScenarioResult scenarioResult = 2;
 }
 
 /// Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` hook.
@@ -69,6 +73,7 @@ message ScenarioExecutionEndingRequest {
 /// Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
 message StepExecutionStartingRequest {
     ExecutionInfo currentExecutionInfo = 1;
+    gauge.messages.ProtoStepResult stepResult = 2;
 }
 
 /// Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
