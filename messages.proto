@@ -93,6 +93,14 @@ message ExecutionInfo {
     StepInfo currentStep = 3;
     /// Stacktrace of the execution. Valid only if there is an error in execution.
     string stacktrace = 4;
+    /// Holds the project name
+    string projectName = 5;
+    /// Holds the environment which is used for execution.
+    string environment = 6;
+    /// Holds the tags which are used for the execution.
+    repeated string tags = 7;
+    /// Flag to indicate parallel execution.
+    bool isParallel = 8;
 }
 
 /// Contains details of the Spec execution.
@@ -131,10 +139,10 @@ message StepInfo {
 
 /// Request sent ot the runner to Execute a Step
 message ExecuteStepRequest {
-  /// Contains the actual text of the Step being executed. 
+  /// Contains the actual text of the Step being executed.
   /// This contains the parameters as defined in the Spec.
   string actualStepText = 1;
-  /// Contains the parsed text of the Step being executed. 
+  /// Contains the parsed text of the Step being executed.
   /// The paramters are replaced with placeholders.
   string parsedStepText = 2;
   /// Flag to indicate if the execution of the Scenario, containing the current Step, failed.
@@ -143,7 +151,7 @@ message ExecuteStepRequest {
   repeated gauge.messages.Parameter parameters = 4;
 }
 
-/// Request sent ot the runner to check if given Step is valid. 
+/// Request sent ot the runner to check if given Step is valid.
 /// The runner should check if there is an implementation defined for the given Step Text.
 message StepValidateRequest {
   /// The text is used to lookup Step implementation
@@ -155,7 +163,7 @@ message StepValidateRequest {
 }
 
 /// Response of StepValidateRequest.
-/// The runner tells the caller if the Request was valid, 
+/// The runner tells the caller if the Request was valid,
 /// i.e. an implementation exists for given Step text.
 /// Returns an error message if it is an error response.
 message StepValidateResponse {
@@ -244,7 +252,7 @@ message RefactorResponse {
 
 /// Request for details on a Single Step.
 message StepNameRequest {
-  /// Step text to lookup the Step. 
+  /// Step text to lookup the Step.
   /// This is the parsed step value, i.e. with placeholders for parameters.
   string stepValue = 1;
 }
@@ -253,7 +261,7 @@ message StepNameRequest {
 message StepNameResponse {
   /// Flag indicating if there is a match for the given Step Text.
   bool isStepPresent = 1;
-  /// The Step name of the given step. 
+  /// The Step name of the given step.
   repeated string stepName = 2;
   /// Flag indicating if the given Step is an alias.
   bool hasAlias = 3;
