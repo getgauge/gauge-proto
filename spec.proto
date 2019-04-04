@@ -386,7 +386,7 @@ message ProtoSpecResult {
 
 /// A proto object representing the result of Scenario execution.
 message ProtoScenarioResult {
-    ProtoScenario protoScenario = 1;
+    ProtoItem protoItem = 1;
     ProtoTable scenarioDataTableRow = 2;
     int64 scenarioDataTableRowIndex = 3;
     ProtoTable ScenarioDataTable = 4;
@@ -394,7 +394,7 @@ message ProtoScenarioResult {
 
 /// A proto object representing the result of Step execution.
 message ProtoStepResult {
-    ProtoStep protoStep = 1;
+    ProtoItem protoItem = 1;
     bool stepFailed  = 2;
 }
 
