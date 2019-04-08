@@ -31,56 +31,95 @@ message KillProcessRequest {
 /// Sends to any request which needs a execution status as response
 /// usually step execution, hooks etc will return this
 message ExecutionStatusResponse {
+    /// Hold the suite result after suite execution done.
   gauge.messages.ProtoExecutionResult executionResult = 1;
 }
 
 /// Sent at start of Suite Execution. Tells the runner to execute `before_suite` hook.
 message ExecutionStartingRequest {
+    /// Hold the current suite execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold the suite result in execution starting.
+    /// Some fields will not be populate before execution.
     gauge.messages.ProtoSuiteResult suiteResult = 2;
 }
 
 /// Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
 message ExecutionEndingRequest {
+    /// Hold the current suite execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold the suite result in execution ending.
     gauge.messages.ProtoSuiteResult suiteResult = 2;
 }
 
 /// Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
 message SpecExecutionStartingRequest {
+    /// Hold the current spec execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold the specs result in spec execution starting.
+    /// Some fields will not be populate before execution.
     gauge.messages.ProtoSpecResult specResult = 2;
 }
 
 /// Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
 message SpecExecutionEndingRequest {
+    /// Hold the current spec execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold the specs result in spec execution ending.
     gauge.messages.ProtoSpecResult specResult = 2;
 }
 
 /// Sent at start of Scenario Execution. Tells the runner to execute `before_scenario` hook.
 message ScenarioExecutionStartingRequest {
+    /// Hold the current sceanrio execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold the scenarion result in scenarion execution starting.
+    /// Some fields will not be populate before execution.
     gauge.messages.ProtoScenarioResult scenarioResult = 2;
 }
 
 /// Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` hook.
 message ScenarioExecutionEndingRequest {
+    /// Hold the current scenario execution info.
     ExecutionInfo currentExecutionInfo = 1;
     gauge.messages.ProtoScenarioResult scenarioResult = 2;
 }
 
 /// Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
 message StepExecutionStartingRequest {
+    /// Hold the current step execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold step result in step execution starting.
+    /// Some fields will not be populate before execution.
     gauge.messages.ProtoStepResult stepResult = 2;
 }
 
 /// Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
 message StepExecutionEndingRequest {
+    /// Hold the current step execution info.
     ExecutionInfo currentExecutionInfo = 1;
+    /// Hold step result in step execution ending.
     gauge.messages.ProtoStepResult stepResult = 2;
 }
+
+/// Contains command line arguments which passed by user during execution.
+message ExecutionArgs {
+    /// Flag to indicate execute with simple console
+    bool simpleConsole = 1;
+    /// Flag to indicate parallel execution.
+    bool isParallel = 2;
+    /// Falg to indicate execution with verbose.
+    bool verbose = 3;
+    /// Flag to indicate execution with machine redable.
+    bool machineRedable = 4;
+    /// Hold the strategy of execution.
+    string strategy = 5;
+    /// Holds the tags which are used for the execution.
+    repeated string tags = 6;
+    /// Hold the table row if user execute table by rows.
+    repeated int64 tableRowIndex = 7;
+}
+
 
 /// Contains details of the execution.
 /// Depending on the context (Step, Scenario, Spec or Suite), the respective fields are set.
@@ -97,10 +136,8 @@ message ExecutionInfo {
     string projectName = 5;
     /// Holds the environment which is used for execution.
     string environment = 6;
-    /// Holds the tags which are used for the execution.
-    repeated string tags = 7;
-    /// Flag to indicate parallel execution.
-    bool isParallel = 8;
+    /// Hold the command line arguments.
+    ExecutionArgs args = 9;
 }
 
 /// Contains details of the Spec execution.

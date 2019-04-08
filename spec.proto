@@ -163,6 +163,8 @@ message ProtoTableDrivenScenario {
     bool isScenarioTableDriven = 5;
     /// Holds the scenario data table
     ProtoTable scenarioDataTable = 6;
+    /// Hold the row of scenario data table.
+    ProtoTable scenarioTableRow = 7;
 }
 
 /// A proto object representing a Step
@@ -386,15 +388,15 @@ message ProtoSpecResult {
 
 /// A proto object representing the result of Scenario execution.
 message ProtoScenarioResult {
+    /// Collection of scenarios in scenario execution result.
     ProtoItem protoItem = 1;
-    ProtoTable scenarioDataTableRow = 2;
-    int64 scenarioDataTableRowIndex = 3;
-    ProtoTable ScenarioDataTable = 4;
 }
 
 /// A proto object representing the result of Step execution.
 message ProtoStepResult {
+    /// Collection of steps in step execution result.
     ProtoItem protoItem = 1;
+    /// Flag to indicate if step is failed.
     bool stepFailed  = 2;
 }
 
