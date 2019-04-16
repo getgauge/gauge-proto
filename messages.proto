@@ -103,7 +103,7 @@ message StepExecutionEndingRequest {
 }
 
 /// Contains command line arguments which passed by user during execution.
-message ExecutionArgs {
+message ExecutionArg {
     /// Holds the flag name passed from command line.
     string flagName = 1;
     /// Holds the flag value passed from command line.
@@ -125,11 +125,11 @@ message ExecutionInfo {
     /// Holds the project name
     string projectName = 5;
     /// Holds the command line arguments.
-    repeated string ExecutionArgs = 6;
+    repeated ExecutionArg ExecutionArgs = 6;
     /// Holds the number of running execution streams.
     int32 numberOfExecutionStreams = 7;
     /// Holds the runner id for parallel execution.
-    string runnerId = 8;
+    int32 runnerId = 8;
 }
 
 /// Contains details of the Spec execution.
