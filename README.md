@@ -1,7 +1,9 @@
 gauge-proto
 ===========
 
-This is a repository which contains the  [google protobuff](https://github.com/google/protobuf) messages.
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+
+This is a repository which contains the  [google protobuf](https://github.com/google/protobuf) messages.
 
 An IDL that defines contracts between plugins and gauge core.
 
