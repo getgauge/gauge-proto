@@ -230,7 +230,7 @@ A proto object representing the result of an execution
 | errorMessage | [string](#string) |  | The actual error message. |
 | stackTrace | [string](#string) |  | Stacktrace of the error |
 | screenShot | [bytes](#bytes) |  | Byte array containing screenshot taken at the time of failure. |
-| executionTime | [int64](#int64) |  | Holds the time taken for executing this scenario. |
+| executionTime | [int64](#int64) |  | Holds the time taken for executing this scenario (milliseconds). |
 | message | [string](#string) | repeated | Additional information at exec time to be available on reports |
 | errorType | [ProtoExecutionResult.ErrorType](#gauge.messages.ProtoExecutionResult.ErrorType) |  | Type of the Error. Valid values: ASSERTION, VERIFICATION. Default: ASSERTION |
 
@@ -295,7 +295,7 @@ A proto object representing a Scenario
 | preHookFailure | [ProtoHookFailure](#gauge.messages.ProtoHookFailure) |  | Contains a &#39;before&#39; hook failure message. This happens when the `before_scenario` hook has an error. |
 | postHookFailure | [ProtoHookFailure](#gauge.messages.ProtoHookFailure) |  | Contains a &#39;after&#39; hook failure message. This happens when the `after_scenario` hook has an error. |
 | tags | [string](#string) | repeated | Contains a list of tags that are defined at the specification level. Scenario tags are not present here. |
-| executionTime | [int64](#int64) |  | Holds the time taken for executing this scenario. |
+| executionTime | [int64](#int64) |  | Holds the time taken for executing this scenario (milliseconds). |
 | skipped | [bool](#bool) |  | Flag to indicate if the Scenario execution is skipped |
 | skipErrors | [string](#string) | repeated | Holds the error messages for skipping scenario from execution |
 | ID | [string](#string) |  | Holds the unique Identifier of a scenario. |
@@ -351,7 +351,7 @@ A proto object representing the result of Spec execution.
 | scenarioFailedCount | [int32](#int32) |  | Holds the number of Scenarios failed |
 | failed | [bool](#bool) |  | Flag to indicate failure |
 | failedDataTableRows | [int32](#int32) | repeated | Holds the row numbers, which caused the execution to fail. |
-| executionTime | [int64](#int64) |  | Holds the time taken for executing the spec. |
+| executionTime | [int64](#int64) |  | Holds the time taken for executing the spec (milliseconds). |
 | skipped | [bool](#bool) |  | Flag to indicate if spec is skipped |
 | scenarioSkippedCount | [int32](#int32) |  | Holds the number of Scenarios skipped |
 | skippedDataTableRows | [int32](#int32) | repeated | Holds the row numbers, for which the execution skipped. |
@@ -431,7 +431,7 @@ A proto object representing the result of entire Suite execution.
 | postHookFailure | [ProtoHookFailure](#gauge.messages.ProtoHookFailure) |  | Contains a &#39;after&#39; hook failure message. This happens when the `after_suite` hook has an error |
 | failed | [bool](#bool) |  | Flag to indicate failure |
 | specsFailedCount | [int32](#int32) |  | Holds the count of number of Specifications that failed. |
-| executionTime | [int64](#int64) |  | Holds the time taken for executing the whole suite. |
+| executionTime | [int64](#int64) |  | Holds the time taken for executing the whole suite (milliseconds). |
 | successRate | [float](#float) |  | Holds a metric indicating the success rate of the execution. |
 | environment | [string](#string) |  | The environment against which execution was done |
 | tags | [string](#string) |  | Tag expression used for filtering specification |
