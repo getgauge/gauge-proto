@@ -302,6 +302,10 @@ message ProtoExecutionResult {
     bytes failureScreenshot = 9;
     /// Bytes array containing screenshots at the time of it invoked
     repeated bytes screenshots = 10;
+    /// Path to the screenshot file captured at the time of failure.
+    string failureScreenshotFile = 11;
+    /// Path to the screenshot files captured using Gauge screenshsot API.
+    repeated string screenshotFiles = 12;
 }
 
 /// A proto object representing a pre-hook failure.
@@ -317,6 +321,8 @@ message ProtoHookFailure {
     int32 tableRowIndex = 4;
     ///Bytes holding the screenshot taken at the time of failure.
     bytes failureScreenshot = 5;
+    /// Path to the screenshot file captured at the time of failure.
+    string failureScreenshotFile = 6;
 }
 
 /// A proto object representing the result of entire Suite execution.
