@@ -406,6 +406,9 @@ message KeepAlive {
     string pluginId = 1;
 }
 
+// Empty is a blank response, to be used when there is no return expected.
+message Empty {}
+
 /// This is the message which gets transferred all the time
 /// with proper message type set
 /// One of the Request/Response fields will have value, depending on the MessageType set.
