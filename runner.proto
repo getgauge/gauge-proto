@@ -1,0 +1,33 @@
+syntax = "proto3";
+package gauge.messages;
+option csharp_namespace = "Gauge.Messages";
+option java_package = "com.thoughtworks.gauge";
+
+import "messages.proto";
+import "lsp.proto";
+/*
+This is done to get the Empty message.
+We should aim to merge the lspService with Runner service.
+The Empty message should be moved to messages.proto, so that latest it can
+be used for plugin services as well.
+*/
+
+
+service Runner {
+    rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
+
+    rpc SuiteDataStoreInit(Empty) returns (ExecutionStatusResponse);
+    rpc ExecutionStarting(ExecutionStartingRequest) returns (ExecutionStatusResponse);
+    rpc SpecDataStoreInit(Empty) returns (ExecutionStatusResponse);
+    rpc SpecExecutionStarting(SpecExecutionStartingRequest) returns (ExecutionStatusResponse);
+    rpc ScenarioDataStoreInit(Empty) returns (ExecutionStatusResponse);
+    rpc ScenarioExecutionStarting(ScenarioExecutionStartingRequest) returns (ExecutionStatusResponse);
+    rpc StepExecutionStarting(StepExecutionStartingRequest) returns (ExecutionStatusResponse);
+    rpc ExecuteStep(ExecuteStepRequest) returns (ExecutionStatusResponse);
+    rpc StepExecutionEnding(StepExecutionEndingRequest) returns (ExecutionStatusResponse);
+    rpc ScenarioExecutionEnding(ScenarioExecutionEndingRequest) returns (ExecutionStatusResponse);
+    rpc SpecExecutionEnding(SpecExecutionEndingRequest) returns (ExecutionStatusResponse);
+    rpc ExecutionEnding(ExecutionEndingRequest) returns (ExecutionStatusResponse);
+
+    rpc KillProcess (KillProcessRequest) returns (Empty);
+}
