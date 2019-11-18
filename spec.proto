@@ -54,6 +54,10 @@ message ProtoSpec {
     /// meta field to indicate the number of items in the list
     /// used when items are sent as individual chunk
     int64 itemCount = 14;
+    /// Screenshots captured on pre hook exec time to be available on reports
+    repeated string preHookScreenshotFiles = 15;
+    /// Screenshots captured on post hook exec time to be available on reports
+    repeated string postHookScreenshotFiles = 16;
 }
 
 
@@ -139,6 +143,10 @@ message ProtoScenario {
     repeated bytes preHookScreenshots = 19;
     /// Capture Screenshot at post hook exec time to be available on reports
     repeated bytes postHookScreenshots = 20;
+    /// Screenshots captured on pre hook exec time to be available on reports
+    repeated string preHookScreenshotFiles = 21;
+    /// Screenshots captured on post hook exec time to be available on reports
+    repeated string postHookScreenshotFiles = 22;
 }
 
 /// A proto object representing a Span of content
@@ -185,6 +193,10 @@ message ProtoStep {
     repeated bytes preHookScreenshots = 7;
     /// Capture Screenshot at post hook exec time to be available on reports
     repeated bytes postHookScreenshots = 8;
+    /// Screenshots captured on pre hook exec time to be available on reports
+    repeated string preHookScreenshotFiles = 9;
+    /// Screenshots captured on post hook exec time to be available on reports
+    repeated string postHookScreenshotFiles = 10;
 }
 
 /// Concept is a type of step, that can have multiple Steps.
@@ -366,6 +378,10 @@ message ProtoSuiteResult {
     bool chunked = 19;
     // Indicates the number of chunks to expect after this
     int64 chunkSize = 20;
+    /// Screenshots captured on pre hook exec time to be available on reports
+    repeated string preHookScreenshotFiles = 21;
+    /// Screenshots captured on post hook exec time to be available on reports
+    repeated string postHookScreenshotFiles = 22;
 }
 
 /// A proto object representing the result of Spec execution.
