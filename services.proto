@@ -66,11 +66,6 @@ service Execution {
     //
     // Accepts a ExecutionEndingRequest message and returns a ExecutionStatusResponse message
     rpc FinishExecution(ExecutionEndingRequest) returns (ExecutionStatusResponse);
-
-    // KillProcess is a RPC tell plugin to stop grpc server and kill the plugin process.
-    //
-    // Accepts a KillProcessRequest message and returns a Empty message.
-    rpc KillProcess (KillProcessRequest) returns (Empty);
 }
 
 
@@ -116,10 +111,13 @@ service Authoring {
     // Accepts a RefactorRequest message and returns a RefactorResponse message.
     rpc Refactor (RefactorRequest) returns (RefactorResponse);
 
-    // KillProcess is a RPC tell plugin to stop grpc server and kill the plugin process.
+}
+
+service Result {
+    // NotifySuiteResult is a RPC to tell about the end result of execution
     //
-    // Accepts a KillProcessRequest message and returns a Empty message.
-    rpc KillProcess (KillProcessRequest) returns (Empty);
+    // Accepts a SuiteExecutionResult message and returns a Empty message.
+    rpc NotifySuiteResult(SuiteExecutionResult) returns (Empty);
 }
 
 service  Validator {
@@ -127,4 +125,12 @@ service  Validator {
     //
     // Accepts a StepValidateRequest message and returns a StepValidateResponse message
     rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
+}
+
+
+service Process {
+    // Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
+    //
+    // Accepts a KillProcessRequest message and returns a Empty message.
+    rpc Kill (KillProcessRequest) returns (Empty);
 }
