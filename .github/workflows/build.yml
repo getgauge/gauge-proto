@@ -1,0 +1,27 @@
+name: build
+
+on: [deployment]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      username: '{{secret.username}}'
+      password: '{{secret.password}}'
+      passphrase: '{{secret.passphrase}}'
+      gpgkey: '{{secret.gpgkey}}'
+      MAVEN_GPG_SIGN_KEY: '{{secret.MAVEN_GPG_SIGN_KEY}}'
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 12
+      uses: actions/setup-java@v1
+      with:
+        java-version: 12.x
+    - name: Build with Gradle
+      run: |
+        echo -e "$MAVEN_GPG_SIGN_KEY" | gpg --import -
+        gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $gpgkey
+        mkdir -p $HOME/.gradle && echo -e "nexusUsername=$username\nnexusPassword=$password\nsigning.keyId=$gpgkey\nsigning.password=$passphrase\nsigning.secretKeyRingFile=$HOME/.gnupg/secring.gpg" > $HOME/.gradle/gradle.properties
+        ./gradlew clean build uploadArchives closeAndReleaseRepository
