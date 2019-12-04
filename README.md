@@ -1,6 +1,7 @@
 gauge-proto
 ===========
 
+[![Actions Status](https://github.com/getgauge/gauge-proto/workflows/build/badge.svg)](https://github.com/getgauge/gauge-proto/actions)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 This is a repository which contains the  [google protobuf](https://github.com/google/protobuf) messages.
