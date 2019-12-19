@@ -6,7 +6,12 @@ option java_package = "com.thoughtworks.gauge";
 import "messages.proto";
 
 
-service Execution {
+service Runner {
+    // ValidateStep is a RPC to validate a given step.
+    //
+    // Accepts a StepValidateRequest message and returns a StepValidateResponse message
+    rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
+
     // SuiteDataStoreInit is a RPC to initialize the suite level data store.
     //
     // Accepts a Empty message and returns a ExecutionStatusResponse message
@@ -66,10 +71,6 @@ service Execution {
     //
     // Accepts a ExecutionEndingRequest message and returns a ExecutionStatusResponse message
     rpc FinishExecution(ExecutionEndingRequest) returns (ExecutionStatusResponse);
-}
-
-
-service Authoring {
 
     // CacheFile is a RPC to tell runner to load/reload/unload a implementation file.
     //
@@ -111,24 +112,60 @@ service Authoring {
     // Accepts a RefactorRequest message and returns a RefactorResponse message.
     rpc Refactor (RefactorRequest) returns (RefactorResponse);
 
+    // Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
+    //
+    // Accepts a KillProcessRequest message and returns a Empty message.
+    rpc Kill (KillProcessRequest) returns (Empty);
 }
 
-service Result {
+
+// Reporter services is meant for reporting plugins, or others plugins which are interested the live events
+service Reporter {
+    // NotifyExecutionStarting is a RPC to tell plugins that the execution has started.
+    //
+    // Accepts a ExecutionStartingRequest message and returns a Empty message
+    rpc NotifyExecutionStarting(ExecutionStartingRequest) returns (Empty);
+
+    // NotifySpecExecutionStarting is a RPC to tell plugins that the specification execution has started.
+    //
+    // Accepts a SpecExecutionStartingRequest message and returns a Empty message
+    rpc NotifySpecExecutionStarting(SpecExecutionStartingRequest) returns (Empty);
+
+    // NotifyScenarioExecutionStarting is a RPC to tell plugins that the scenario execution has started.
+    //
+    // Accepts a ScenarioExecutionStartingRequest message and returns a Empty message
+    rpc NotifyScenarioExecutionStarting(ScenarioExecutionStartingRequest) returns (Empty);
+
+    // NotifyStepExecutionStarting is a RPC to tell plugins that the step execution has started.
+    //
+    // Accepts a StepExecutionStartingRequest message and returns a Empty message
+    rpc NotifyStepExecutionStarting(StepExecutionStartingRequest) returns (Empty);
+
+    // NotifyStepExecutionEnding is a RPC to tell plugins that the step execution has finished.
+    //
+    // Accepts a StepExecutionStartingRequest message and returns a Empty message
+    rpc NotifyStepExecutionEnding(StepExecutionEndingRequest) returns (Empty);
+
+    // NotifyScenarioExecutionEnding is a RPC to tell plugins that the scenario execution has finished.
+    //
+    // Accepts a ScenarioExecutionEndingRequest message and returns a Empty message
+    rpc NotifyScenarioExecutionEnding(ScenarioExecutionEndingRequest) returns (Empty);
+
+    // NotifySpecExecutionEnding is a RPC to tell plugins that the specification execution has finished.
+    //
+    // Accepts a SpecExecutionStartingRequest message and returns a Empty message
+    rpc NotifySpecExecutionEnding(SpecExecutionEndingingRequest) returns (Empty);
+
+    // NotifyExecutionEnding is a RPC to tell plugins that the execution has finished.
+    //
+    // Accepts a ExecutionEndingRequest message and returns a Empty message
+    rpc NotifyExecutionEndig(ExecutionEndingRequest) returns (Empty);
+
     // NotifySuiteResult is a RPC to tell about the end result of execution
     //
     // Accepts a SuiteExecutionResult message and returns a Empty message.
     rpc NotifySuiteResult(SuiteExecutionResult) returns (Empty);
-}
 
-service  Validator {
-    // ValidateStep is a RPC to validate a given step.
-    //
-    // Accepts a StepValidateRequest message and returns a StepValidateResponse message
-    rpc ValidateStep (StepValidateRequest) returns (StepValidateResponse);
-}
-
-
-service Process {
     // Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
     //
     // Accepts a KillProcessRequest message and returns a Empty message.
