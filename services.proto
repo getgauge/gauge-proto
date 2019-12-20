@@ -159,7 +159,7 @@ service Reporter {
     // NotifyExecutionEnding is a RPC to tell plugins that the execution has finished.
     //
     // Accepts a ExecutionEndingRequest message and returns a Empty message
-    rpc NotifyExecutionEndig(ExecutionEndingRequest) returns (Empty);
+    rpc NotifyExecutionEnding(ExecutionEndingRequest) returns (Empty);
 
     // NotifySuiteResult is a RPC to tell about the end result of execution
     //
