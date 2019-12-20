@@ -154,7 +154,7 @@ service Reporter {
     // NotifySpecExecutionEnding is a RPC to tell plugins that the specification execution has finished.
     //
     // Accepts a SpecExecutionStartingRequest message and returns a Empty message
-    rpc NotifySpecExecutionEnding(SpecExecutionEndingingRequest) returns (Empty);
+    rpc NotifySpecExecutionEnding(SpecExecutionEndingRequest) returns (Empty);
 
     // NotifyExecutionEnding is a RPC to tell plugins that the execution has finished.
     //
