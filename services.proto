@@ -171,3 +171,16 @@ service Reporter {
     // Accepts a KillProcessRequest message and returns a Empty message.
     rpc Kill (KillProcessRequest) returns (Empty);
 }
+
+// Reporter services is meant for documentation plugins
+service Documenter {
+    // GenerateDocs is a RPC tell plugin to generate docs from the spec details.
+    //
+    // Accepts a SpecDetails message and returns a Empty message.
+    rpc GenerateDocs (SpecDetails) returns (Empty);
+
+    // Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
+    //
+    // Accepts a KillProcessRequest message and returns a Empty message.
+    rpc Kill(KillProcessRequest) returns (Empty);
+}

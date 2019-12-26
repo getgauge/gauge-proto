@@ -406,6 +406,19 @@ message KeepAlive {
     string pluginId = 1;
 }
 
+message SpecDetails {
+  /// Holds a collection of Spec details.
+  repeated SpecDetail details = 1;
+
+  message SpecDetail {
+    /// Holds a collection of Specs that are defined in the project.
+    ProtoSpec spec = 1;
+    /// Holds a collection of parse errors present in the above spec.
+    repeated Error parseErrors = 2;
+  }
+}
+
+
 // Empty is a blank response, to be used when there is no return expected.
 message Empty {}
 
