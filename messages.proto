@@ -42,6 +42,8 @@ message ExecutionStartingRequest {
     /// Holds the suite result in execution starting.
     /// Some fields will not be populated before execution.
     gauge.messages.ProtoSuiteResult suiteResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at end of Suite Execution. Tells the runner to execute `after_suite` hook.
@@ -50,6 +52,8 @@ message ExecutionEndingRequest {
     ExecutionInfo currentExecutionInfo = 1;
     /// Holds the suite result in execution ending.
     gauge.messages.ProtoSuiteResult suiteResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at start of Spec Execution. Tells the runner to execute `before_spec` hook.
@@ -59,6 +63,8 @@ message SpecExecutionStartingRequest {
     /// Holds the specs result in spec execution starting.
     /// Some fields will not be populated before execution.
     gauge.messages.ProtoSpecResult specResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at end of Spec Execution. Tells the runner to execute `after_spec` hook.
@@ -67,6 +73,8 @@ message SpecExecutionEndingRequest {
     ExecutionInfo currentExecutionInfo = 1;
     /// Holds the specs result in spec execution ending.
     gauge.messages.ProtoSpecResult specResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at start of Scenario Execution. Tells the runner to execute `before_scenario` hook.
@@ -76,6 +84,8 @@ message ScenarioExecutionStartingRequest {
     /// Holds the scenarion result in scenarion execution starting.
     /// Some fields will not be populated before execution.
     gauge.messages.ProtoScenarioResult scenarioResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at end of Scenario Execution. Tells the runner to execute `after_scenario` hook.
@@ -83,6 +93,8 @@ message ScenarioExecutionEndingRequest {
     /// Holds the current scenario execution info.
     ExecutionInfo currentExecutionInfo = 1;
     gauge.messages.ProtoScenarioResult scenarioResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at start of Step Execution. Tells the runner to execute `before_step` hook.
@@ -92,6 +104,8 @@ message StepExecutionStartingRequest {
     /// Holds step result in step execution starting.
     /// Some fields will not be populated before execution.
     gauge.messages.ProtoStepResult stepResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Sent at end of Step Execution. Tells the runner to execute `after_step` hook.
@@ -100,6 +114,8 @@ message StepExecutionEndingRequest {
     ExecutionInfo currentExecutionInfo = 1;
     /// Holds step result in step execution ending.
     gauge.messages.ProtoStepResult stepResult = 2;
+
+    int32 stream = 3;
 }
 
 /// Contains command line arguments which passed by user during execution.
@@ -178,6 +194,8 @@ message ExecuteStepRequest {
   bool scenarioFailing = 3;
   /// Collection of parameters applicable to the current Step.
   repeated gauge.messages.Parameter parameters = 4;
+
+  int32 stream = 5;
 }
 
 /// Request sent ot the runner to check if given Step is valid.
@@ -229,16 +247,19 @@ message StepNamesResponse {
 /// Request runner to initialize Scenario DataStore
 /// Scenario Datastore is reset after every Scenario execution.
 message ScenarioDataStoreInitRequest {
+    int32 stream = 1;
 }
 
 /// Request runner to initialize Spec DataStore
 /// Spec Datastore is reset after every Spec execution.
 message SpecDataStoreInitRequest {
+    int32 stream = 1;
 }
 
 /// Request runner to initialize Suite DataStore
 /// Suite Datastore is reset after every Suite execution.
 message SuiteDataStoreInitRequest {
+    int32 stream = 1;
 }
 
 /// Holds the new and old positions of a parameter.
