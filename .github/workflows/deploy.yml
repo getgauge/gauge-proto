@@ -7,10 +7,10 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      username: '${{secret.username}}'
-      password: '${{secret.password}}'
-      passphrase: '${{secret.passphrase}}'
-      MAVEN_GPG_SIGN_KEY: '${{secret.MAVEN_GPG_SIGN_KEY}}'
+      username: '${{secrets.username}}'
+      password: '${{secrets.password}}'
+      passphrase: '${{secrets.passphrase}}'
+      MAVEN_GPG_SIGN_KEY: '${{secrets.MAVEN_GPG_SIGN_KEY}}'
 
     steps:
     - uses: actions/checkout@v1
