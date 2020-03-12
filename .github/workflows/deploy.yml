@@ -11,6 +11,7 @@ jobs:
       password: '${{secrets.password}}'
       passphrase: '${{secrets.passphrase}}'
       MAVEN_GPG_SIGN_KEY: '${{secrets.MAVEN_GPG_SIGN_KEY}}'
+      
 
     steps:
     - uses: actions/checkout@v1
@@ -21,6 +22,7 @@ jobs:
     - name: setup
       run: |
         echo -e "$MAVEN_GPG_SIGN_KEY" | gpg --import --batch -
+        export GPG_TTY=$(tty)
         gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys $gpgkey
         gpg --keyring secring.gpg --export-secret-keys > $HOME/.gnupg/secring.gpg --passphrase=$passphrase
         mkdir -p $HOME/.gradle && echo -e "nexusUsername=$username\nnexusPassword=$password\nsigning.keyId=$gpgkey\nsigning.password=$passphrase\nsigning.secretKeyRingFile=$HOME/.gnupg/secring.gpg" > $HOME/.gradle/gradle.properties
