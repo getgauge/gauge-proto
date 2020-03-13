@@ -5,3 +5,6 @@ build
 .classpath
 .project
 bin/
+target
+protos
+*.jar
