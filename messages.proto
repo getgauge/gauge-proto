@@ -319,6 +319,8 @@ message StepNameResponse {
   string fileName = 4;
   /// Range of step
   gauge.messages.Span span = 5;
+  /// Flag indicating if the given Step defined in some external library and the source code can not be accessed.
+  bool isExternal = 6;
 }
 
 /// Response when a unsupported message request is sent.
