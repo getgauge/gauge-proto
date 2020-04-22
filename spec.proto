@@ -147,6 +147,8 @@ message ProtoScenario {
     repeated string preHookScreenshotFiles = 21;
     /// Screenshots captured on post hook exec time to be available on reports
     repeated string postHookScreenshotFiles = 22;
+    /// Number of retires
+    int64 retriesCount = 23;
 }
 
 /// A proto object representing a Span of content
