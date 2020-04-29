@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# ----------------------------------------------------------------
+#   Copyright (c) ThoughtWorks, Inc.
+#   Licensed under the Apache License, Version 2.0
+#   See LICENSE in the project root for license information.
+# ----------------------------------------------------------------*/
+
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "GITHUB_TOKEN is not set."
     echo "Please create an personal access token with repo:public_repo scopes."
