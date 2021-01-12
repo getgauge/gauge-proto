@@ -9,6 +9,7 @@ syntax = "proto3";
 package gauge.messages;
 option csharp_namespace = "Gauge.Messages";
 option java_package = "com.thoughtworks.gauge";
+option go_package = "github.com/getgauge/gauge-proto/go/gauge_messages";
 
 import "spec.proto";
 

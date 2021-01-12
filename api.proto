@@ -11,6 +11,7 @@ package gauge.messages;
 import "spec.proto";
 option csharp_namespace = "Gauge.Messages";
 option java_package = "com.thoughtworks.gauge";
+option go_package = "github.com/getgauge/gauge-proto/go/gauge_messages";
 
 /// Request to get the Root Directory of the project
 message GetProjectRootRequest {
