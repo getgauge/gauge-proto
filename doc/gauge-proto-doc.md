@@ -1568,36 +1568,16 @@ Reporter services is meant for reporting plugins, or others plugins which are in
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| NotifyExecutionStarting | [ExecutionStartingRequest](#gauge.messages.ExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyExecutionStarting is a RPC to tell plugins that the execution has started.
-
-Accepts a ExecutionStartingRequest message and returns a Empty message |
-| NotifySpecExecutionStarting | [SpecExecutionStartingRequest](#gauge.messages.SpecExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifySpecExecutionStarting is a RPC to tell plugins that the specification execution has started.
-
-Accepts a SpecExecutionStartingRequest message and returns a Empty message |
-| NotifyScenarioExecutionStarting | [ScenarioExecutionStartingRequest](#gauge.messages.ScenarioExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyScenarioExecutionStarting is a RPC to tell plugins that the scenario execution has started.
-
-Accepts a ScenarioExecutionStartingRequest message and returns a Empty message |
-| NotifyStepExecutionStarting | [StepExecutionStartingRequest](#gauge.messages.StepExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyStepExecutionStarting is a RPC to tell plugins that the step execution has started.
-
-Accepts a StepExecutionStartingRequest message and returns a Empty message |
-| NotifyStepExecutionEnding | [StepExecutionEndingRequest](#gauge.messages.StepExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyStepExecutionEnding is a RPC to tell plugins that the step execution has finished.
-
-Accepts a StepExecutionStartingRequest message and returns a Empty message |
-| NotifyScenarioExecutionEnding | [ScenarioExecutionEndingRequest](#gauge.messages.ScenarioExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyScenarioExecutionEnding is a RPC to tell plugins that the scenario execution has finished.
-
-Accepts a ScenarioExecutionEndingRequest message and returns a Empty message |
-| NotifySpecExecutionEnding | [SpecExecutionEndingRequest](#gauge.messages.SpecExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifySpecExecutionEnding is a RPC to tell plugins that the specification execution has finished.
-
-Accepts a SpecExecutionStartingRequest message and returns a Empty message |
-| NotifyExecutionEnding | [ExecutionEndingRequest](#gauge.messages.ExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyExecutionEnding is a RPC to tell plugins that the execution has finished.
-
-Accepts a ExecutionEndingRequest message and returns a Empty message |
-| NotifySuiteResult | [SuiteExecutionResult](#gauge.messages.SuiteExecutionResult) | [Empty](#gauge.messages.Empty) | NotifySuiteResult is a RPC to tell about the end result of execution
-
-Accepts a SuiteExecutionResult message and returns a Empty message. |
-| Kill | [KillProcessRequest](#gauge.messages.KillProcessRequest) | [Empty](#gauge.messages.Empty) | Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
-
-Accepts a KillProcessRequest message and returns a Empty message. |
+| NotifyExecutionStarting | [ExecutionStartingRequest](#gauge.messages.ExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyExecutionStarting is a RPC to tell plugins that the execution has started. Accepts a ExecutionStartingRequest message and returns a Empty message |
+| NotifySpecExecutionStarting | [SpecExecutionStartingRequest](#gauge.messages.SpecExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifySpecExecutionStarting is a RPC to tell plugins that the specification execution has started. Accepts a SpecExecutionStartingRequest message and returns a Empty message |
+| NotifyScenarioExecutionStarting | [ScenarioExecutionStartingRequest](#gauge.messages.ScenarioExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyScenarioExecutionStarting is a RPC to tell plugins that the scenario execution has started. Accepts a ScenarioExecutionStartingRequest message and returns a Empty message |
+| NotifyStepExecutionStarting | [StepExecutionStartingRequest](#gauge.messages.StepExecutionStartingRequest) | [Empty](#gauge.messages.Empty) | NotifyStepExecutionStarting is a RPC to tell plugins that the step execution has started. Accepts a StepExecutionStartingRequest message and returns a Empty message |
+| NotifyStepExecutionEnding | [StepExecutionEndingRequest](#gauge.messages.StepExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyStepExecutionEnding is a RPC to tell plugins that the step execution has finished. Accepts a StepExecutionEndingRequest message and returns a Empty message |
+| NotifyScenarioExecutionEnding | [ScenarioExecutionEndingRequest](#gauge.messages.ScenarioExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyScenarioExecutionEnding is a RPC to tell plugins that the scenario execution has finished. Accepts a ScenarioExecutionEndingRequest message and returns a Empty message |
+| NotifySpecExecutionEnding | [SpecExecutionEndingRequest](#gauge.messages.SpecExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifySpecExecutionEnding is a RPC to tell plugins that the specification execution has finished. Accepts a SpecExecutionEndingRequest message and returns a Empty message |
+| NotifyExecutionEnding | [ExecutionEndingRequest](#gauge.messages.ExecutionEndingRequest) | [Empty](#gauge.messages.Empty) | NotifyExecutionEnding is a RPC to tell plugins that the execution has finished. Accepts a ExecutionEndingRequest message and returns a Empty message |
+| NotifySuiteResult | [SuiteExecutionResult](#gauge.messages.SuiteExecutionResult) | [Empty](#gauge.messages.Empty) | NotifySuiteResult is a RPC to tell about the end result of execution Accepts a SuiteExecutionResult message and returns a Empty message. |
+| Kill | [KillProcessRequest](#gauge.messages.KillProcessRequest) | [Empty](#gauge.messages.Empty) | Kill is a RPC tell plugin to stop grpc server and kill the plugin process. Accepts a KillProcessRequest message and returns a Empty message. |
 
 
 <a name="gauge.messages.Runner"></a>
@@ -1607,72 +1587,28 @@ Accepts a KillProcessRequest message and returns a Empty message. |
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ValidateStep | [StepValidateRequest](#gauge.messages.StepValidateRequest) | [StepValidateResponse](#gauge.messages.StepValidateResponse) | ValidateStep is a RPC to validate a given step.
-
-Accepts a StepValidateRequest message and returns a StepValidateResponse message |
-| InitializeSuiteDataStore | [SuiteDataStoreInitRequest](#gauge.messages.SuiteDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SuiteDataStoreInit is a RPC to initialize the suite level data store.
-
-Accepts a Empty message and returns a ExecutionStatusResponse message |
-| StartExecution | [ExecutionStartingRequest](#gauge.messages.ExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecutionStarting is a RPC to tell runner to execute Suite level hooks.
-
-Accepts a ExecutionStartingRequest message and returns a ExecutionStatusResponse message |
-| InitializeSpecDataStore | [SpecDataStoreInitRequest](#gauge.messages.SpecDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecDataStoreInit is a RPC to initialize the spec level data store.
-
-Accepts a Empty message and returns a ExecutionStatusResponse message |
-| StartSpecExecution | [SpecExecutionStartingRequest](#gauge.messages.SpecExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecExecutionStarting is a RPC to tell runner to execute spec level hooks.
-
-Accepts a SpecExecutionStartingRequest message and returns a ExecutionStatusResponse message |
-| InitializeScenarioDataStore | [ScenarioDataStoreInitRequest](#gauge.messages.ScenarioDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioDataStoreInit is a RPC to initialize the scenario level data store.
-
-Accepts a Empty message and returns a ExecutionStatusResponse message |
-| StartScenarioExecution | [ScenarioExecutionStartingRequest](#gauge.messages.ScenarioExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioExecutionStarting is a RPC to tell runner to execute scenario level hooks.
-
-Accepts a ScenarioExecutionStartingRequest message and returns a ExecutionStatusResponse message |
-| StartStepExecution | [StepExecutionStartingRequest](#gauge.messages.StepExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | StepExecutionStarting is a RPC to tell runner to execute step level hooks.
-
-Accepts a StepExecutionStartingRequest message and returns a ExecutionStatusResponse message |
-| ExecuteStep | [ExecuteStepRequest](#gauge.messages.ExecuteStepRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecuteStep is a RPC to tell runner to execute a step .
-
-Accepts a ExecuteStepRequest message and returns a ExecutionStatusResponse message |
-| FinishStepExecution | [StepExecutionEndingRequest](#gauge.messages.StepExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | StepExecutionEnding is a RPC to tell runner to execute step level hooks.
-
-Accepts a StepExecutionEndingRequest message and returns a ExecutionStatusResponse message |
-| FinishScenarioExecution | [ScenarioExecutionEndingRequest](#gauge.messages.ScenarioExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioExecutionEnding is a RPC to tell runner to execute Scenario level hooks.
-
-Accepts a ScenarioExecutionEndingRequest message and returns a ExecutionStatusResponse message |
-| FinishSpecExecution | [SpecExecutionEndingRequest](#gauge.messages.SpecExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecExecutionEnding is a RPC to tell runner to execute spec level hooks.
-
-Accepts a SpecExecutionEndingRequest message and returns a ExecutionStatusResponse message |
-| FinishExecution | [ExecutionEndingRequest](#gauge.messages.ExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecutionEnding is a RPC to tell runner to execute suite level hooks.
-
-Accepts a ExecutionEndingRequest message and returns a ExecutionStatusResponse message |
-| CacheFile | [CacheFileRequest](#gauge.messages.CacheFileRequest) | [Empty](#gauge.messages.Empty) | CacheFile is a RPC to tell runner to load/reload/unload a implementation file.
-
-Accepts a CacheFileRequest message and returns a Empty message |
-| GetStepName | [StepNameRequest](#gauge.messages.StepNameRequest) | [StepNameResponse](#gauge.messages.StepNameResponse) | GetStepName is a RPC to get information about the given step.
-
-Accepts a StepNameRequest message and returns a StepNameResponse message. |
-| GetGlobPatterns | [Empty](#gauge.messages.Empty) | [ImplementationFileGlobPatternResponse](#gauge.messages.ImplementationFileGlobPatternResponse) | GetGlobPatterns is a RPC to get the file path pattern which needs to be cached.
-
-Accepts a Empty message and returns a ImplementationFileGlobPatternResponse message. |
-| GetStepNames | [StepNamesRequest](#gauge.messages.StepNamesRequest) | [StepNamesResponse](#gauge.messages.StepNamesResponse) | GetStepNames is a RPC to get all the available steps from the runner.
-
-Accepts a StepNamesRequest message and returns a StepNamesResponse |
-| GetStepPositions | [StepPositionsRequest](#gauge.messages.StepPositionsRequest) | [StepPositionsResponse](#gauge.messages.StepPositionsResponse) | GetStepPositions is a RPC to get positions of all available steps in a given file.
-
-Accepts a StepPositionsRequest message and returns a StepPositionsResponse message |
-| GetImplementationFiles | [Empty](#gauge.messages.Empty) | [ImplementationFileListResponse](#gauge.messages.ImplementationFileListResponse) | GetImplementationFiles is a RPC get all the existing implementation files.
-
-Accepts a Empty and returns a ImplementationFileListResponse message. |
-| ImplementStub | [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest) | [FileDiff](#gauge.messages.FileDiff) | ImplementStub is a RPC to to ask runner to add a given implementation to given file.
-
-Accepts a StubImplementationCodeRequest and returns a FileDiff message. |
-| Refactor | [RefactorRequest](#gauge.messages.RefactorRequest) | [RefactorResponse](#gauge.messages.RefactorResponse) | Refactor is a RPC to refactor a given step in implementation file.
-
-Accepts a RefactorRequest message and returns a RefactorResponse message. |
-| Kill | [KillProcessRequest](#gauge.messages.KillProcessRequest) | [Empty](#gauge.messages.Empty) | Kill is a RPC tell plugin to stop grpc server and kill the plugin process.
-
-Accepts a KillProcessRequest message and returns a Empty message. |
+| ValidateStep | [StepValidateRequest](#gauge.messages.StepValidateRequest) | [StepValidateResponse](#gauge.messages.StepValidateResponse) | ValidateStep is a RPC to validate a given step. Accepts a StepValidateRequest message and returns a StepValidateResponse message |
+| InitializeSuiteDataStore | [SuiteDataStoreInitRequest](#gauge.messages.SuiteDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SuiteDataStoreInit is a RPC to initialize the suite level data store. Accepts a Empty message and returns a ExecutionStatusResponse message |
+| StartExecution | [ExecutionStartingRequest](#gauge.messages.ExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecutionStarting is a RPC to tell runner to execute Suite level hooks. Accepts a ExecutionStartingRequest message and returns a ExecutionStatusResponse message |
+| InitializeSpecDataStore | [SpecDataStoreInitRequest](#gauge.messages.SpecDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecDataStoreInit is a RPC to initialize the spec level data store. Accepts a Empty message and returns a ExecutionStatusResponse message |
+| StartSpecExecution | [SpecExecutionStartingRequest](#gauge.messages.SpecExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecExecutionStarting is a RPC to tell runner to execute spec level hooks. Accepts a SpecExecutionStartingRequest message and returns a ExecutionStatusResponse message |
+| InitializeScenarioDataStore | [ScenarioDataStoreInitRequest](#gauge.messages.ScenarioDataStoreInitRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioDataStoreInit is a RPC to initialize the scenario level data store. Accepts a Empty message and returns a ExecutionStatusResponse message |
+| StartScenarioExecution | [ScenarioExecutionStartingRequest](#gauge.messages.ScenarioExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioExecutionStarting is a RPC to tell runner to execute scenario level hooks. Accepts a ScenarioExecutionStartingRequest message and returns a ExecutionStatusResponse message |
+| StartStepExecution | [StepExecutionStartingRequest](#gauge.messages.StepExecutionStartingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | StepExecutionStarting is a RPC to tell runner to execute step level hooks. Accepts a StepExecutionStartingRequest message and returns a ExecutionStatusResponse message |
+| ExecuteStep | [ExecuteStepRequest](#gauge.messages.ExecuteStepRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecuteStep is a RPC to tell runner to execute a step. Accepts a ExecuteStepRequest message and returns a ExecutionStatusResponse message |
+| FinishStepExecution | [StepExecutionEndingRequest](#gauge.messages.StepExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | StepExecutionEnding is a RPC to tell runner to execute step level hooks. Accepts a StepExecutionEndingRequest message and returns a ExecutionStatusResponse message |
+| FinishScenarioExecution | [ScenarioExecutionEndingRequest](#gauge.messages.ScenarioExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ScenarioExecutionEnding is a RPC to tell runner to execute Scenario level hooks. Accepts a ScenarioExecutionEndingRequest message and returns a ExecutionStatusResponse message |
+| FinishSpecExecution | [SpecExecutionEndingRequest](#gauge.messages.SpecExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | SpecExecutionEnding is a RPC to tell runner to execute spec level hooks. Accepts a SpecExecutionEndingRequest message and returns a ExecutionStatusResponse message |
+| FinishExecution | [ExecutionEndingRequest](#gauge.messages.ExecutionEndingRequest) | [ExecutionStatusResponse](#gauge.messages.ExecutionStatusResponse) | ExecutionEnding is a RPC to tell runner to execute suite level hooks. Accepts a ExecutionEndingRequest message and returns a ExecutionStatusResponse message |
+| CacheFile | [CacheFileRequest](#gauge.messages.CacheFileRequest) | [Empty](#gauge.messages.Empty) | CacheFile is a RPC to tell runner to load/reload/unload a implementation file. Accepts a CacheFileRequest message and returns a Empty message |
+| GetStepName | [StepNameRequest](#gauge.messages.StepNameRequest) | [StepNameResponse](#gauge.messages.StepNameResponse) | GetStepName is a RPC to get information about the given step. Accepts a StepNameRequest message and returns a StepNameResponse message. |
+| GetGlobPatterns | [Empty](#gauge.messages.Empty) | [ImplementationFileGlobPatternResponse](#gauge.messages.ImplementationFileGlobPatternResponse) | GetGlobPatterns is a RPC to get the file path pattern which needs to be cached. Accepts a Empty message and returns a ImplementationFileGlobPatternResponse message. |
+| GetStepNames | [StepNamesRequest](#gauge.messages.StepNamesRequest) | [StepNamesResponse](#gauge.messages.StepNamesResponse) | GetStepNames is a RPC to get all the available steps from the runner. Accepts a StepNamesRequest message and returns a StepNamesResponse |
+| GetStepPositions | [StepPositionsRequest](#gauge.messages.StepPositionsRequest) | [StepPositionsResponse](#gauge.messages.StepPositionsResponse) | GetStepPositions is a RPC to get positions of all available steps in a given file. Accepts a StepPositionsRequest message and returns a StepPositionsResponse message |
+| GetImplementationFiles | [Empty](#gauge.messages.Empty) | [ImplementationFileListResponse](#gauge.messages.ImplementationFileListResponse) | GetImplementationFiles is a RPC get all the existing implementation files. Accepts a Empty and returns a ImplementationFileListResponse message. |
+| ImplementStub | [StubImplementationCodeRequest](#gauge.messages.StubImplementationCodeRequest) | [FileDiff](#gauge.messages.FileDiff) | ImplementStub is a RPC to to ask runner to add a given implementation to given file. Accepts a StubImplementationCodeRequest and returns a FileDiff message. |
+| Refactor | [RefactorRequest](#gauge.messages.RefactorRequest) | [RefactorResponse](#gauge.messages.RefactorResponse) | Refactor is a RPC to refactor a given step in implementation file. Accepts a RefactorRequest message and returns a RefactorResponse message. |
+| Kill | [KillProcessRequest](#gauge.messages.KillProcessRequest) | [Empty](#gauge.messages.Empty) | Kill is a RPC tell plugin to stop grpc server and kill the plugin process. Accepts a KillProcessRequest message and returns a Empty message. |
 
  
 
