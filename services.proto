@@ -143,6 +143,16 @@ service Reporter {
     // Accepts a ScenarioExecutionStartingRequest message and returns a Empty message
     rpc NotifyScenarioExecutionStarting(ScenarioExecutionStartingRequest) returns (Empty);
 
+    // NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
+    //
+    // Accepts a ConceptExecutionStartingRequest message and returns a Empty message
+    rpc NotifyConceptExecutionStarting(ConceptExecutionStartingRequest) returns (Empty);
+
+    // NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
+    //
+    // Accepts a ConceptExecutionEndingRequest message and returns a Empty message
+    rpc NotifyConceptExecutionEnding(ConceptExecutionEndingRequest) returns (Empty);
+
     // NotifyStepExecutionStarting is a RPC to tell plugins that the step execution has started.
     //
     // Accepts a StepExecutionStartingRequest message and returns a Empty message

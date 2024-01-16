@@ -107,6 +107,27 @@ message StepExecutionEndingRequest {
     int32 stream = 3;
 }
 
+/// Sent at start of Concept Execution.
+message ConceptExecutionStartingRequest {
+    /// Holds the current step execution info.
+    ExecutionInfo currentExecutionInfo = 1;
+    /// Holds step result in step execution starting.
+    /// Some fields will not be populated before execution.
+    gauge.messages.ProtoStepResult stepResult = 2;
+
+    int32 stream = 3;
+}
+
+/// Sent at end of Concept Execution.
+message ConceptExecutionEndingRequest {
+    /// Holds the current step execution info.
+    ExecutionInfo currentExecutionInfo = 1;
+    /// Holds step result in step execution ending.
+    gauge.messages.ProtoStepResult stepResult = 2;
+
+    int32 stream = 3;
+}
+
 /// Contains command line arguments which passed by user during execution.
 message ExecutionArg {
     /// Holds the flag name passed from command line.
@@ -474,6 +495,8 @@ message Message {
       ImplementationFileGlobPatternResponse = 32;
       SuiteExecutionResultItem = 33;
       KeepAlive = 34;
+      ConceptExecutionStarting = 35;
+      ConceptExecutionEnding = 36;
   }
 
   MessageType messageType = 1;
@@ -552,4 +575,8 @@ message Message {
   SuiteExecutionResultItem suiteExecutionResultItem = 36;
   /// [KeepAlive ](#gauge.messages.KeepAlive )
   KeepAlive keepAlive = 37;
+  /// [ConceptExecutionStartingRequest](#gauge.messages.ConceptExecutionStartingRequest)
+  ConceptExecutionStartingRequest conceptExecutionStartingRequest = 38;
+  /// [ConceptExecutionEndingRequest](#gauge.messages.ConceptExecutionEndingRequest)
+  ConceptExecutionEndingRequest conceptExecutionEndingRequest = 39;
 }
