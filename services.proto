@@ -123,6 +123,16 @@ service Runner {
     //
     // Accepts a KillProcessRequest message and returns a Empty message.
     rpc Kill (KillProcessRequest) returns (Empty);
+
+    // NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
+    //
+    // Accepts a ConceptExecutionStartingRequest message and returns a Empty message
+    rpc NotifyConceptExecutionStarting(ConceptExecutionStartingRequest) returns (Empty);
+
+    // NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
+    //
+    // Accepts a ConceptExecutionEndingRequest message and returns a Empty message
+    rpc NotifyConceptExecutionEnding(ConceptExecutionEndingRequest) returns (Empty);
 }
 
 
