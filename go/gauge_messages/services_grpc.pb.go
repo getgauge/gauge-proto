@@ -25,28 +25,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Runner_ValidateStep_FullMethodName                = "/gauge.messages.Runner/ValidateStep"
-	Runner_InitializeSuiteDataStore_FullMethodName    = "/gauge.messages.Runner/InitializeSuiteDataStore"
-	Runner_StartExecution_FullMethodName              = "/gauge.messages.Runner/StartExecution"
-	Runner_InitializeSpecDataStore_FullMethodName     = "/gauge.messages.Runner/InitializeSpecDataStore"
-	Runner_StartSpecExecution_FullMethodName          = "/gauge.messages.Runner/StartSpecExecution"
-	Runner_InitializeScenarioDataStore_FullMethodName = "/gauge.messages.Runner/InitializeScenarioDataStore"
-	Runner_StartScenarioExecution_FullMethodName      = "/gauge.messages.Runner/StartScenarioExecution"
-	Runner_StartStepExecution_FullMethodName          = "/gauge.messages.Runner/StartStepExecution"
-	Runner_ExecuteStep_FullMethodName                 = "/gauge.messages.Runner/ExecuteStep"
-	Runner_FinishStepExecution_FullMethodName         = "/gauge.messages.Runner/FinishStepExecution"
-	Runner_FinishScenarioExecution_FullMethodName     = "/gauge.messages.Runner/FinishScenarioExecution"
-	Runner_FinishSpecExecution_FullMethodName         = "/gauge.messages.Runner/FinishSpecExecution"
-	Runner_FinishExecution_FullMethodName             = "/gauge.messages.Runner/FinishExecution"
-	Runner_CacheFile_FullMethodName                   = "/gauge.messages.Runner/CacheFile"
-	Runner_GetStepName_FullMethodName                 = "/gauge.messages.Runner/GetStepName"
-	Runner_GetGlobPatterns_FullMethodName             = "/gauge.messages.Runner/GetGlobPatterns"
-	Runner_GetStepNames_FullMethodName                = "/gauge.messages.Runner/GetStepNames"
-	Runner_GetStepPositions_FullMethodName            = "/gauge.messages.Runner/GetStepPositions"
-	Runner_GetImplementationFiles_FullMethodName      = "/gauge.messages.Runner/GetImplementationFiles"
-	Runner_ImplementStub_FullMethodName               = "/gauge.messages.Runner/ImplementStub"
-	Runner_Refactor_FullMethodName                    = "/gauge.messages.Runner/Refactor"
-	Runner_Kill_FullMethodName                        = "/gauge.messages.Runner/Kill"
+	Runner_ValidateStep_FullMethodName                   = "/gauge.messages.Runner/ValidateStep"
+	Runner_InitializeSuiteDataStore_FullMethodName       = "/gauge.messages.Runner/InitializeSuiteDataStore"
+	Runner_StartExecution_FullMethodName                 = "/gauge.messages.Runner/StartExecution"
+	Runner_InitializeSpecDataStore_FullMethodName        = "/gauge.messages.Runner/InitializeSpecDataStore"
+	Runner_StartSpecExecution_FullMethodName             = "/gauge.messages.Runner/StartSpecExecution"
+	Runner_InitializeScenarioDataStore_FullMethodName    = "/gauge.messages.Runner/InitializeScenarioDataStore"
+	Runner_StartScenarioExecution_FullMethodName         = "/gauge.messages.Runner/StartScenarioExecution"
+	Runner_StartStepExecution_FullMethodName             = "/gauge.messages.Runner/StartStepExecution"
+	Runner_ExecuteStep_FullMethodName                    = "/gauge.messages.Runner/ExecuteStep"
+	Runner_FinishStepExecution_FullMethodName            = "/gauge.messages.Runner/FinishStepExecution"
+	Runner_FinishScenarioExecution_FullMethodName        = "/gauge.messages.Runner/FinishScenarioExecution"
+	Runner_FinishSpecExecution_FullMethodName            = "/gauge.messages.Runner/FinishSpecExecution"
+	Runner_FinishExecution_FullMethodName                = "/gauge.messages.Runner/FinishExecution"
+	Runner_CacheFile_FullMethodName                      = "/gauge.messages.Runner/CacheFile"
+	Runner_GetStepName_FullMethodName                    = "/gauge.messages.Runner/GetStepName"
+	Runner_GetGlobPatterns_FullMethodName                = "/gauge.messages.Runner/GetGlobPatterns"
+	Runner_GetStepNames_FullMethodName                   = "/gauge.messages.Runner/GetStepNames"
+	Runner_GetStepPositions_FullMethodName               = "/gauge.messages.Runner/GetStepPositions"
+	Runner_GetImplementationFiles_FullMethodName         = "/gauge.messages.Runner/GetImplementationFiles"
+	Runner_ImplementStub_FullMethodName                  = "/gauge.messages.Runner/ImplementStub"
+	Runner_Refactor_FullMethodName                       = "/gauge.messages.Runner/Refactor"
+	Runner_Kill_FullMethodName                           = "/gauge.messages.Runner/Kill"
+	Runner_NotifyConceptExecutionStarting_FullMethodName = "/gauge.messages.Runner/NotifyConceptExecutionStarting"
+	Runner_NotifyConceptExecutionEnding_FullMethodName   = "/gauge.messages.Runner/NotifyConceptExecutionEnding"
 )
 
 // RunnerClient is the client API for Runner service.
@@ -141,6 +143,14 @@ type RunnerClient interface {
 	//
 	// Accepts a KillProcessRequest message and returns a Empty message.
 	Kill(ctx context.Context, in *KillProcessRequest, opts ...grpc.CallOption) (*Empty, error)
+	// NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
+	//
+	// Accepts a ConceptExecutionStartingRequest message and returns a Empty message
+	NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*Empty, error)
+	// NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
+	//
+	// Accepts a ConceptExecutionEndingRequest message and returns a Empty message
+	NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type runnerClient struct {
@@ -349,6 +359,24 @@ func (c *runnerClient) Kill(ctx context.Context, in *KillProcessRequest, opts ..
 	return out, nil
 }
 
+func (c *runnerClient) NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Runner_NotifyConceptExecutionStarting_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *runnerClient) NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Runner_NotifyConceptExecutionEnding_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RunnerServer is the server API for Runner service.
 // All implementations must embed UnimplementedRunnerServer
 // for forward compatibility
@@ -441,6 +469,14 @@ type RunnerServer interface {
 	//
 	// Accepts a KillProcessRequest message and returns a Empty message.
 	Kill(context.Context, *KillProcessRequest) (*Empty, error)
+	// NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
+	//
+	// Accepts a ConceptExecutionStartingRequest message and returns a Empty message
+	NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*Empty, error)
+	// NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
+	//
+	// Accepts a ConceptExecutionEndingRequest message and returns a Empty message
+	NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*Empty, error)
 	mustEmbedUnimplementedRunnerServer()
 }
 
@@ -513,6 +549,12 @@ func (UnimplementedRunnerServer) Refactor(context.Context, *RefactorRequest) (*R
 }
 func (UnimplementedRunnerServer) Kill(context.Context, *KillProcessRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Kill not implemented")
+}
+func (UnimplementedRunnerServer) NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyConceptExecutionStarting not implemented")
+}
+func (UnimplementedRunnerServer) NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyConceptExecutionEnding not implemented")
 }
 func (UnimplementedRunnerServer) mustEmbedUnimplementedRunnerServer() {}
 
@@ -923,6 +965,42 @@ func _Runner_Kill_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Runner_NotifyConceptExecutionStarting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConceptExecutionStartingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RunnerServer).NotifyConceptExecutionStarting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Runner_NotifyConceptExecutionStarting_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RunnerServer).NotifyConceptExecutionStarting(ctx, req.(*ConceptExecutionStartingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Runner_NotifyConceptExecutionEnding_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConceptExecutionEndingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RunnerServer).NotifyConceptExecutionEnding(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Runner_NotifyConceptExecutionEnding_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RunnerServer).NotifyConceptExecutionEnding(ctx, req.(*ConceptExecutionEndingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Runner_ServiceDesc is the grpc.ServiceDesc for Runner service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1017,6 +1095,14 @@ var Runner_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Kill",
 			Handler:    _Runner_Kill_Handler,
+		},
+		{
+			MethodName: "NotifyConceptExecutionStarting",
+			Handler:    _Runner_NotifyConceptExecutionStarting_Handler,
+		},
+		{
+			MethodName: "NotifyConceptExecutionEnding",
+			Handler:    _Runner_NotifyConceptExecutionEnding_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

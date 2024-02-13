@@ -31,7 +31,7 @@ var file_services_proto_rawDesc = []byte{
 	0x0a, 0x0e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x12, 0x0e, 0x67, 0x61, 0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
 	0x1a, 0x0e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0xf3, 0x10, 0x0a, 0x06, 0x52, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x12, 0x59, 0x0a, 0x0c, 0x56,
+	0x32, 0xc3, 0x12, 0x0a, 0x06, 0x52, 0x75, 0x6e, 0x6e, 0x65, 0x72, 0x12, 0x59, 0x0a, 0x0c, 0x56,
 	0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x53, 0x74, 0x65, 0x70, 0x12, 0x23, 0x2e, 0x67, 0x61,
 	0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x53, 0x74, 0x65,
 	0x70, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
@@ -165,6 +165,19 @@ var file_services_proto_rawDesc = []byte{
 	0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a, 0x04, 0x4b, 0x69, 0x6c, 0x6c, 0x12, 0x22, 0x2e, 0x67, 0x61,
 	0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x4b, 0x69, 0x6c,
 	0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x15, 0x2e, 0x67, 0x61, 0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x12, 0x68, 0x0a, 0x1e, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x79,
+	0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x74, 0x61, 0x72, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x2f, 0x2e, 0x67, 0x61, 0x75, 0x67, 0x65,
+	0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70,
+	0x74, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x69,
+	0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x67, 0x61, 0x75, 0x67,
+	0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x12, 0x64, 0x0a, 0x1c, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x79, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70,
+	0x74, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x64, 0x69, 0x6e, 0x67,
+	0x12, 0x2d, 0x2e, 0x67, 0x61, 0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x73, 0x2e, 0x43, 0x6f, 0x6e, 0x63, 0x65, 0x70, 0x74, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x45, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
 	0x15, 0x2e, 0x67, 0x61, 0x75, 0x67, 0x65, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
 	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x32, 0xff, 0x08, 0x0a, 0x08, 0x52, 0x65, 0x70, 0x6f, 0x72,
 	0x74, 0x65, 0x72, 0x12, 0x5a, 0x0a, 0x17, 0x4e, 0x6f, 0x74, 0x69, 0x66, 0x79, 0x45, 0x78, 0x65,
@@ -316,58 +329,62 @@ var file_services_proto_depIdxs = []int32{
 	18, // 19: gauge.messages.Runner.ImplementStub:input_type -> gauge.messages.StubImplementationCodeRequest
 	19, // 20: gauge.messages.Runner.Refactor:input_type -> gauge.messages.RefactorRequest
 	20, // 21: gauge.messages.Runner.Kill:input_type -> gauge.messages.KillProcessRequest
-	2,  // 22: gauge.messages.Reporter.NotifyExecutionStarting:input_type -> gauge.messages.ExecutionStartingRequest
-	4,  // 23: gauge.messages.Reporter.NotifySpecExecutionStarting:input_type -> gauge.messages.SpecExecutionStartingRequest
-	6,  // 24: gauge.messages.Reporter.NotifyScenarioExecutionStarting:input_type -> gauge.messages.ScenarioExecutionStartingRequest
-	21, // 25: gauge.messages.Reporter.NotifyConceptExecutionStarting:input_type -> gauge.messages.ConceptExecutionStartingRequest
-	22, // 26: gauge.messages.Reporter.NotifyConceptExecutionEnding:input_type -> gauge.messages.ConceptExecutionEndingRequest
-	7,  // 27: gauge.messages.Reporter.NotifyStepExecutionStarting:input_type -> gauge.messages.StepExecutionStartingRequest
-	9,  // 28: gauge.messages.Reporter.NotifyStepExecutionEnding:input_type -> gauge.messages.StepExecutionEndingRequest
-	10, // 29: gauge.messages.Reporter.NotifyScenarioExecutionEnding:input_type -> gauge.messages.ScenarioExecutionEndingRequest
-	11, // 30: gauge.messages.Reporter.NotifySpecExecutionEnding:input_type -> gauge.messages.SpecExecutionEndingRequest
-	12, // 31: gauge.messages.Reporter.NotifyExecutionEnding:input_type -> gauge.messages.ExecutionEndingRequest
-	23, // 32: gauge.messages.Reporter.NotifySuiteResult:input_type -> gauge.messages.SuiteExecutionResult
-	20, // 33: gauge.messages.Reporter.Kill:input_type -> gauge.messages.KillProcessRequest
-	24, // 34: gauge.messages.Documenter.GenerateDocs:input_type -> gauge.messages.SpecDetails
-	20, // 35: gauge.messages.Documenter.Kill:input_type -> gauge.messages.KillProcessRequest
-	25, // 36: gauge.messages.Runner.ValidateStep:output_type -> gauge.messages.StepValidateResponse
-	26, // 37: gauge.messages.Runner.InitializeSuiteDataStore:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 38: gauge.messages.Runner.StartExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 39: gauge.messages.Runner.InitializeSpecDataStore:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 40: gauge.messages.Runner.StartSpecExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 41: gauge.messages.Runner.InitializeScenarioDataStore:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 42: gauge.messages.Runner.StartScenarioExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 43: gauge.messages.Runner.StartStepExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 44: gauge.messages.Runner.ExecuteStep:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 45: gauge.messages.Runner.FinishStepExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 46: gauge.messages.Runner.FinishScenarioExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 47: gauge.messages.Runner.FinishSpecExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	26, // 48: gauge.messages.Runner.FinishExecution:output_type -> gauge.messages.ExecutionStatusResponse
-	15, // 49: gauge.messages.Runner.CacheFile:output_type -> gauge.messages.Empty
-	27, // 50: gauge.messages.Runner.GetStepName:output_type -> gauge.messages.StepNameResponse
-	28, // 51: gauge.messages.Runner.GetGlobPatterns:output_type -> gauge.messages.ImplementationFileGlobPatternResponse
-	29, // 52: gauge.messages.Runner.GetStepNames:output_type -> gauge.messages.StepNamesResponse
-	30, // 53: gauge.messages.Runner.GetStepPositions:output_type -> gauge.messages.StepPositionsResponse
-	31, // 54: gauge.messages.Runner.GetImplementationFiles:output_type -> gauge.messages.ImplementationFileListResponse
-	32, // 55: gauge.messages.Runner.ImplementStub:output_type -> gauge.messages.FileDiff
-	33, // 56: gauge.messages.Runner.Refactor:output_type -> gauge.messages.RefactorResponse
-	15, // 57: gauge.messages.Runner.Kill:output_type -> gauge.messages.Empty
-	15, // 58: gauge.messages.Reporter.NotifyExecutionStarting:output_type -> gauge.messages.Empty
-	15, // 59: gauge.messages.Reporter.NotifySpecExecutionStarting:output_type -> gauge.messages.Empty
-	15, // 60: gauge.messages.Reporter.NotifyScenarioExecutionStarting:output_type -> gauge.messages.Empty
-	15, // 61: gauge.messages.Reporter.NotifyConceptExecutionStarting:output_type -> gauge.messages.Empty
-	15, // 62: gauge.messages.Reporter.NotifyConceptExecutionEnding:output_type -> gauge.messages.Empty
-	15, // 63: gauge.messages.Reporter.NotifyStepExecutionStarting:output_type -> gauge.messages.Empty
-	15, // 64: gauge.messages.Reporter.NotifyStepExecutionEnding:output_type -> gauge.messages.Empty
-	15, // 65: gauge.messages.Reporter.NotifyScenarioExecutionEnding:output_type -> gauge.messages.Empty
-	15, // 66: gauge.messages.Reporter.NotifySpecExecutionEnding:output_type -> gauge.messages.Empty
-	15, // 67: gauge.messages.Reporter.NotifyExecutionEnding:output_type -> gauge.messages.Empty
-	15, // 68: gauge.messages.Reporter.NotifySuiteResult:output_type -> gauge.messages.Empty
-	15, // 69: gauge.messages.Reporter.Kill:output_type -> gauge.messages.Empty
-	15, // 70: gauge.messages.Documenter.GenerateDocs:output_type -> gauge.messages.Empty
-	15, // 71: gauge.messages.Documenter.Kill:output_type -> gauge.messages.Empty
-	36, // [36:72] is the sub-list for method output_type
-	0,  // [0:36] is the sub-list for method input_type
+	21, // 22: gauge.messages.Runner.NotifyConceptExecutionStarting:input_type -> gauge.messages.ConceptExecutionStartingRequest
+	22, // 23: gauge.messages.Runner.NotifyConceptExecutionEnding:input_type -> gauge.messages.ConceptExecutionEndingRequest
+	2,  // 24: gauge.messages.Reporter.NotifyExecutionStarting:input_type -> gauge.messages.ExecutionStartingRequest
+	4,  // 25: gauge.messages.Reporter.NotifySpecExecutionStarting:input_type -> gauge.messages.SpecExecutionStartingRequest
+	6,  // 26: gauge.messages.Reporter.NotifyScenarioExecutionStarting:input_type -> gauge.messages.ScenarioExecutionStartingRequest
+	21, // 27: gauge.messages.Reporter.NotifyConceptExecutionStarting:input_type -> gauge.messages.ConceptExecutionStartingRequest
+	22, // 28: gauge.messages.Reporter.NotifyConceptExecutionEnding:input_type -> gauge.messages.ConceptExecutionEndingRequest
+	7,  // 29: gauge.messages.Reporter.NotifyStepExecutionStarting:input_type -> gauge.messages.StepExecutionStartingRequest
+	9,  // 30: gauge.messages.Reporter.NotifyStepExecutionEnding:input_type -> gauge.messages.StepExecutionEndingRequest
+	10, // 31: gauge.messages.Reporter.NotifyScenarioExecutionEnding:input_type -> gauge.messages.ScenarioExecutionEndingRequest
+	11, // 32: gauge.messages.Reporter.NotifySpecExecutionEnding:input_type -> gauge.messages.SpecExecutionEndingRequest
+	12, // 33: gauge.messages.Reporter.NotifyExecutionEnding:input_type -> gauge.messages.ExecutionEndingRequest
+	23, // 34: gauge.messages.Reporter.NotifySuiteResult:input_type -> gauge.messages.SuiteExecutionResult
+	20, // 35: gauge.messages.Reporter.Kill:input_type -> gauge.messages.KillProcessRequest
+	24, // 36: gauge.messages.Documenter.GenerateDocs:input_type -> gauge.messages.SpecDetails
+	20, // 37: gauge.messages.Documenter.Kill:input_type -> gauge.messages.KillProcessRequest
+	25, // 38: gauge.messages.Runner.ValidateStep:output_type -> gauge.messages.StepValidateResponse
+	26, // 39: gauge.messages.Runner.InitializeSuiteDataStore:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 40: gauge.messages.Runner.StartExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 41: gauge.messages.Runner.InitializeSpecDataStore:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 42: gauge.messages.Runner.StartSpecExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 43: gauge.messages.Runner.InitializeScenarioDataStore:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 44: gauge.messages.Runner.StartScenarioExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 45: gauge.messages.Runner.StartStepExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 46: gauge.messages.Runner.ExecuteStep:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 47: gauge.messages.Runner.FinishStepExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 48: gauge.messages.Runner.FinishScenarioExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 49: gauge.messages.Runner.FinishSpecExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	26, // 50: gauge.messages.Runner.FinishExecution:output_type -> gauge.messages.ExecutionStatusResponse
+	15, // 51: gauge.messages.Runner.CacheFile:output_type -> gauge.messages.Empty
+	27, // 52: gauge.messages.Runner.GetStepName:output_type -> gauge.messages.StepNameResponse
+	28, // 53: gauge.messages.Runner.GetGlobPatterns:output_type -> gauge.messages.ImplementationFileGlobPatternResponse
+	29, // 54: gauge.messages.Runner.GetStepNames:output_type -> gauge.messages.StepNamesResponse
+	30, // 55: gauge.messages.Runner.GetStepPositions:output_type -> gauge.messages.StepPositionsResponse
+	31, // 56: gauge.messages.Runner.GetImplementationFiles:output_type -> gauge.messages.ImplementationFileListResponse
+	32, // 57: gauge.messages.Runner.ImplementStub:output_type -> gauge.messages.FileDiff
+	33, // 58: gauge.messages.Runner.Refactor:output_type -> gauge.messages.RefactorResponse
+	15, // 59: gauge.messages.Runner.Kill:output_type -> gauge.messages.Empty
+	15, // 60: gauge.messages.Runner.NotifyConceptExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 61: gauge.messages.Runner.NotifyConceptExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 62: gauge.messages.Reporter.NotifyExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 63: gauge.messages.Reporter.NotifySpecExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 64: gauge.messages.Reporter.NotifyScenarioExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 65: gauge.messages.Reporter.NotifyConceptExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 66: gauge.messages.Reporter.NotifyConceptExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 67: gauge.messages.Reporter.NotifyStepExecutionStarting:output_type -> gauge.messages.Empty
+	15, // 68: gauge.messages.Reporter.NotifyStepExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 69: gauge.messages.Reporter.NotifyScenarioExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 70: gauge.messages.Reporter.NotifySpecExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 71: gauge.messages.Reporter.NotifyExecutionEnding:output_type -> gauge.messages.Empty
+	15, // 72: gauge.messages.Reporter.NotifySuiteResult:output_type -> gauge.messages.Empty
+	15, // 73: gauge.messages.Reporter.Kill:output_type -> gauge.messages.Empty
+	15, // 74: gauge.messages.Documenter.GenerateDocs:output_type -> gauge.messages.Empty
+	15, // 75: gauge.messages.Documenter.Kill:output_type -> gauge.messages.Empty
+	38, // [38:76] is the sub-list for method output_type
+	0,  // [0:38] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
