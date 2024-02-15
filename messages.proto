@@ -190,8 +190,6 @@ message StepInfo {
     string stackTrace = 3;
     /// The error message in case of failure
     string errorMessage = 4;
-    /// Flag to indicate if the current Step is a concept
-    bool isConcept = 5;
 }
 
 /// Request sent ot the runner to Execute a Step
