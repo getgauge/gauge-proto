@@ -145,12 +145,12 @@ type RunnerClient interface {
 	Kill(ctx context.Context, in *KillProcessRequest, opts ...grpc.CallOption) (*Empty, error)
 	// NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
 	//
-	// Accepts a ConceptExecutionStartingRequest message and returns a Empty message
-	NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*Empty, error)
+	// Accepts a ConceptExecutionStartingRequest message and returns an ExecutionStatusResponse message
+	NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*ExecutionStatusResponse, error)
 	// NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
 	//
-	// Accepts a ConceptExecutionEndingRequest message and returns a Empty message
-	NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*Empty, error)
+	// Accepts a ConceptExecutionEndingRequest message and returns an ExecutionStatusResponse message
+	NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*ExecutionStatusResponse, error)
 }
 
 type runnerClient struct {
@@ -359,8 +359,8 @@ func (c *runnerClient) Kill(ctx context.Context, in *KillProcessRequest, opts ..
 	return out, nil
 }
 
-func (c *runnerClient) NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *runnerClient) NotifyConceptExecutionStarting(ctx context.Context, in *ConceptExecutionStartingRequest, opts ...grpc.CallOption) (*ExecutionStatusResponse, error) {
+	out := new(ExecutionStatusResponse)
 	err := c.cc.Invoke(ctx, Runner_NotifyConceptExecutionStarting_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -368,8 +368,8 @@ func (c *runnerClient) NotifyConceptExecutionStarting(ctx context.Context, in *C
 	return out, nil
 }
 
-func (c *runnerClient) NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *runnerClient) NotifyConceptExecutionEnding(ctx context.Context, in *ConceptExecutionEndingRequest, opts ...grpc.CallOption) (*ExecutionStatusResponse, error) {
+	out := new(ExecutionStatusResponse)
 	err := c.cc.Invoke(ctx, Runner_NotifyConceptExecutionEnding_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -471,12 +471,12 @@ type RunnerServer interface {
 	Kill(context.Context, *KillProcessRequest) (*Empty, error)
 	// NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
 	//
-	// Accepts a ConceptExecutionStartingRequest message and returns a Empty message
-	NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*Empty, error)
+	// Accepts a ConceptExecutionStartingRequest message and returns an ExecutionStatusResponse message
+	NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*ExecutionStatusResponse, error)
 	// NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
 	//
-	// Accepts a ConceptExecutionEndingRequest message and returns a Empty message
-	NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*Empty, error)
+	// Accepts a ConceptExecutionEndingRequest message and returns an ExecutionStatusResponse message
+	NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*ExecutionStatusResponse, error)
 	mustEmbedUnimplementedRunnerServer()
 }
 
@@ -550,10 +550,10 @@ func (UnimplementedRunnerServer) Refactor(context.Context, *RefactorRequest) (*R
 func (UnimplementedRunnerServer) Kill(context.Context, *KillProcessRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Kill not implemented")
 }
-func (UnimplementedRunnerServer) NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*Empty, error) {
+func (UnimplementedRunnerServer) NotifyConceptExecutionStarting(context.Context, *ConceptExecutionStartingRequest) (*ExecutionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyConceptExecutionStarting not implemented")
 }
-func (UnimplementedRunnerServer) NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*Empty, error) {
+func (UnimplementedRunnerServer) NotifyConceptExecutionEnding(context.Context, *ConceptExecutionEndingRequest) (*ExecutionStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyConceptExecutionEnding not implemented")
 }
 func (UnimplementedRunnerServer) mustEmbedUnimplementedRunnerServer() {}
