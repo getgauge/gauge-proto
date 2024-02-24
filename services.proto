@@ -126,13 +126,13 @@ service Runner {
 
     // NotifyConceptExecutionStarting is a RPC to tell plugins that the concept execution has started.
     //
-    // Accepts a ConceptExecutionStartingRequest message and returns a Empty message
-    rpc NotifyConceptExecutionStarting(ConceptExecutionStartingRequest) returns (Empty);
+    // Accepts a ConceptExecutionStartingRequest message and returns an ExecutionStatusResponse message
+    rpc NotifyConceptExecutionStarting(ConceptExecutionStartingRequest) returns (ExecutionStatusResponse);
 
     // NotifyConceptExecutionEnding is a RPC to tell plugins that the concept execution has finished.
     //
-    // Accepts a ConceptExecutionEndingRequest message and returns a Empty message
-    rpc NotifyConceptExecutionEnding(ConceptExecutionEndingRequest) returns (Empty);
+    // Accepts a ConceptExecutionEndingRequest message and returns an ExecutionStatusResponse message
+    rpc NotifyConceptExecutionEnding(ConceptExecutionEndingRequest) returns (ExecutionStatusResponse);
 }
 
 
