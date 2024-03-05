@@ -178,6 +178,16 @@ message ScenarioInfo {
     bool isFailed = 2;
     /// Tags relevant to the current Scenario execution.
     repeated string  tags = 3;
+    /// Retries info
+    ScenarioRetriesInfo retries = 4;
+}
+
+/// Contains details of the Scenario repeat execution.
+message ScenarioRetriesInfo {
+    // Maximum retries. Related to '--max-retries-count' run parameter
+    int32 maxRetries = 1;
+    // Current retry attempt. It's 0 for the normal first run
+    int32 currentRetry = 2;
 }
 
 /// Contains details of the Step execution.
