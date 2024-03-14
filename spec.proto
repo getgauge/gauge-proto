@@ -311,6 +311,8 @@ message ProtoExecutionResult {
     string failureScreenshotFile = 11;
     /// Path to the screenshot files captured using Gauge screenshsot API.
     repeated string screenshotFiles = 12;
+    /// Flag to indicate skipping of the scenario execution
+    bool skipScenario = 13;
 }
 
 /// A proto object representing a pre-hook failure.
