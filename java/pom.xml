@@ -6,7 +6,7 @@
     <artifactId>gauge-api-client</artifactId>
     <version>${projectVersion}</version>
     <description>Java plugin for Gauge</description>
-    <url>http://github.com/getgauge/gauge-proto</url>
+    <url>https://github.com/getgauge/gauge-proto</url>
 
     <dependencies>
         <dependency>
