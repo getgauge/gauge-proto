@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: "/go/gauge_messages"
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-type: all
+    groups:
+      go:
+        patterns:
+          - "*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+  - package-ecosystem: maven
+    directory: "/java"
+    schedule:
+      interval: weekly
+    groups:
+      java:
+        patterns:
+          - "*"
