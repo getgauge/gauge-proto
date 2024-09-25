@@ -85,6 +85,9 @@
                     <pluginArtifact>
                         io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
                     </pluginArtifact>
+                    <pluginParameter>
+                        @generated=omit
+                    </pluginParameter>
                     <protoSourceRoot>protos</protoSourceRoot>
                 </configuration>
                 <executions>
@@ -94,11 +97,6 @@
                             <goal>compile</goal>
                             <goal>compile-custom</goal>
                         </goals>
-                        <configuration>
-                            <pluginParameter>
-                                @generated=omit
-                            </pluginParameter>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
