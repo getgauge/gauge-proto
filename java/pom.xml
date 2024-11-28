@@ -14,8 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <grpc.version>1.68.1</grpc.version>
-        <protobuf.version>4.28.3</protobuf.version>
+        <grpc.version>1.68.2</grpc.version>
+        <protobuf.version>4.29.0</protobuf.version>
     </properties>
 
     <dependencies>
