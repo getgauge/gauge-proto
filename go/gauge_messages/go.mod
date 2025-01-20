@@ -3,8 +3,8 @@ module github.com/getgauge/gauge-proto/go/gauge_messages
 go 1.23
 
 require (
-	google.golang.org/grpc v1.69.2
-	google.golang.org/protobuf v1.36.2
+	google.golang.org/grpc v1.69.4
+	google.golang.org/protobuf v1.36.3
 )
 
 require (
