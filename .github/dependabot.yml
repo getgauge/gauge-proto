@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: gomod
     directory: "/go/gauge_messages"
     schedule:
-      interval: weekly
+      interval: monthly
     allow:
       - dependency-type: all
     groups:
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       github-actions:
         patterns:
@@ -21,7 +21,7 @@ updates:
   - package-ecosystem: maven
     directory: "/java"
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
       java:
         patterns:
