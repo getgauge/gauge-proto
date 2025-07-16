@@ -354,8 +354,8 @@ message ProtoSuiteResult {
     string tags = 9;
     /// Project name
     string projectName = 10;
-    /// Timestamp of when execution started
-    string timestamp = 11;
+    /// [DEPRECATED, use rfc3339Timestamp] Timestamp of when execution started
+    string timestamp = 11 [deprecated = true];
     int32 specsSkippedCount = 12;
     /// Additional information at pre hook exec time to be available on reports
     repeated string preHookMessages = 13;
@@ -377,6 +377,8 @@ message ProtoSuiteResult {
     repeated string preHookScreenshotFiles = 21;
     /// Screenshots captured on post hook exec time to be available on reports
     repeated string postHookScreenshotFiles = 22;
+    /// RFC-3339 / ISO-8601 Timestamp of when execution started
+    string rfc3339Timestamp = 23
 }
 
 /// A proto object representing the result of Spec execution.
