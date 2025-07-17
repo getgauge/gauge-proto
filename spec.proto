@@ -378,7 +378,7 @@ message ProtoSuiteResult {
     /// Screenshots captured on post hook exec time to be available on reports
     repeated string postHookScreenshotFiles = 22;
     /// RFC-3339 / ISO-8601 Timestamp of when execution started
-    string rfc3339Timestamp = 23
+    string rfc3339Timestamp = 23;
 }
 
 /// A proto object representing the result of Spec execution.
@@ -403,8 +403,10 @@ message ProtoSpecResult {
     repeated int32 skippedDataTableRows = 9;
     /// Holds parse, validation and skipped errors.
     repeated Error errors = 10;
-    /// Holds the timestamp of event starting.
+    /// [DEPRECATED, use rfc3339Timestamp] Holds the timestamp of event starting.
     string timestamp = 11;
+    /// RFC-3339 / ISO-8601 Timestamp of event starting.
+    string rfc3339Timestamp = 12;
 }
 
 /// A proto object representing the result of Scenario execution.
@@ -413,8 +415,10 @@ message ProtoScenarioResult {
     ProtoItem protoItem = 1;
     /// Holds the time taken for executing the whole suite.
     int64 executionTime = 2;
-    /// Holds the timestamp of event starting.
+    /// [DEPRECATED, use rfc3339Timestamp] Holds the timestamp of event starting.
     string timestamp = 3;
+    /// RFC-3339 / ISO-8601 Timestamp of event starting.
+    string rfc3339Timestamp = 4;
 }
 
 /// A proto object representing the result of Step execution.
@@ -423,8 +427,10 @@ message ProtoStepResult {
     ProtoItem protoItem = 1;
     /// Holds the time taken for executing the whole suite.
     int64 executionTime = 2;
-    /// Holds the timestamp of event starting.
+    /// [DEPRECATED, use rfc3339Timestamp] Holds the timestamp of event starting.
     string timestamp = 3;
+    /// RFC-3339 / ISO-8601 Timestamp of event starting.
+    string rfc3339Timestamp = 4;
 }
 
 /// A proto object representing an error in spec/Scenario.
