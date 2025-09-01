@@ -14,8 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <grpc.version>1.74.0</grpc.version>
-        <protobuf.version>4.31.1</protobuf.version>
+        <grpc.version>1.75.0</grpc.version>
+        <protobuf.version>4.32.0</protobuf.version>
     </properties>
 
     <dependencies>
@@ -126,7 +126,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.11.2</version>
+                <version>3.11.3</version>
                 <configuration>
                     <excludePackageNames>com.google.protobuf</excludePackageNames>
                 </configuration>
