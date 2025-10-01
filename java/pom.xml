@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <grpc.version>1.75.0</grpc.version>
-        <protobuf.version>4.32.0</protobuf.version>
+        <protobuf.version>4.32.1</protobuf.version>
     </properties>
 
     <dependencies>
@@ -52,7 +52,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.14.1</version>
                 <configuration>
                     <source>11</source>
                     <target>11</target>
@@ -126,7 +126,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.11.3</version>
+                <version>3.12.0</version>
                 <configuration>
                     <excludePackageNames>com.google.protobuf</excludePackageNames>
                 </configuration>
@@ -166,7 +166,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.8.0</version>
+                <version>0.9.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
