@@ -235,6 +235,7 @@ message Parameter {
         Special_String = 2; // Special paramter, taking a string value. Special paramters are read from a file.
         Special_Table = 3; // Special paramter, taking a Table value. This parameter is read from a csv file.
         Table = 4; // A table parameter, used for data driven execution.
+        Multiline_String = 5; // A multiline string parameter, used for data driven execution.
     }
     /// Type of the Parameter. Valid values: Static, Dynamic, Special_String, Special_Table, Table
     ParameterType parameterType = 1;
