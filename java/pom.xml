@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <grpc.version>1.78.0</grpc.version>
-        <protobuf.version>4.33.2</protobuf.version>
+        <protobuf.version>4.33.5</protobuf.version>
     </properties>
 
     <dependencies>
@@ -166,7 +166,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.9.0</version>
+                <version>0.10.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
