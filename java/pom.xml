@@ -14,8 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <grpc.version>1.79.0</grpc.version>
-        <protobuf.version>4.34.0</protobuf.version>
+        <grpc.version>1.80.0</grpc.version>
+        <protobuf.version>4.34.1</protobuf.version>
     </properties>
 
     <dependencies>
@@ -61,7 +61,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.4.0</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
