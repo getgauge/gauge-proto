@@ -1,3 +1,3 @@
 module github.com/getgauge/gauge-proto/go/gauge_messages
 
-go 1.26
+go 1.27.0
